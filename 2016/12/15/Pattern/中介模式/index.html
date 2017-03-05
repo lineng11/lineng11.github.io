@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="中介模式"/>
+
+
+
+
+  <meta name="keywords" content="中介模式," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2016/12/15/Pattern/中介模式/"/>
+
+
+<meta name="description" content="中介模式从字面来理解就突出“中介”的特点，说到中介就想到租房、中间者，生活中我们把一些事情交给第三者来处理，来达到自我的需求。那么程序上也是可以这样，例如一台电脑的组成几个部件如：CPU、CD光驱、显卡、声卡几个固件，现在拿到了一个cd唱片，想观看，那么电脑如何处理，显然它们只是播放中组成部分，这时候需要一个主板“中间者”来协调分配，让CD光驱解析读取数据，然后让CPU解码成出视频和音频，在让">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中介模式">
+<meta property="og:url" content="http://nenglee.com/2016/12/15/Pattern/中介模式/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="中介模式从字面来理解就突出“中介”的特点，说到中介就想到租房、中间者，生活中我们把一些事情交给第三者来处理，来达到自我的需求。那么程序上也是可以这样，例如一台电脑的组成几个部件如：CPU、CD光驱、显卡、声卡几个固件，现在拿到了一个cd唱片，想观看，那么电脑如何处理，显然它们只是播放中组成部分，这时候需要一个主板“中间者”来协调分配，让CD光驱解析读取数据，然后让CPU解码成出视频和音频，在让">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:updated_time" content="2016-12-15T16:35:39.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中介模式">
+<meta name="twitter:description" content="中介模式从字面来理解就突出“中介”的特点，说到中介就想到租房、中间者，生活中我们把一些事情交给第三者来处理，来达到自我的需求。那么程序上也是可以这样，例如一台电脑的组成几个部件如：CPU、CD光驱、显卡、声卡几个固件，现在拿到了一个cd唱片，想观看，那么电脑如何处理，显然它们只是播放中组成部分，这时候需要一个主板“中间者”来协调分配，让CD光驱解析读取数据，然后让CPU解码成出视频和音频，在让">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%BC%8F.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 中介模式 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          中介模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016年12月15日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景"><span class="toc-text">场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型图"><span class="toc-text">模型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>中介模式从字面来理解就突出“中介”的特点，说到中介就想到租房、中间者，生活中我们把一些事情交给第三者来处理，来达到自我的需求。那么程序上也是可以这样，例如一台电脑的组成几个部件如：CPU、CD光驱、显卡、声卡几个固件，现在拿到了一个cd唱片，想观看，那么电脑如何处理，显然它们只是播放中组成部分，这时候需要一个主板“中间者”来协调分配，让CD光驱解析读取数据，然后让CPU解码成出视频和音频，在让显卡和声卡具体显示出来。那么这直接一些操作让主板来分配完成。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>中介模式包装了一系列对象相互交互的方式，使得对象之间不必相互明显作用。</p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>当对象之间相互作用的时候，它们之间就会产生依赖关系，防止修改一个对象的行为时，同是涉及到其他对象的动作，这时候可以采用中介模式，来解决耦合问题，可以达到对象之间的多对多关系变得一对多的关系，中介者对象将系统从网状结构体变成指挥室的中心作用，降低系统的复杂程度。</p>
+<h3 id="模型图"><a href="#模型图" class="headerlink" title="模型图"></a>模型图</h3><p><img src="http://of6bvxslc.bkt.clouddn.com/%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%BC%8F.png" alt="中介模式"></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>Mediator：抽象中介者，定义了同事对象对中介者的接口</li>
+<li>ConcreteMediator：具体中介者实现抽象类</li>
+<li>Colleague：抽象固件同事，定义中介者对象的接口，只知道中介者、不知道其他同事A/B</li>
+<li>ConcreteColleagueA|B：具体同事本身的Action行为</li>
+</ul>
+<blockquote>
+<p>这里的中介模式定义了简单模版，抓住定义特点：同事之间不知道对方的行为动作，古不能交互，必须让中介者（）来指挥，并把自己的行为动作告诉中介</p>
+</blockquote>
+<p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/mediator/stencil" target="_blank" rel="external">中介模式—stencil</a></p>
+<p>那么如果用中介模式，设计出上诉所说，让主板来指挥一个CD唱片让各种组件同事执行自己的Action？</p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/mediator/dome/Mediator.java" target="_blank" rel="external">Mediator.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 抽象的中介者</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Mediator</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 抽象中介方法</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">changed</span><span class="params">(Colleague colleague)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/mediator/dome/Colleague.java" target="_blank" rel="external">Colleague.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 抽象同事</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Colleague</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> Mediator mediator;  <span class="comment">//中介对象</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Colleague</span><span class="params">(Mediator mediator)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mediator = mediator;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/mediator/stencil" target="_blank" rel="external">BoardMediator.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 中介者-- 主板</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BoardMediator</span> <span class="keyword">extends</span> <span class="title">Mediator</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> CPU cpu;</div><div class="line">    <span class="keyword">private</span> CDDevice cdDevice;</div><div class="line">    <span class="keyword">private</span> GraphicsCard graphicsCard;</div><div class="line">    <span class="keyword">private</span> SoundCard soundCard;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">changed</span><span class="params">(Colleague colleague)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (colleague == cpu) &#123;</div><div class="line">            handleCPU(cpu);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (colleague == cdDevice) &#123;</div><div class="line">            handleCD(cdDevice);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 处理光驱数据，给其他设备交互</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> cdDevice</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleCD</span><span class="params">(CDDevice cdDevice)</span> </span>&#123;</div><div class="line">        cpu.decodeData(cdDevice.getData());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 处理CPU读取数据后，给其他设备交互</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> cpu</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleCPU</span><span class="params">(CPU cpu)</span> </span>&#123;</div><div class="line">        graphicsCard.videopPlay(cpu.getDataVideo());</div><div class="line">        soundCard.soundPlay(cpu.getDataSound());</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCpu</span><span class="params">(CPU cpu)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.cpu = cpu;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCdDevice</span><span class="params">(CDDevice cdDevice)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.cdDevice = cdDevice;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGraphicsCard</span><span class="params">(GraphicsCard graphicsCard)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.graphicsCard = graphicsCard;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSoundCard</span><span class="params">(SoundCard soundCard)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.soundCard = soundCard;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>可以看到CPU、CDDevice、GraphicsCard、SoundCard组件同事之间都没相互依赖交互，而是让中介者(BoardMediator)进行统一的指挥，这也是中介模式核心点.</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在面向对象编程语言中，一个类必然会与其他类产生依赖关系，如果这种依赖关系如果网状错综复杂，那么必然会影响代码逻辑编写以及思路，导致执行效率低迷，适当让中介模式可以让对象与对象之间的关系解耦，这样下来不会绕、逻辑也清晰，在使用的前提下如果只是简单几个对象依赖，逻辑并不负责，还请三思，毕竟要多方面考了，在决定是否合理，权衡利弊。</p>
+<p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/mediator/dome" target="_blank" rel="external">中介模式 参考code</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/中介模式/">中介模式</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/17/Pattern/代理模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">代理模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/14/Pattern/访问者模式/">
+        <span class="next-text nav-default">访问者模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/15/Pattern/中介模式/"
+           data-title="中介模式" data-url="http://nenglee.com/2016/12/15/Pattern/中介模式/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

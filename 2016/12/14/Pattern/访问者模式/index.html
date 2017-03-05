@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="访问者模式"/>
+
+
+
+
+  <meta name="keywords" content="访问者模式," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2016/12/14/Pattern/访问者模式/"/>
+
+
+<meta name="description" content="访问者模式是一种将数据操作与数据结构分离的设计模式，可以说在众多设计之中最为复杂的一个，一般来说使用的频率并不是特别高，但不代表它不重要。访问者的模式基本想法是：软件系统中拥有一个由许多对象构成，访问者是一个接口，它拥有一个Visit方法体，这个方法对访问者的对象结构中不同的类型元素做出不同的处理，在对象结构的一次访问过程中，我们遍历整个对象结构，对每一个元素进行实施accept方法，在每一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="访问者模式">
+<meta property="og:url" content="http://nenglee.com/2016/12/14/Pattern/访问者模式/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="访问者模式是一种将数据操作与数据结构分离的设计模式，可以说在众多设计之中最为复杂的一个，一般来说使用的频率并不是特别高，但不代表它不重要。访问者的模式基本想法是：软件系统中拥有一个由许多对象构成，访问者是一个接口，它拥有一个Visit方法体，这个方法对访问者的对象结构中不同的类型元素做出不同的处理，在对象结构的一次访问过程中，我们遍历整个对象结构，对每一个元素进行实施accept方法，在每一个">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:updated_time" content="2016-12-14T16:29:14.212Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="访问者模式">
+<meta name="twitter:description" content="访问者模式是一种将数据操作与数据结构分离的设计模式，可以说在众多设计之中最为复杂的一个，一般来说使用的频率并不是特别高，但不代表它不重要。访问者的模式基本想法是：软件系统中拥有一个由许多对象构成，访问者是一个接口，它拥有一个Visit方法体，这个方法对访问者的对象结构中不同的类型元素做出不同的处理，在对象结构的一次访问过程中，我们遍历整个对象结构，对每一个元素进行实施accept方法，在每一个">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 访问者模式 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          访问者模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016年12月14日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用场景"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型图"><span class="toc-text">模型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>访问者模式是一种将数据操作与数据结构分离的设计模式，可以说在众多设计之中最为复杂的一个，一般来说使用的频率并不是特别高，但不代表它不重要。<br>访问者的模式基本想法是：软件系统中拥有一个由许多对象构成，访问者是一个接口，它拥有一个Visit方法体，这个方法对访问者的对象结构中不同的类型元素做出不同的处理，在对象结构的一次访问过程中，我们遍历整个对象结构，对每一个元素进行实施accept方法，在每一个元素的accept方法中会调用访问者的visit方法，从而使得访问者得以处理对象结构的每一个元素，我们可以针对结构设计不同的访问者来完成不同的操作，达到区别效果。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>封装一些作用于某种数据结构中各元素操作，它可以在不改变这个数据结构的前提定义作用于这些元素的新操作。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ol>
+<li>对象结构比较稳定，但经常需要在对象结构上定义新的操作</li>
+<li>需要对一个对象结构中的元素进行不同的操作，并且是不相关的操作，而需要避免这些操作的“污染”这些对象的类，也不希望在增加新操作时候修改这些类</li>
+</ol>
+<p>假设一个场景：<br>年终，公司会给员工考核，但是不同职位员工考核标准不同，例如：考核人CEO和CTO俩人，CEO看的是工程师KPI和经理的KPI，CTO看的是工程师的代码量和经理的产品数。<br>那么CEO和CTO对于不同的员工考核的是不一样的，这就需要对不同员工类型进行不同的处理，那么可以考虑采用访问者模式。</p>
+<h3 id="模型图"><a href="#模型图" class="headerlink" title="模型图"></a>模型图</h3><p><img src="http://of6bvxslc.bkt.clouddn.com/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F.png" alt="访问者模式"></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>Visitor：接口类定义员工访问行为</li>
+<li>CEOVisitor | CTOVisitor ：具体的访问者，给出每个元素的访问产生的具体行为</li>
+<li>Staff：员工抽象类，定义了接收访问者的 【 abstract void accept(Visitor visitor) 】抽象方法</li>
+<li>Engineer | Manager：具体员工类</li>
+<li>BusinessReport：对象的结构，管理元素，并且可以迭代这些元素供访问者访问</li>
+</ul>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/visitor/Staff.java" target="_blank" rel="external">Staff.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 员工基类</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/14.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Staff</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> String name;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> kpi;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Staff</span><span class="params">(String name)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        kpi = <span class="keyword">new</span> Random().nextInt(<span class="number">10</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor visitor)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/visitor/Engineer.java" target="_blank" rel="external">Engineer.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 工程师</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/14.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Engineer</span> <span class="keyword">extends</span> <span class="title">Staff</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Engineer</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(name);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor visitor)</span> </span>&#123;</div><div class="line">        visitor.visit(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 工程师一年写的代码数量</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCodeLines</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Random().nextInt(<span class="number">10</span> * <span class="number">10000</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>可以看到实现了【 public void accept(Visitor visitor) 】提供了具体访问者</p>
+</blockquote>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/visitor/Visitor.java" target="_blank" rel="external">Visitor.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/14.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Visitor</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 访问工程师类型</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> engineer</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(Engineer engineer)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 访问经理类型</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> manager</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(Manager manager)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/visitor/BusinessReport.java" target="_blank" rel="external">BusinessReport.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 员工数据表</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/14.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BusinessReport</span> </span>&#123;</div><div class="line"></div><div class="line">    List&lt;Staff&gt; mStaff = <span class="keyword">new</span> LinkedList&lt;&gt;();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BusinessReport</span><span class="params">()</span> </span>&#123;</div><div class="line">        mStaff.add(<span class="keyword">new</span> Manager(<span class="string">"Wang经理"</span>));</div><div class="line">        mStaff.add(<span class="keyword">new</span> Engineer(<span class="string">"工程师--Shawn.Xiong"</span>));</div><div class="line">        mStaff.add(<span class="keyword">new</span> Engineer(<span class="string">"工程师--Keal"</span>));</div><div class="line">        mStaff.add(<span class="keyword">new</span> Engineer(<span class="string">"工程师--Chaossss"</span>));</div><div class="line">        mStaff.add(<span class="keyword">new</span> Engineer(<span class="string">"工程师--Leene"</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 为访问者展示报表</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> visitor</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showReport</span><span class="params">(Visitor visitor)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (Staff staff : mStaff) &#123;</div><div class="line">            staff.accept(visitor);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>可以看到，员工数据集合中，迭代所有的元素供访问者访问</li>
+</ul>
+<p>看看CEO和CTO如何更具自己的考核标准，拿到想要的数据?<br><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/visitor/BusinessReport.java" target="_blank" rel="external">VisitorActivity.java Client客户端</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="comment">//构建报表init</span></div><div class="line">       BusinessReport report = <span class="keyword">new</span> BusinessReport();</div><div class="line"></div><div class="line">       Log.d(<span class="keyword">this</span>.getClass().getSimpleName(), <span class="string">"==============给CEO看的报表=============="</span>);</div><div class="line">       <span class="comment">//设置访问者 CEO</span></div><div class="line">       report.showReport(<span class="keyword">new</span> CEOVisitor());</div><div class="line"></div><div class="line">       Log.d(<span class="keyword">this</span>.getClass().getSimpleName(), <span class="string">"==============给CTO看的报表=============="</span>);</div><div class="line">       <span class="comment">//设置访问者 CTO</span></div><div class="line">       report.showReport(<span class="keyword">new</span> CTOVisitor());</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>访问者最大的优点就是增加不同的访问者非常容易，我们从代码中看到，如果增加一个访问者，你要新创建一个实现Visitor接口类，然后实现内部的visit函数。<br>优点:</p>
+<ol>
+<li>各角色职责分离，符合面向对象的单一原则</li>
+<li>具有优秀的扩展性</li>
+<li>使得数据结构和作用结构上操作耦合，操作数据更加独立</li>
+<li>灵活性</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>具体元素对访问者公布细节</li>
+<li>假如具体元素改变了，导致修改成本增加</li>
+</ol>
+<p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/visitor" target="_blank" rel="external">访问者模式 案例参考code</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/访问者模式/">访问者模式</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/15/Pattern/中介模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">中介模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/13/Pattern/模版模式/">
+        <span class="next-text nav-default">模版模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/14/Pattern/访问者模式/"
+           data-title="访问者模式" data-url="http://nenglee.com/2016/12/14/Pattern/访问者模式/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

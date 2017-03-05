@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="责任链模式"/>
+
+
+
+
+  <meta name="keywords" content="责任链模式," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2016/11/17/Pattern/责任链模式/"/>
+
+
+<meta name="description" content="责任链模式最为突出是”链”字，生活中链式可以理解为一环套一环,前面的操作影响后面的结果，那么程序中就是多个节点首尾相连，所构成的结构成为“链”，将每一个节点看成一个对象，每个对象拥有不同的处理逻辑，将一个请求从链式的首端发出，沿着链的路径依次传递每一个节点对象，直到对象处理结束为止，这样的一些列动作称为责任链模式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="责任链模式">
+<meta property="og:url" content="http://nenglee.com/2016/11/17/Pattern/责任链模式/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="责任链模式最为突出是”链”字，生活中链式可以理解为一环套一环,前面的操作影响后面的结果，那么程序中就是多个节点首尾相连，所构成的结构成为“链”，将每一个节点看成一个对象，每个对象拥有不同的处理逻辑，将一个请求从链式的首端发出，沿着链的路径依次传递每一个节点对象，直到对象处理结束为止，这样的一些列动作称为责任链模式。">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:updated_time" content="2016-12-07T17:07:28.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="责任链模式">
+<meta name="twitter:description" content="责任链模式最为突出是”链”字，生活中链式可以理解为一环套一环,前面的操作影响后面的结果，那么程序中就是多个节点首尾相连，所构成的结构成为“链”，将每一个节点看成一个对象，每个对象拥有不同的处理逻辑，将一个请求从链式的首端发出，沿着链的路径依次传递每一个节点对象，直到对象处理结束为止，这样的一些列动作称为责任链模式。">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 责任链模式 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          责任链模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016年11月17日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型图"><span class="toc-text">模型图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>责任链模式最为突出是”链”字，生活中链式可以理解为一环套一环,前面的操作影响后面的结果，那么程序中就是多个节点首尾相连，所构成的结构成为“链”，将每一个节点看成一个对象，每个对象拥有不同的处理逻辑，将一个请求从链式的首端发出，沿着链的路径依次传递每一个节点对象，直到对象处理结束为止，这样的一些列动作称为责任链模式。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象连接成一条链，并沿着这条链式的请求动作，结束为止。</p>
+<p>一般用于：多个对象处理一个请求，具体由哪个对象处理则在运行时动态决定，在请求处理者不明确的情况下向多个对象中一个提交一个请求。</p>
+<h2 id="模型图"><a href="#模型图" class="headerlink" title="模型图"></a>模型图</h2><p><img src="http://of6bvxslc.bkt.clouddn.com/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F.png" alt="责任链模式"></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>比如:技术人员购买了服务器等业务,需要报销，那么就会给上层请求批准报销，组长只能批准1000一下金额，不然组长就向主管请求，主管可以处理5000金额，超过了则向经理请求处理，经理是10000金额，超过了经理就需要Boss请求批准。这样一环请求一环直到结束，返回一个结果。</p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/chainRespons/Leader.java" target="_blank" rel="external">Leader.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 抽象领导</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/11/17.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Leader</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Leader nextHander;  <span class="comment">//上一级的处理者</span></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 处理报销请求</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> money</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(<span class="keyword">int</span> money)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (money &lt;= limit()) &#123;</div><div class="line">            String str = handle(money);</div><div class="line">            Log.e(<span class="string">"TAG"</span>, str);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">null</span> != nextHander) &#123;</div><div class="line">                nextHander.handleRequest(money);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 自身批准金额权限</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">limit</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 处理报销行为</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> money</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">handle</span><span class="params">(<span class="keyword">int</span> money)</span></span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNextHander</span><span class="params">(Leader nextHander)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.nextHander = nextHander;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>抽象Leader定义了上个领导对象，然后在 <font color="#0099ff"> <strong>public final void handleRequest(int money)</strong> </font> 做了逻辑判断请求if-else,特别是不满足报销时候，让领导会请求上一级Leader重新审核报销，直到在满足Leader请求完为止。</p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/activity/ChainResponsActivity.java" target="_blank" rel="external">Client 调用者</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="comment">//初始化Leeader</span></div><div class="line">      groupLeader = <span class="keyword">new</span> GroupLeader();</div><div class="line">      directorLeader = <span class="keyword">new</span> DirectorLeader();</div><div class="line">      mansgerLeader = <span class="keyword">new</span> MansgerLeader();</div><div class="line">      bossLeader = <span class="keyword">new</span> BossLeader();</div><div class="line"></div><div class="line">      <span class="comment">//设置上级Leader</span></div><div class="line">      groupLeader.setNextHander(directorLeader);</div><div class="line">      directorLeader.setNextHander(mansgerLeader);</div><div class="line">      mansgerLeader.setNextHander(bossLeader);</div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClickButton</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">      <span class="keyword">super</span>.onClickButton(view);</div><div class="line">      <span class="comment">//不同价格的服务器</span></div><div class="line">      <span class="keyword">int</span>[] money = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">200</span>, <span class="number">1885</span>, <span class="number">8888</span>, <span class="number">9999</span>, <span class="number">50000</span>&#125;;</div><div class="line"></div><div class="line">      String strMoney = groupLeader.handleRequest(money[<span class="number">3</span>]);</div><div class="line">      log(strMoney);</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>可以看到不同级别的Leader都new成对象，然后在当前Leader对象中存放了上一级的Leader对象，这个是关键，可以保证每个节点(对象)有链式关联。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>责任链模式很好对请求者和处理者之间的解耦，提高代码的灵活性,同时也带来一定弊端，在链式中请求处理者的遍历,如果处理者太多(逻辑业务很强)会影响一定性能，特别是在递归中调用。</p>
+<p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/chainRespons" target="_blank" rel="external">责任链模式 案例参考code</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/责任链模式/">责任链模式</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/05/Pattern/解释器模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">解释器模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/11/15/Pattern/状态模式/">
+        <span class="next-text nav-default">状态模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/17/Pattern/责任链模式/"
+           data-title="责任链模式" data-url="http://nenglee.com/2016/11/17/Pattern/责任链模式/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

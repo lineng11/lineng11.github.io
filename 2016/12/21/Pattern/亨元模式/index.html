@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="亨元模式"/>
+
+
+
+
+  <meta name="keywords" content="亨元模式," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2016/12/21/Pattern/亨元模式/"/>
+
+
+<meta name="description" content="亨元模式是对象池的一种实现，用来尽可能减少内存的用量，它适合用于可能存在大量重复对象的场景，来缓存可共享的对象，达到对象的共享、避免创建过多的对象效果，这样一来就可以提升性能，避免内存移除等..亨元对象中部分状态是可以共享的，可以共享的状态成为内部状态，内部状态不会随着环境变化，不可共享的状态则称为外部共享，它们会随着环境变化改变而改变，在亨元模式中会建立一个对象容器，在经典亨元模式内部有一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="亨元模式">
+<meta property="og:url" content="http://nenglee.com/2016/12/21/Pattern/亨元模式/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="亨元模式是对象池的一种实现，用来尽可能减少内存的用量，它适合用于可能存在大量重复对象的场景，来缓存可共享的对象，达到对象的共享、避免创建过多的对象效果，这样一来就可以提升性能，避免内存移除等..亨元对象中部分状态是可以共享的，可以共享的状态成为内部状态，内部状态不会随着环境变化，不可共享的状态则称为外部共享，它们会随着环境变化改变而改变，在亨元模式中会建立一个对象容器，在经典亨元模式内部有一个">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/%E4%BA%A8%E5%85%83%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:updated_time" content="2016-12-21T15:29:58.248Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="亨元模式">
+<meta name="twitter:description" content="亨元模式是对象池的一种实现，用来尽可能减少内存的用量，它适合用于可能存在大量重复对象的场景，来缓存可共享的对象，达到对象的共享、避免创建过多的对象效果，这样一来就可以提升性能，避免内存移除等..亨元对象中部分状态是可以共享的，可以共享的状态成为内部状态，内部状态不会随着环境变化，不可共享的状态则称为外部共享，它们会随着环境变化改变而改变，在亨元模式中会建立一个对象容器，在经典亨元模式内部有一个">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/%E4%BA%A8%E5%85%83%E6%A8%A1%E5%BC%8F.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 亨元模式 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          亨元模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016年12月21日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景"><span class="toc-text">场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型图"><span class="toc-text">模型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>亨元模式是对象池的一种实现，用来尽可能减少内存的用量，它适合用于可能存在大量重复对象的场景，来缓存可共享的对象，达到对象的共享、避免创建过多的对象效果，这样一来就可以提升性能，避免内存移除等..<br>亨元对象中部分状态是可以共享的，可以共享的状态成为内部状态，内部状态不会随着环境变化，不可共享的状态则称为外部共享，它们会随着环境变化改变而改变，在亨元模式中会建立一个对象容器，在经典亨元模式内部有一个容器Map，它的键是亨元对象的内部状态，他的值是亨元对象的本身，否则创建一个亨元对象并且存入容器，这样就可以避免重复的new多个对象。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>使用共享对象可有效地支持大量的细粒度对象</p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ol>
+<li>系统中存在大量相似对象</li>
+<li>细粒度的对象都是具备接近相似的外部状态，而且内部状态与环境无关，俗称没有特定身份</li>
+<li>需要缓冲池对象</li>
+</ol>
+<h3 id="模型图"><a href="#模型图" class="headerlink" title="模型图"></a>模型图</h3><p><img src="http://of6bvxslc.bkt.clouddn.com/%E4%BA%A8%E5%85%83%E6%A8%A1%E5%BC%8F.png" alt="亨元模式"></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>Ticket：享元对象抽象类</li>
+<li>TrainTicket：具体亨元对象</li>
+<li>TicketFactory：亨元工厂，内部有一个Map作为亨元对象的存储</li>
+</ol>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/flyweight/Ticket.java" target="_blank" rel="external">Ticket.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 享元对象抽象类</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/21.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Ticket</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 车票信息</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> from 出发地</div><div class="line">     * <span class="doctag">@param</span> to   终点地</div><div class="line">     * <span class="doctag">@param</span> bunk 座位</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showTicketInfo</span><span class="params">(String from, String to, String bunk)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/flyweight/TrainTicket.java" target="_blank" rel="external">TrainTicket.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 具体 享元对象</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/21.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TrainTicket</span> <span class="keyword">implements</span> <span class="title">Ticket</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//始发地</span></div><div class="line">    <span class="keyword">public</span> String from;</div><div class="line">    <span class="comment">//目的地</span></div><div class="line">    <span class="keyword">public</span> String to;</div><div class="line">    <span class="comment">//铺位</span></div><div class="line">    <span class="keyword">public</span> String bunk;</div><div class="line">    <span class="comment">//价钱</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> price;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showTicketInfo</span><span class="params">(String from, String to, String bunk)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.from = from;</div><div class="line">        <span class="keyword">this</span>.to = to;</div><div class="line">        <span class="keyword">this</span>.bunk =bunk;</div><div class="line">        price = <span class="number">100</span>;</div><div class="line">        <span class="keyword">switch</span> (bunk) &#123;</div><div class="line">            <span class="keyword">case</span> <span class="string">"硬座"</span>:</div><div class="line">                price = price * <span class="number">1</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="string">"下铺"</span>:</div><div class="line">                price = price * <span class="number">3</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="string">"上铺"</span>:</div><div class="line">                price = price * <span class="number">5</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="string">"商务"</span>:</div><div class="line">                price = price * <span class="number">10</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        price = <span class="keyword">new</span> Random().nextInt(price);</div><div class="line">        Log.d(getClass().getSimpleName(), <span class="string">"showTicketInfo: 购买到从："</span> + from + <span class="string">" --- "</span> + to + <span class="string">" 的 "</span> + bunk + <span class="string">" 火车票, 价格："</span> + price);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/flyweight/TicketFactory.java" target="_blank" rel="external">TicketFactory.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 享元工厂</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/21.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TicketFactory</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">static</span> Map&lt;String, Ticket&gt; stringTicketMap = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Ticket <span class="title">getTicket</span><span class="params">(String from, String to, String bunk)</span> </span>&#123;</div><div class="line">        Ticket ticket = <span class="keyword">null</span>;</div><div class="line">        String key = from + <span class="string">" - "</span> + to + <span class="string">" - "</span> + bunk;</div><div class="line">        <span class="comment">//Map是否存在对应的车票信息</span></div><div class="line">        <span class="keyword">if</span> (stringTicketMap.containsKey(key)) &#123;</div><div class="line">            ticket = stringTicketMap.get(key);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            ticket = <span class="keyword">new</span> TrainTicket();</div><div class="line">            ticket.showTicketInfo(from, to, bunk);</div><div class="line">            stringTicketMap.put(key, ticket);</div><div class="line">            <span class="keyword">return</span> ticket;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ticket;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在亨元工厂中对象共享的数据都存放在Map中，这样避免相同的数据下次继续创建，可以通过key来取出</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>亨元模式比较简单，但是它的作用某些场景及其重要性，它可以减少应用程序的创建对象，降低内存的占用，增强程序的性能，但它也提高了系统的复杂性，需要分离出外部状态和内部状态，而且外部状态具体固定性，不随环境变化，不然就会导致逻辑混乱。</p>
+<p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/flyweight" target="_blank" rel="external">亨元模式 案例参考code</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/亨元模式/">亨元模式</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/22/Pattern/外观模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">外观模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/20/Pattern/装饰模式/">
+        <span class="next-text nav-default">装饰模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/21/Pattern/亨元模式/"
+           data-title="亨元模式" data-url="http://nenglee.com/2016/12/21/Pattern/亨元模式/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="观察者模式"/>
+
+
+
+
+  <meta name="keywords" content="观察者模式," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2016/12/06/Pattern/观察者模式/"/>
+
+
+<meta name="description" content="观察者模式使用的频率极高,最大特色是:订阅–发布,本身的设计就是用于解耦，在观察者和被观察者者解耦,它们之间的依赖性小，甚至毫无依赖，以GUI来说，UI本身有着易变性，尤其在需求不明确的情况下，产品改动大，应用的界面经常发生变化，但是业务逻辑变化不大，此时，需要一套机制来对应，而观察者模式使得UI层与业务层的逻辑之间的逻辑解耦，观察者模式就派上用场。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="观察者模式">
+<meta property="og:url" content="http://nenglee.com/2016/12/06/Pattern/观察者模式/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="观察者模式使用的频率极高,最大特色是:订阅–发布,本身的设计就是用于解耦，在观察者和被观察者者解耦,它们之间的依赖性小，甚至毫无依赖，以GUI来说，UI本身有着易变性，尤其在需求不明确的情况下，产品改动大，应用的界面经常发生变化，但是业务逻辑变化不大，此时，需要一套机制来对应，而观察者模式使得UI层与业务层的逻辑之间的逻辑解耦，观察者模式就派上用场。">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:updated_time" content="2016-12-07T17:07:09.793Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="观察者模式">
+<meta name="twitter:description" content="观察者模式使用的频率极高,最大特色是:订阅–发布,本身的设计就是用于解耦，在观察者和被观察者者解耦,它们之间的依赖性小，甚至毫无依赖，以GUI来说，UI本身有着易变性，尤其在需求不明确的情况下，产品改动大，应用的界面经常发生变化，但是业务逻辑变化不大，此时，需要一套机制来对应，而观察者模式使得UI层与业务层的逻辑之间的逻辑解耦，观察者模式就派上用场。">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 观察者模式 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          观察者模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016年12月6日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用场景"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型图"><span class="toc-text">模型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-text">案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>观察者模式使用的频率极高,最大特色是:订阅–发布,本身的设计就是用于解耦，在观察者和被观察者者解耦,它们之间的依赖性小，甚至毫无依赖，以GUI来说，UI本身有着易变性，尤其在需求不明确的情况下，产品改动大，应用的界面经常发生变化，但是业务逻辑变化不大，此时，需要一套机制来对应，而观察者模式使得UI层与业务层的逻辑之间的逻辑解耦，观察者模式就派上用场。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>对象之间的一对多的依赖关系，使一个对象发生了变化，与之依赖它的对象都会得到通知，并且自动更新状态。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ol>
+<li>关联行为的场景，需要注意的是，关联行为是可拆分，而不是“组合”关系</li>
+<li>事件多级触发场景</li>
+<li>跨系统的消息交换场景，如何消息队列、事件总线处理机制</li>
+</ol>
+<h3 id="模型图"><a href="#模型图" class="headerlink" title="模型图"></a>模型图</h3><p><img src="http://of6bvxslc.bkt.clouddn.com/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.png" alt="观察者模式"></p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>场景模拟:一家三口人，我和爸爸想知道妈妈现在做饭做到什么程度，什么时候做好？什么时候可以吃饭？于是呢、我和爸爸不听的问现在什么做好了？菜烧好没？饭好了没？妈妈就不赖烦，于是妈妈就说菜烧好了，饭煮好了，快开饭时候我来告诉你，你们不用一直问了。<br>于是呢，关于如下：<br>妈妈（被观察者）  Observable<br>我和爸爸（观察者） Observer<br>我和爸爸的问题成了订阅，妈妈做好一步就通知，不必总去问了，反而做好了就告诉你的一种模式。</p>
+<p>在java内置jdk中已经有了Observable(对象) 和 Observer(接口) 可见观察者模式的重要性，那么就先看看内置源码：</p>
+<p>Observable.java  被观察者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Observable</span> </span>&#123;</div><div class="line"></div><div class="line">    List&lt;Observer&gt; observers = <span class="keyword">new</span> ArrayList&lt;Observer&gt;();</div><div class="line"></div><div class="line">    <span class="keyword">boolean</span> changed = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Constructs a new &#123;<span class="doctag">@code</span> Observable&#125; object.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Observable</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Adds the specified observer to the list of observers. If it is already</div><div class="line">     * registered, it is not added a second time.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> observer</div><div class="line">     *            the Observer to add.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addObserver</span><span class="params">(Observer observer)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (observer == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"observer == null"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (!observers.contains(observer))</div><div class="line">                observers.add(observer);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Clears the changed flag for this &#123;<span class="doctag">@code</span> Observable&#125;. After calling</div><div class="line">     * &#123;<span class="doctag">@code</span> clearChanged()&#125;, &#123;<span class="doctag">@code</span> hasChanged()&#125; will return &#123;<span class="doctag">@code</span> false&#125;.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">clearChanged</span><span class="params">()</span> </span>&#123;</div><div class="line">        changed = <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns the number of observers registered to this &#123;<span class="doctag">@code</span> Observable&#125;.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> the number of observers.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countObservers</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> observers.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Removes the specified observer from the list of observers. Passing null</div><div class="line">     * won't do anything.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> observer</div><div class="line">     *            the observer to remove.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">deleteObserver</span><span class="params">(Observer observer)</span> </span>&#123;</div><div class="line">        observers.remove(observer);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Removes all observers from the list of observers.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">deleteObservers</span><span class="params">()</span> </span>&#123;</div><div class="line">        observers.clear();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns the changed flag for this &#123;<span class="doctag">@code</span> Observable&#125;.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> &#123;<span class="doctag">@code</span> true&#125; when the changed flag for this &#123;<span class="doctag">@code</span> Observable&#125; is</div><div class="line">     *         set, &#123;<span class="doctag">@code</span> false&#125; otherwise.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasChanged</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> changed;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * If &#123;<span class="doctag">@code</span> hasChanged()&#125; returns &#123;<span class="doctag">@code</span> true&#125;, calls the &#123;<span class="doctag">@code</span> update()&#125;</div><div class="line">     * method for every observer in the list of observers using null as the</div><div class="line">     * argument. Afterwards, calls &#123;<span class="doctag">@code</span> clearChanged()&#125;.</div><div class="line">     * &lt;p&gt;</div><div class="line">     * Equivalent to calling &#123;<span class="doctag">@code</span> notifyObservers(null)&#125;.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">()</span> </span>&#123;</div><div class="line">        notifyObservers(<span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * If &#123;<span class="doctag">@code</span> hasChanged()&#125; returns &#123;<span class="doctag">@code</span> true&#125;, calls the &#123;<span class="doctag">@code</span> update()&#125;</div><div class="line">     * method for every Observer in the list of observers using the specified</div><div class="line">     * argument. Afterwards calls &#123;<span class="doctag">@code</span> clearChanged()&#125;.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> data</div><div class="line">     *            the argument passed to &#123;<span class="doctag">@code</span> update()&#125;.</div><div class="line">     */</div><div class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">(Object data)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> size = <span class="number">0</span>;</div><div class="line">        Observer[] arrays = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (hasChanged()) &#123;</div><div class="line">                clearChanged();</div><div class="line">                size = observers.size();</div><div class="line">                arrays = <span class="keyword">new</span> Observer[size];</div><div class="line">                observers.toArray(arrays);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (arrays != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (Observer observer : arrays) &#123;</div><div class="line">                observer.update(<span class="keyword">this</span>, data);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Sets the changed flag for this &#123;<span class="doctag">@code</span> Observable&#125;. After calling</div><div class="line">     * &#123;<span class="doctag">@code</span> setChanged()&#125;, &#123;<span class="doctag">@code</span> hasChanged()&#125; will return &#123;<span class="doctag">@code</span> true&#125;.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">setChanged</span><span class="params">()</span> </span>&#123;</div><div class="line">        changed = <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>可以看到内部有一个 List<observer> observers(观察者List集合),也就是需要订阅消息的观察者存放</observer></li>
+<li>addObserver(Observer observer) 添加观察者</li>
+<li>deleteObserver(Observer observer) 移出观察者</li>
+<li>notifyObservers(Object data)  通知，可以看到就是for循环观察者，然后调用观察者的接口，发送Data信息</li>
+</ol>
+<p>接口：interface Observer 观察者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Observer</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * This method is called if the specified &#123;<span class="doctag">@code</span> Observable&#125; object's</div><div class="line">     * &#123;<span class="doctag">@code</span> notifyObservers&#125; method is called (because the &#123;<span class="doctag">@code</span> Observable&#125;</div><div class="line">     * object has been updated.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> observable  //被观察者</div><div class="line">     *            the &#123;<span class="doctag">@link</span> Observable&#125; object.</div><div class="line">     * <span class="doctag">@param</span> data  //发送消息</div><div class="line">     *            the data passed to &#123;<span class="doctag">@link</span> Observable#notifyObservers(Object)&#125;.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(Observable observable, Object data)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/observer/Mother.java" target="_blank" rel="external">Mother.java 母亲–被观察者</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 母亲 被观察者</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/6.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mother</span> <span class="keyword">extends</span> <span class="title">Observable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mother</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 做饭</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cooking</span><span class="params">(String contnet)</span> </span>&#123;</div><div class="line">        notifyObservers(contnet);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 通知所以</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">()</span> </span>&#123;</div><div class="line">        notifyObservers(<span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 通知</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> data</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">(Object data)</span> </span>&#123;</div><div class="line">        setChanged();</div><div class="line">        <span class="keyword">if</span> (data == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">super</span>.notifyObservers();</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">super</span>.notifyObservers(data);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/observer/observer/MyObserver.java" target="_blank" rel="external">MyObserver.java  我–观察者</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 我 观察者</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/7.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyObserver</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyObserver</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Observable observable, Object data)</span> </span>&#123;</div><div class="line">        Toast.makeText(context,<span class="string">"被观察者(妈妈) 对我说："</span> + data,Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>细心发朋友 被观察者继承了jdk Observable,那么在Android sdk 也有自己的 Observable<t>,这里的泛型也就是说订阅观察者可以是任意类型了，接口就自己定义吧，在Android可以能通知发的消息是一个实体的话，那么就可以自定义自己的观察者，极其方便。</t></p>
+<blockquote>
+<p> 需要注意的是存放观察者是List集合,就存在顺序，所以先注册订阅在通知的时候就有限得到通知结果，如果你在项目特殊情况，也可以重写Observable来达到自己的目的。 比如说：异步通知？</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>观察者模式的作用就是对象的解耦，将观察者与被观察者完全的隔离，只依赖Observer和Observable(抽象)，就好比ListVIew和Adapter适配器之间，每一个itme都是一个观察者，数据源被观察者，数据发生变了就可以通知，Item就动态刷新。这样的设计使得它的扩展性、灵活性非常强，而且耦合度又非常的低，不得不承认是非常优秀。</p>
+<p>优点:</p>
+<ol>
+<li>观察者和被观察直接抽象耦合，对应业务变化</li>
+<li>增强系统的灵活、扩展</li>
+</ol>
+<p>缺点:</p>
+<ol>
+<li>效率问题，毕竟要订阅关系</li>
+<li>Java内置通知是顺序执行</li>
+</ol>
+<p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/observer" target="_blank" rel="external">观察者模式 案例参考code</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/观察者模式/">观察者模式</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/12/Pattern/备忘录模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">备忘录模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/05/Pattern/命令模式/">
+        <span class="next-text nav-default">命令模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/06/Pattern/观察者模式/"
+           data-title="观察者模式" data-url="http://nenglee.com/2016/12/06/Pattern/观察者模式/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

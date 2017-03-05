@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="模版模式"/>
+
+
+
+
+  <meta name="keywords" content="模版模式," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2016/12/13/Pattern/模版模式/"/>
+
+
+<meta name="description" content="在面向对象编程中，通常会遇到这样一个问题：我们知道一个算法所需的关键步骤，并确定了这些步骤的执行顺序，但是，某些步骤的具体实现是未知的，或者说某些步骤的实现会随者环境的变化而改变例如：
+
+检查代码语法正确性
+链接相关的类库
+编译相关代码
+执行程序
+
+对于不同的程序设计语言来说，上述的4个步骤都是不一样，但是，它们执行的流程上的固定的，这类问题的解决方案就可以用模版模式，可以在流程上一致，具体的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模版模式">
+<meta property="og:url" content="http://nenglee.com/2016/12/13/Pattern/模版模式/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="在面向对象编程中，通常会遇到这样一个问题：我们知道一个算法所需的关键步骤，并确定了这些步骤的执行顺序，但是，某些步骤的具体实现是未知的，或者说某些步骤的实现会随者环境的变化而改变例如：
+
+检查代码语法正确性
+链接相关的类库
+编译相关代码
+执行程序
+
+对于不同的程序设计语言来说，上述的4个步骤都是不一样，但是，它们执行的流程上的固定的，这类问题的解决方案就可以用模版模式，可以在流程上一致，具体的">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/%E6%A8%A1%E7%89%88%E6%A8%A1%E5%BC%8Fr.png">
+<meta property="og:updated_time" content="2016-12-13T16:25:20.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模版模式">
+<meta name="twitter:description" content="在面向对象编程中，通常会遇到这样一个问题：我们知道一个算法所需的关键步骤，并确定了这些步骤的执行顺序，但是，某些步骤的具体实现是未知的，或者说某些步骤的实现会随者环境的变化而改变例如：
+
+检查代码语法正确性
+链接相关的类库
+编译相关代码
+执行程序
+
+对于不同的程序设计语言来说，上述的4个步骤都是不一样，但是，它们执行的流程上的固定的，这类问题的解决方案就可以用模版模式，可以在流程上一致，具体的">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/%E6%A8%A1%E7%89%88%E6%A8%A1%E5%BC%8Fr.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 模版模式 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          模版模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016年12月13日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型图"><span class="toc-text">模型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>在面向对象编程中，通常会遇到这样一个问题：我们知道一个算法所需的关键步骤，并确定了这些步骤的执行顺序，但是，某些步骤的具体实现是未知的，或者说某些步骤的实现会随者环境的变化而改变<br>例如：</p>
+<ol>
+<li>检查代码语法正确性</li>
+<li>链接相关的类库</li>
+<li>编译相关代码</li>
+<li>执行程序</li>
+</ol>
+<p>对于不同的程序设计语言来说，上述的4个步骤都是不一样，但是，它们执行的流程上的固定的，这类问题的解决方案就可以用模版模式，可以在流程上一致，具体的算法却是不同。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>一个操作中的算法框架，而将一些步骤延迟到子类中，可以是重写的方式，使得子类可以不改变一个算法的结构体，来重新定义某些特定的步骤。</p>
+<h3 id="模型图"><a href="#模型图" class="headerlink" title="模型图"></a>模型图</h3><p><img src="http://of6bvxslc.bkt.clouddn.com/%E6%A8%A1%E7%89%88%E6%A8%A1%E5%BC%8Fr.png" alt="模版模式"></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>假设以启动计算流程看成模版，那么启动方式</p>
+<ol>
+<li>开启电脑</li>
+<li>检查硬件</li>
+<li>载入系统OS</li>
+<li>小白的计算机无验证,直接进入桌面</li>
+</ol>
+<p>这种模版启动是电脑初始化启动形式，那么不同的用户在启动流程会有不同监测，例如程序员是在登录时候需要用密码登录，军机需要监测电脑硬件、指纹验证等流程，但是计算机的启动方式分了以上四大类，只不过用户在不同频段的方式不同。那么如何用模版模式设计呢？</p>
+<ul>
+<li>抽象AbstractComputer 定义一套流程模版,其中函数 final void starUp()</li>
+<li>子类CodeComouter</li>
+<li>子类MilltaryComouter</li>
+</ul>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/template/AbstractComputer.java" target="_blank" rel="external">AbstractComputer.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 抽象的 Computer</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/13.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractComputer</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> String TAG = <span class="keyword">this</span>.getClass().getSimpleName();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AbstractComputer</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">powerOn</span><span class="params">()</span> </span>&#123;</div><div class="line">        Log.d(TAG, <span class="string">"开启电脑"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">checkHardware</span><span class="params">()</span> </span>&#123;</div><div class="line">        Log.d(TAG, <span class="string">"检查硬件"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">loadOS</span><span class="params">()</span> </span>&#123;</div><div class="line">        Log.d(TAG, <span class="string">"载入系统OS"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">()</span> </span>&#123;</div><div class="line">        Log.d(TAG, <span class="string">"小白的计算机无验证,直接进入桌面"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 电脑开机模版</div><div class="line">     * ** 注意该方法是模版，固定模式，防止篡改 所以要用 final</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">starUp</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"----------开机-----------"</span>);</div><div class="line">        powerOn();</div><div class="line">        checkHardware();</div><div class="line">        loadOS();</div><div class="line">        login();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>需要注意 public final void starUp() 内部已经把流程启动顺序封装了，并且Final修饰 防止修改启动流程。</p>
+</blockquote>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/template/MilltaryComouter.java" target="_blank" rel="external">MilltaryComouter.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 军机 计算机</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/13.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MilltaryComouter</span> <span class="keyword">extends</span> <span class="title">AbstractComputer</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">checkHardware</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.checkHardware();</div><div class="line">        Log.e(TAG, <span class="string">"硬件防火墙检查"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">()</span> </span>&#123;</div><div class="line">        Log.e(TAG, <span class="string">"指纹识别进行登录验证登录"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/activity/TemplateActivity.java" target="_blank" rel="external">Client(TemplateActivity)客户端</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 模版模式</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/13.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TemplateActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">private</span> Button starBut1, starBut2;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> AbstractComputer comp;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">getContentView</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> R.layout.activity_template;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        starBut1 = (Button) findViewById(R.id.starBut1);</div><div class="line">        starBut2 = (Button) findViewById(R.id.starBut2);</div><div class="line">        starBut1.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        starBut2.setOnClickListener(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">        <span class="comment">//普通小白启动计算机</span></div><div class="line">        comp = <span class="keyword">new</span> AbstractComputer() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">super</span>.login();</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">        comp.starUp();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (v.getId()) &#123;</div><div class="line">            <span class="keyword">case</span> R.id.starBut1:</div><div class="line">                <span class="comment">//程序员 计算机</span></div><div class="line">                comp = <span class="keyword">new</span> CodeComouter();</div><div class="line">                comp.starUp();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line"></div><div class="line">            <span class="keyword">case</span> R.id.starBut2:</div><div class="line">                <span class="comment">//军机 计算机</span></div><div class="line">                comp = <span class="keyword">new</span> MilltaryComouter();</div><div class="line">                comp.starUp();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>模版模式如果用简单易懂的词形容，我想用“流程封装”，也就是把某个固定的流程封装到一个带有final函数里面，并且让子类能够定制流程中算法或者方法，可以在某个步骤重写，从而取而代之成子类特有属性。宏观的讲封装流程步骤是不能改变。</p>
+<p>优点:</p>
+<ol>
+<li>封装面向对象，扩展性强，可变局部</li>
+<li>提取共同代码，便于维护</li>
+</ol>
+<p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/template" target="_blank" rel="external">模版模式 案例参考code</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/模版模式/">模版模式</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/14/Pattern/访问者模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">访问者模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/13/Pattern/迭代器模式/">
+        <span class="next-text nav-default">迭代器模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/13/Pattern/模版模式/"
+           data-title="模版模式" data-url="http://nenglee.com/2016/12/13/Pattern/模版模式/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

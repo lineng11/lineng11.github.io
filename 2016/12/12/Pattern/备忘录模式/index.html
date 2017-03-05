@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="备忘录模式"/>
+
+
+
+
+  <meta name="keywords" content="备忘录模式," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2016/12/12/Pattern/备忘录模式/"/>
+
+
+<meta name="description" content="备忘录模式用于记录当前信息对象状态，再后来某一时刻进行恢复当初的状态，有点像人们口中说的”时光机”，备忘录模式的实现方式需要被保存对象状态不能被对象外部访问，目是为了保护对象的完整性以及内部实现不向外暴漏。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="备忘录模式">
+<meta property="og:url" content="http://nenglee.com/2016/12/12/Pattern/备忘录模式/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="备忘录模式用于记录当前信息对象状态，再后来某一时刻进行恢复当初的状态，有点像人们口中说的”时光机”，备忘录模式的实现方式需要被保存对象状态不能被对象外部访问，目是为了保护对象的完整性以及内部实现不向外暴漏。">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:updated_time" content="2016-12-12T16:01:45.272Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="备忘录模式">
+<meta name="twitter:description" content="备忘录模式用于记录当前信息对象状态，再后来某一时刻进行恢复当初的状态，有点像人们口中说的”时光机”，备忘录模式的实现方式需要被保存对象状态不能被对象外部访问，目是为了保护对象的完整性以及内部实现不向外暴漏。">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 备忘录模式 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          备忘录模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016年12月12日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用场景"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型图"><span class="toc-text">模型图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>备忘录模式用于记录当前信息对象状态，再后来某一时刻进行恢复当初的状态，有点像人们口中说的”时光机”，备忘录模式的实现方式需要被保存对象状态不能被对象外部访问，目是为了保护对象的完整性以及内部实现不向外暴漏。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在不被破坏封闭的前提下，捕捉一个对象的内部状态，并在对象之外保存这个状态，这样，以后就可将对象恢复到复先的状态。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ol>
+<li>需要保存一个对象在某一时刻的状态或部分状态。</li>
+<li>如果用一个接口来让其他对象得到这些状态，将会暴露对象实现细节有可能会破坏对象的封装性，一个对象不希望外界直接访问其内部状态，通过中间者对象可以间接访问内部属性。</li>
+</ol>
+<h3 id="模型图"><a href="#模型图" class="headerlink" title="模型图"></a>模型图</h3><p><img src="http://of6bvxslc.bkt.clouddn.com/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F.png" alt="备忘录模式"></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>模拟一个玩单机游戏场景:完了一会要出去，这时候需要存档当前游戏状态，关机… 下次启动通过读档(备忘录模式)启动游戏恢复上次游戏状态。</p>
+<ol>
+<li>Orginator : 负责创建一个备忘录，也就是游戏对象，可以记录，恢复本身状态</li>
+<li>Memento : 备忘录实体，用户存储游戏状态</li>
+<li>Caretaker : 负责存储备忘录，不能对备忘录的内容进行操作，访问修饰，只能将备忘录传递到其他对象中</li>
+</ol>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/menento/Originator.java" target="_blank" rel="external">Originator.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 创建 备忘录</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/12.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Originator</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mCheckpoint = <span class="number">1</span>;  <span class="comment">//当前关卡</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mLifeValue = <span class="number">100</span>;  <span class="comment">// 生命值</span></div><div class="line">    <span class="keyword">private</span> String mWeapon = <span class="string">"沙漠小刀"</span>;  <span class="comment">//武器</span></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 玩游戏</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;</div><div class="line">        play(<span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 玩游戏</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> mWeapon 武器</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(String mWeapon)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!TextUtils.isEmpty(mWeapon))</div><div class="line">            <span class="keyword">this</span>.mWeapon = mWeapon;</div><div class="line">        mLifeValue -= <span class="number">10</span>;</div><div class="line">        mCheckpoint++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 退出游戏</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> Caretaker <span class="title">quit</span><span class="params">(Menoto menoto)</span> </span>&#123;</div><div class="line">        <span class="comment">//游戏存档</span></div><div class="line">      Caretaker  caretaker = <span class="keyword">new</span> Caretaker();</div><div class="line">        caretaker.archive(menoto);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> caretaker;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 创建 备忘录</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> Menoto <span class="title">createMemoto</span><span class="params">()</span> </span>&#123;</div><div class="line">        Menoto menoto = <span class="keyword">new</span> Menoto();</div><div class="line">        menoto.setmCheckpoint(mCheckpoint);</div><div class="line">        menoto.setmLifeValue(mLifeValue);</div><div class="line">        menoto.setmWeapon(mWeapon);</div><div class="line">        <span class="keyword">return</span> menoto;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 恢复游戏属性</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> menoto</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">restore</span><span class="params">(Menoto menoto)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mCheckpoint = menoto.getmCheckpoint();</div><div class="line">        <span class="keyword">this</span>.mLifeValue = menoto.getmLifeValue();</div><div class="line">        <span class="keyword">this</span>.mWeapon = menoto.getmWeapon();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"CallofDuty&#123;"</span> +</div><div class="line">                <span class="string">"mCheckpoint="</span> + mCheckpoint +</div><div class="line">                <span class="string">", mLifeValue="</span> + mLifeValue +</div><div class="line">                <span class="string">", mWeapon='"</span> + mWeapon + <span class="string">'\''</span> +</div><div class="line">                <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/lineng11/DesingPatter/blob/master/app/src/main/java/com/neng/app/menento/caretaker.java" target="_blank" rel="external">Caretaker.java</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 负责 管理备忘录</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/12/12.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Caretaker</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//一定对备忘录内部状态操作，所以注意修饰符</span></div><div class="line">    <span class="keyword">private</span> Menoto menoto; <span class="comment">//备忘录</span></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 存档</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> menoto</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">archive</span><span class="params">(Menoto menoto)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.menoto = menoto;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取存档</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> Menoto <span class="title">getMenoto</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> menoto;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>备忘录是在不被破坏封装的条件下，通过备忘录对象（Memoto）存储另外一个对象内部状态的快照，在将来适合的时候把这个对象还原封不动的还原当前备份的时候。</p>
+<p>优点:</p>
+<ol>
+<li>用户提供了一种可以恢复状态的机制，使得用户回到历史状态某一点。</li>
+<li>实现了信息封装，不用关心状态的备份细节。</li>
+</ol>
+<p>缺点：<br>销毁资源，如果类的成员变量过多，每一次保存都会销毁一定量的内存占用。</p>
+<p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/menento" target="_blank" rel="external">备忘录模式 参考code</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/备忘录模式/">备忘录模式</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/12/13/Pattern/迭代器模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">迭代器模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/12/06/Pattern/观察者模式/">
+        <span class="next-text nav-default">观察者模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/12/Pattern/备忘录模式/"
+           data-title="备忘录模式" data-url="http://nenglee.com/2016/12/12/Pattern/备忘录模式/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

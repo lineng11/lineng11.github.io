@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Markdown 基本用法"/>
+
+
+
+
+  <meta name="keywords" content="Markdown," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2016/10/12/MarkDown/"/>
+
+
+<meta name="description" content="记得接触Markdown文档，后台小哥给的git文档,各种Api在页面呈现，清晰明了
+对应网络书写,选择一款编译器，MarkDonw是目前最优,学习成本低，兼容性强,排版简约大方,注重内容的高生产力，最后很轻易导出html等格式，放入自己的Blog中及其他门户
+Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，很多门户都采用例如 github、简书…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown 基本用法">
+<meta property="og:url" content="http://nenglee.com/2016/10/12/MarkDown/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="记得接触Markdown文档，后台小哥给的git文档,各种Api在页面呈现，清晰明了
+对应网络书写,选择一款编译器，MarkDonw是目前最优,学习成本低，兼容性强,排版简约大方,注重内容的高生产力，最后很轻易导出html等格式，放入自己的Blog中及其他门户
+Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，很多门户都采用例如 github、简书…">
+<meta property="og:image" content="http://pic.qiantucdn.com/58pic/11/60/21/66Y58PICG2I.jpg">
+<meta property="og:updated_time" content="2016-12-31T20:20:28.079Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Markdown 基本用法">
+<meta name="twitter:description" content="记得接触Markdown文档，后台小哥给的git文档,各种Api在页面呈现，清晰明了
+对应网络书写,选择一款编译器，MarkDonw是目前最优,学习成本低，兼容性强,排版简约大方,注重内容的高生产力，最后很轻易导出html等格式，放入自己的Blog中及其他门户
+Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，很多门户都采用例如 github、简书…">
+<meta name="twitter:image" content="http://pic.qiantucdn.com/58pic/11/60/21/66Y58PICG2I.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Markdown 基本用法 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Markdown 基本用法
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016年10月12日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#标题"><span class="toc-text">标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-text">引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入图片"><span class="toc-text">插入图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#粗体-斜体"><span class="toc-text">粗体,斜体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码高亮"><span class="toc-text">代码高亮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>记得接触Markdown文档，后台小哥给的git文档,各种Api在页面呈现，清晰明了</p>
+<p>对应网络书写,选择一款编译器，MarkDonw是目前最优,学习成本低，兼容性强,排版简约大方,注重内容的高生产力，最后很轻易导出html等格式，放入自己的Blog中及其他门户</p>
+<p>Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，很多门户都采用例如 github、简书…</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>Markdown 中，你只需要在文本前面加上 #  [#######]个数随着增加标题字号减小</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">######  Markdown        H6</span></div><div class="line"><span class="comment">#####   Markdown        H5</span></div><div class="line"><span class="comment">####    Markdown        H4</span></div><div class="line"><span class="comment">###     Markdown        H3</span></div><div class="line"><span class="comment">##      Markdown        H2</span></div><div class="line"><span class="comment">#       Markdown        H1</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>Markdown 语法中引用对应的符号代码需要空一格.才能生效 最基本知识。切记！</p>
+</blockquote>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>列表有序 和 无序俩中，就在前面数字或者*(-)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1. Android</div><div class="line">2. ios</div><div class="line">3. WindowPh  </div><div class="line"></div><div class="line">* Android</div><div class="line">* ios</div><div class="line">* WindowPh</div></pre></td></tr></table></figure>
+<p>例如:</p>
+<ul>
+<li>Android</li>
+<li>ios</li>
+<li>WindowPh</li>
+</ul>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>  引用就在一段话前面加入 &gt; 符号,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; 话说PHP是最好的编程语言 ,你看呢？</div></pre></td></tr></table></figure>
+<p>效果:</p>
+<blockquote>
+<p>话说PHP是最好的编程语言 ,你看呢？</p>
+</blockquote>
+<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">这图片格式为  ![文字说明](图片url)</div></pre></td></tr></table></figure>
+<p><img src="http://pic.qiantucdn.com/58pic/11/60/21/66Y58PICG2I.jpg" alt="图片"></p>
+<h2 id="粗体-斜体"><a href="#粗体-斜体" class="headerlink" title="粗体,斜体"></a>粗体,斜体</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">前后对应   下划线(_):斜体   俩个星号(**):粗体    颜色(&lt;font color=#0099ff&gt;内容****内容&lt;/font&gt;):字体变色</div></pre></td></tr></table></figure>
+<p>例如:</p>
+<p>我们<strong>好像</strong>在哪见过，<em>你记得吗？</em> <font color="#0099ff">Hello world</font></p>
+<h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><blockquote>
+<p>前后各一个 ``</p>
+</blockquote>
+<p><code>Markdown.md</code></p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>最后附加一个<strong>MackDonw</strong>文档速查  </p>
+<p><a href="http://wowubuntu.com/markdown/#p" target="_blank" rel="external"><strong>Markdown文档速查</strong></a></p>
+<p><a href="http://www.williamlong.info/archives/4319.html" target="_blank" rel="external"><strong>关于Markdown工具</strong></a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Markdown/">Markdown</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/10/17/Hexo-Blog-搭建/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">如何搭建属于自己的Blog</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/10/11/hello-world/">
+        <span class="next-text nav-default">Hello World</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/12/MarkDown/"
+           data-title="Markdown 基本用法" data-url="http://nenglee.com/2016/10/12/MarkDown/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

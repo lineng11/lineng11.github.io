@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Builder建造者模式"/>
+
+
+
+
+  <meta name="keywords" content="Builder建造者模式," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2016/11/05/Pattern/Builder建造者模式/"/>
+
+
+<meta name="description" content="Builder模式是一步一步创建一个复杂的对象,它允许用户在不知道内部构建细节的情况下，可以更精细的控制对象的构造流程，为了将复杂的过程和它的内部解耦，使得构建的过程和部件表示隔离开来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Builder建造者模式">
+<meta property="og:url" content="http://nenglee.com/2016/11/05/Pattern/Builder建造者模式/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="Builder模式是一步一步创建一个复杂的对象,它允许用户在不知道内部构建细节的情况下，可以更精细的控制对象的构造流程，为了将复杂的过程和它的内部解耦，使得构建的过程和部件表示隔离开来。">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/Builder%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:updated_time" content="2016-12-07T17:07:37.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Builder建造者模式">
+<meta name="twitter:description" content="Builder模式是一步一步创建一个复杂的对象,它允许用户在不知道内部构建细节的情况下，可以更精细的控制对象的构造流程，为了将复杂的过程和它的内部解耦，使得构建的过程和部件表示隔离开来。">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/Builder%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Builder建造者模式 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Builder建造者模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016年11月5日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用场景"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型图"><span class="toc-text">模型图</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>Builder模式是一步一步创建一个复杂的对象,它允许用户在不知道内部构建细节的情况下，可以更精细的控制对象的构造流程，为了将复杂的过程和它的内部解耦，使得构建的过程和部件表示隔离开来。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的结果表示。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ol>
+<li>相同的方法，不同的执行顺序，产生不同的事件结果</li>
+<li>多个部件或零件，都可以装配到一个对象中，但是产生的运行结果又不相同时</li>
+<li>产品类非常的复杂,或者产品类中的调用顺序不同，从而产生不同的作用效果，这个时候建造者非常适合</li>
+<li>当初始化一个对象特别复杂，如参数多，类型多，且很多参数都具有默认值时</li>
+</ol>
+<p>厂商生产电脑，因为有各种各样的Name、cpu、display等一些列信息属性，不同的配置组装搭配配置不同的电脑信息。<br>为了更好理解用Builder设置模式，</p>
+<h3 id="模型图"><a href="#模型图" class="headerlink" title="模型图"></a>模型图</h3><p><img src="http://of6bvxslc.bkt.clouddn.com/Builder%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F.png" alt="Builder建造者模式"></p>
+<p>说明：</p>
+<ul>
+<li>Computer：产品的抽象类，目前有俩款产品电脑(Mac、ThinkPad)</li>
+<li>Builder:  Builder抽象类，规范产品的组建，一般是由子类实现·体的组件过程</li>
+<li>ConcreteBuilder：具体的Builder类</li>
+</ul>
+<p>建造者模式最核心属性ConcreteBuilder类,在实例化时候获得Computer，因此有了对象属性函数，那么就在此进行组装，在组装的时候有一定的选择性，那么这个选择条件就交的个用户或者需求，所称建造者。</p>
+<blockquote>
+<p>不知道什么原因,高亮代码(整个Class)前面为什么会空这么多行数，无法顶头，导致浏览效果Zzz.  </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 具体构建者Builder</div><div class="line"> * User: Created by MoMo - Neng. on</div><div class="line"> * Data: 2016/11/5.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteBuilder</span> <span class="keyword">extends</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> Computer computer;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteBuilder</span><span class="params">(Computer computer)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.computer = computer;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">buildName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        computer.setName(name);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">buildDisolay</span><span class="params">(String display)</span> </span>&#123;</div><div class="line">        computer.setDisplay(display);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">buildCPU</span><span class="params">(String cpu)</span> </span>&#123;</div><div class="line">        computer.setmCpu(cpu);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">buildOS</span><span class="params">()</span> </span>&#123;</div><div class="line">        computer.setOS();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">create</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> computer;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ConcreteBuilder <span class="title">construst</span><span class="params">(String name, String display, String cup)</span> </span>&#123;</div><div class="line">        buildName(name);</div><div class="line">        buildDisolay(display);</div><div class="line">        buildCPU(cup);</div><div class="line">        buildOS();</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ConcreteBuilder <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        buildName(name);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ConcreteBuilder <span class="title">setCPU</span><span class="params">(String cpu)</span> </span>&#123;</div><div class="line">        buildCPU(cpu);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ConcreteBuilder <span class="title">setDisplay</span><span class="params">(String display)</span> </span>&#123;</div><div class="line">        buildDisolay(display);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ConcreteBuilder <span class="title">setOs</span><span class="params">()</span> </span>&#123;</div><div class="line">        buildOS();</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码中38行后面的方式，其中返回参数都是当前this(ConcreteBuilder)这是关键,通过组装步骤,可以形成链式调用.</p>
+<blockquote>
+<p>.setName().setDisplay().setCPU().setOs()…..  再通过Create() 完成整个配置组装</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Computer mMacConputer = <span class="keyword">new</span> ConcreteBuilder(<span class="keyword">new</span> MacBook())</div><div class="line">        .setName(<span class="string">"Macbook pro 2016 新款 Touch Bar"</span>)</div><div class="line">        .setDisplay(<span class="string">"13.3 英寸 (对角线) LED 背光 Retina 显示屏"</span>)</div><div class="line">        .setCPU(<span class="string">"2.9GHz 四核 Intel Core i7 处理器 Turbo Boost 最高可达 3.8GHz"</span>)</div><div class="line">        .setOs()</div><div class="line">        .create();</div></pre></td></tr></table></figure>
+<p>总结：通过模型图 &amp;&amp; 代码都可以看到在构建者Builder时候，来选择需要的函数，来达到自己需求，看到上面这些，在Android里AlertDialog是就最为经典代表，以及很经典ImageLoader中配置Config初始化…很多时候都见过这种写法，却不知道专语名称是什么？理解内在设计思想，这个点是值得学习，知其然知其所以然。</p>
+<p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/builder" target="_blank" rel="external">Builder建造模式 案例参考code</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Builder建造者模式/">Builder建造者模式</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/11/07/Pattern/原型模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">原型模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/11/04/Pattern/单例模式/">
+        <span class="next-text nav-default">单例模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/05/Pattern/Builder建造者模式/"
+           data-title="Builder建造者模式" data-url="http://nenglee.com/2016/11/05/Pattern/Builder建造者模式/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>
