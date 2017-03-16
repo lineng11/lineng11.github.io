@@ -44,7 +44,7 @@ Markdown 是一种轻量级的「标记语言」，它的优点很多，目前�
 对应网络书写,选择一款编译器，MarkDonw是目前最优,学习成本低，兼容性强,排版简约大方,注重内容的高生产力，最后很轻易导出html等格式，放入自己的Blog中及其他门户
 Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，很多门户都采用例如 github、简书…">
 <meta property="og:image" content="http://pic.qiantucdn.com/58pic/11/60/21/66Y58PICG2I.jpg">
-<meta property="og:updated_time" content="2016-12-31T20:20:28.079Z">
+<meta property="og:updated_time" content="2017-03-16T03:32:26.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown 基本用法">
 <meta name="twitter:description" content="记得接触Markdown文档，后台小哥给的git文档,各种Api在页面呈现，清晰明了
@@ -204,7 +204,7 @@ Markdown 是一种轻量级的「标记语言」，它的优点很多，目前�
       <div class="post-toc" id="post-toc">
         <h2 class="post-toc-title">文章目录</h2>
         <div class="post-toc-content">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#标题"><span class="toc-text">标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-text">引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入图片"><span class="toc-text">插入图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#粗体-斜体"><span class="toc-text">粗体,斜体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码高亮"><span class="toc-text">代码高亮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#标题"><span class="toc-text">标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-text">引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入图片"><span class="toc-text">插入图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#粗体-斜体"><span class="toc-text">粗体,斜体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码高亮"><span class="toc-text">代码高亮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除线"><span class="toc-text">删除线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表格"><span class="toc-text">表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
         </div>
       </div>
     
@@ -248,7 +248,63 @@ Markdown 是一种轻量级的「标记语言」，它的优点很多，目前�
 <p>前后各一个 ``</p>
 </blockquote>
 <p><code>Markdown.md</code></p>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>最后附加一个<strong>MackDonw</strong>文档速查  </p>
+<h2 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~~这个删除线~~</div></pre></td></tr></table></figure>
+<p><del>这个删除线</del></p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">| Tables        | Are           | Cool  |</div><div class="line">| ------------- |:-------------:| -----:|</div><div class="line">| col 3 is      | right-aligned | $1600 |</div><div class="line">| col 2 is      | centered      |   $12 |</div><div class="line">| zebra stripes | are neat      |    $1 |</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th style="text-align:center">Are</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col 3 is</td>
+<td style="text-align:center">right-aligned</td>
+<td style="text-align:right">$1600</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td style="text-align:center">centered</td>
+<td style="text-align:right">$12</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td style="text-align:center">are neat</td>
+<td style="text-align:right">$1</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dog | bird | cat</div><div class="line">----|------|----</div><div class="line">foo | foo  | foo</div><div class="line">bar | bar  | bar</div><div class="line">baz | baz  | baz</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>dog</th>
+<th>bird</th>
+<th>cat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>foo</td>
+<td>foo</td>
+<td>foo</td>
+</tr>
+<tr>
+<td>bar</td>
+<td>bar</td>
+<td>bar</td>
+</tr>
+<tr>
+<td>baz</td>
+<td>baz</td>
+<td>baz</td>
+</tr>
+</tbody>
+</table>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>最后附加一个<strong>MackDonw</strong>文档速查  </p>
 <p><a href="http://wowubuntu.com/markdown/#p" target="_blank" rel="external"><strong>Markdown文档速查</strong></a></p>
 <p><a href="http://www.williamlong.info/archives/4319.html" target="_blank" rel="external"><strong>关于Markdown工具</strong></a></p>
 </the></excerpt>

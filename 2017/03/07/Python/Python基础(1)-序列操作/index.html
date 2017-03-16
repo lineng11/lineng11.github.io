@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Python基础(1)-序列操作"/>
+
+
+
+
+  <meta name="keywords" content="Python基础," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2017/03/07/Python/Python基础(1)-序列操作/"/>
+
+
+<meta name="description" content="Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础(1)-序列操作">
+<meta property="og:url" content="http://nenglee.com/2017/03/07/Python/Python基础(1)-序列操作/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。">
+<meta property="og:updated_time" content="2017-03-07T17:57:46.597Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python基础(1)-序列操作">
+<meta name="twitter:description" content="Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Python基础(1)-序列操作 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Python基础(1)-序列操作
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年3月7日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#序列通用操作分别"><span class="toc-text">序列通用操作分别:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#索引"><span class="toc-text">索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分片"><span class="toc-text">分片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-步长-Step-length"><span class="toc-text">1.步长(Step length)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-分片其他"><span class="toc-text">2.分片其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列相加"><span class="toc-text">序列相加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#乘法"><span class="toc-text">乘法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-None，空列表"><span class="toc-text">1.None，空列表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成员资格"><span class="toc-text">成员资格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长度、最小值和最大值"><span class="toc-text">长度、最小值和最大值</span></a></li></ol></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。<br>序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。</excerpt></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h2 id="序列通用操作分别"><a href="#序列通用操作分别" class="headerlink" title="序列通用操作分别:"></a>序列通用操作分别:</h2><ol>
+<li>索引</li>
+<li>分片</li>
+<li>序列相加</li>
+<li>乘法</li>
+<li>成员资格</li>
+<li>长度/最小值/最大值</li>
+<li>迭代</li>
+</ol>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>序列中所有的元素都存在自己的编号，从0开始递增，那么这些元素可以通过编号分别访问</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>sequence = <span class="string">"Hello Word"</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>sequence[<span class="number">0</span>]</div><div class="line"><span class="string">'H'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>sequence[<span class="number">-1</span>]</div><div class="line"><span class="string">'d'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p><code>第一个索引是0，第二则是1，依此内退，最后一个为-1</code></p>
+<h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p>与索引类似访问单个元素，可以使用分片操作一定范围内的元素。分片通过冒号隔开的俩个索引来实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">0</span>:<span class="number">3</span>]</div><div class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p><code>总而言之，分片的操作提供俩个索引的边界，第一个索引含在切片内，第二索引不在切片内</code></p>
+<p>假设： 取最后3个元素？</p>
+<p><strong> 要知道-1是取最后一个索引，可是在切片中第二个索引不包含在切片的范围内</strong></p>
+<p><del>错误：</del><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">-3</span>:<span class="number">-1</span>]</div><div class="line">[<span class="string">'f'</span>,<span class="string">'g'</span>]    <span class="comment">#显然这种方式取不到最后3个</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<p>正确：<br> <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">-3</span>:]   <span class="comment">#这里为空，不是代表0， 如果是0那么切片是空数值</span></div><div class="line">[<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]  </div><div class="line"> &gt;&gt;&gt;</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">-3</span>:<span class="number">9</span>]   <span class="comment">#为什么是9？letter总长度为8个，第9个向前推一个刚好最后一个索引位</span></div><div class="line">[<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]  </div><div class="line"> &gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="1-步长-Step-length"><a href="#1-步长-Step-length" class="headerlink" title="1.步长(Step length)"></a>1.步长(Step length)</h4><p> 在进行分片的时候，分片的开始和结束点需要进行指定，(不管是直接或是间接)，而另一种参数“步<br> 长”通常都是隐士设置的。<br> <code>先按照分片的定义操作，然后更具步长【比值数】逐步遍历序列中的元素，最后返回开始和结束的元素</code></p>
+<p> 举个例子:<br> <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">0</span>:<span class="number">9</span>:<span class="number">2</span>]  </div><div class="line">[<span class="string">'a'</span>,<span class="string">'c'</span>,<span class="string">'e'</span>,<span class="string">'g'</span>]</div><div class="line"> &gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析一下：首先按照[0:9]来分片，然后再根据1的步长遍历，返回最后的结果集。</p>
+</blockquote>
+<p>其中步长不能为0，但是可以为空值，空值相当于1，那么问题来了。能不能为负数呢？</p>
+<p>当然可以，只不过要先反着分片【从右(尾)向左开始（倒序）】,然后遍历步长</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">9</span>:<span class="number">0</span>:<span class="number">-3</span>]  </div><div class="line">[<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">b']</span></div><div class="line"> &gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p><code>letter [9:0:-3]   等价于  letter [:0:-3]</code></p>
+<h4 id="2-分片其他"><a href="#2-分片其他" class="headerlink" title="2.分片其他"></a>2.分片其他</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [:]  </div><div class="line"> [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]  <span class="comment">#相当于复制整个序列</span></div><div class="line"> &gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="序列相加"><a href="#序列相加" class="headerlink" title="序列相加"></a>序列相加</h3><p>通过使用运算符可以进行序列的连接操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] + [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'Hello'</span> + <span class="string">'World'</span></div><div class="line"><span class="string">'HelloWorld'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] + <span class="string">'Hello'</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">TypeError: can only concatenate list (<span class="keyword">not</span> <span class="string">"str"</span>) to list</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>当列表和字符串是无法连接在一块，即使它们都是序列，但是属于不同的类型序列。</p>
+<h3 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"Pyhton"</span> * <span class="number">5</span></div><div class="line"><span class="string">'PyhtonPyhtonPyhtonPyhtonPyhton'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">10</span>] * <span class="number">10</span></div><div class="line">[<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="1-None，空列表"><a href="#1-None，空列表" class="headerlink" title="1.None，空列表"></a>1.None，空列表</h4><ol>
+<li>空列表：可以直接用[]表示</li>
+<li>None: Python的内建值，确切的含义“这里面什么都没有”，因此想表示初始化长度为10的空列表<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>noneSequence = [<span class="keyword">None</span>] * <span class="number">10</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>noneSequence</div><div class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="成员资格"><a href="#成员资格" class="headerlink" title="成员资格"></a>成员资格</h3><p>用于检查一个数值是否存在序列中，可以用in运算符，然后接收布尔值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>language = <span class="string">"Python"</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'o'</span> <span class="keyword">in</span> language</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"s"</span> <span class="keyword">in</span> language</div><div class="line"><span class="keyword">False</span></div><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>users = [<span class="string">'neng'</span>,<span class="string">'Mack'</span>,<span class="string">'baby'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input(<span class="string">'your users name :'</span>) <span class="keyword">in</span> users</div><div class="line">your users name :neng</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input(<span class="string">'your users name :'</span>) <span class="keyword">in</span> users</div><div class="line">your users name :xxx</div><div class="line"><span class="keyword">False</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="长度、最小值和最大值"><a href="#长度、最小值和最大值" class="headerlink" title="长度、最小值和最大值"></a>长度、最小值和最大值</h3><ul>
+<li>len()   长度</li>
+<li>min()   最小值</li>
+<li>max()   最大值</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>nunber = [<span class="number">1</span>,<span class="number">24</span>,<span class="number">100</span>,<span class="number">50</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>len(nunber)</div><div class="line"><span class="number">4</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>min(nunber)</div><div class="line"><span class="number">1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>max(nunber)</div><div class="line"><span class="number">100</span></div><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>max(<span class="number">2</span>,<span class="number">3</span>)</div><div class="line"><span class="number">3</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>min(<span class="number">26</span>,<span class="number">62</span>)</div><div class="line"><span class="number">26</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</the>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python基础/">Python基础</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/03/09/Python/Python基础(2)-列表-元组/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Python基础(2)-列表-元组</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/03/07/Python/Python的认知/">
+        <span class="next-text nav-default">人生苦短 我用Python</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/07/Python/Python基础(1)-序列操作/"
+           data-title="Python基础(1)-序列操作" data-url="http://nenglee.com/2017/03/07/Python/Python基础(1)-序列操作/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

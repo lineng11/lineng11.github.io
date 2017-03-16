@@ -4,10 +4,268 @@
   
     
     <entry>
+      <title><![CDATA[Python基础(2)-列表-元组]]></title>
+      <url>http://nenglee.com/2017/03/09/Python/Python%E5%9F%BA%E7%A1%80(2)-%E5%88%97%E8%A1%A8-%E5%85%83%E7%BB%84/</url>
+      <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。<br>序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。</excerpt></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h2 id="Python包含6中内建序列分别："><a href="#Python包含6中内建序列分别：" class="headerlink" title="Python包含6中内建序列分别："></a>Python包含6中内建序列分别：</h2><ol>
+<li>列表</li>
+<li>元组</li>
+<li>字符串</li>
+<li>Unicode字符串</li>
+<li>buffer对象</li>
+<li>xrange对象</li>
+</ol>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>列表可以使用所有适用于序列的标准操作，例如索引、分片、连接和乘法，当然还有最基本的增删改查等..</p>
+<p>例如集合：<br><code>mList = [&#39;Mon&#39;,&#39;Tues&#39;,&#39;Wed&#39;,&#39;Thur&#39;,&#39;Fri&#39;]</code></p>
+<h4 id="基本列表操作"><a href="#基本列表操作" class="headerlink" title="基本列表操作"></a>基本列表操作</h4><ol>
+<li><p>元素赋值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList[<span class="number">0</span>] = <span class="string">'Mon-1'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon-1'</span>,<span class="string">'Tues'</span>,<span class="string">'Wed'</span>,<span class="string">'Thur'</span>,<span class="string">'Fri'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除元素</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; del mList[0]</div><div class="line">&gt;&gt;&gt; mList</div><div class="line">[Tues','Wed','Thur','Fri']</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>分片赋值</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList[<span class="number">1</span>:<span class="number">-1</span>]</div><div class="line">[<span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>]</div><div class="line">&gt;&gt;&gt;</div><div class="line"></div><div class="line"><span class="comment"># 分片还有一个步长的定义, 例如 mList[::2]</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList[::<span class="number">2</span>]</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Wed'</span>, <span class="string">'Fri'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="列表-list"><a href="#列表-list" class="headerlink" title="列表 list"></a>列表 list</h3><p>方法是一个与某些对象有密切联系的函数，对象可能是列表、数字、也可能是字符串或者是其他类型<br>的对象，方法可以这样进行调用:</p>
+<p><code>对象.方法 (参数)</code></p>
+<p>除了对象被放置到方法名之前，并且俩者之间用一个点号隔开，方法调用与参数调用很类似。</p>
+<h4 id="append"><a href="#append" class="headerlink" title="append"></a>append</h4><p>append() 方法用于在列表的末尾追加新的对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.append(<span class="string">'Sat'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="count"><a href="#count" class="headerlink" title="count"></a>count</h4><p>count() 方法用于统计某个元素在列表中出现的次数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Mon'</span>, <span class="string">'Mon'</span>, <span class="string">'Tues'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.count(<span class="string">'Mon'</span>)</div><div class="line"><span class="number">3</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="extend"><a href="#extend" class="headerlink" title="extend"></a>extend</h4><p>extend() 方法可以在列表的末尾一次性追加另一个序列中的多个值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList1 = [<span class="string">'Mon'</span>,<span class="string">'Tues'</span>,<span class="string">'Wed'</span>,<span class="string">'Thur'</span>,<span class="string">'Fri'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList2 = [<span class="string">'Sat'</span>,<span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList1.extend(mList2)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList1</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList2</div><div class="line">[<span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="index"><a href="#index" class="headerlink" title="index"></a>index</h4><p>index() 方法用于列表中找出某个值第一个匹配项的索引位置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>, <span class="string">'Tues'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.index(<span class="string">'Tues'</span>)</div><div class="line"><span class="number">1</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h4><p>insert() 方法用于将对象插入到列表中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>]</div><div class="line"><span class="comment">#索引0的时候 插入一个元素</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.insert(<span class="number">0</span>,<span class="string">'Mon'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>]</div><div class="line"></div><div class="line"><span class="comment">#列表末尾添加对象，用insert需要知道最后的索引，而用append就是直接追加在末尾，并且可读性较高</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.insert(len(mList)+<span class="number">1</span>,<span class="string">'Sun'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.append(<span class="string">'Sun'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>, <span class="string">'Sun'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="pop"><a href="#pop" class="headerlink" title="pop"></a>pop</h4><p>pop() 方法会移除列表中最后一个元素(默认是最后一位)，并且返回该元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.pop()</div><div class="line"><span class="string">'Sun'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="remove"><a href="#remove" class="headerlink" title="remove"></a>remove</h4><p>remove() 方法用于移除列表中某一个值，并且第一个匹配项</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.remove(<span class="string">'Sun'</span>)   <span class="comment">#匹配最新出现的索引位置，并且删除  </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h4><p>reverse() 方法是将列表中的元素进行反向存放，俗称倒序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.reverse()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Sun'</span>, <span class="string">'Sat'</span>, <span class="string">'Fri'</span>, <span class="string">'Thur'</span>, <span class="string">'Wed'</span>, <span class="string">'Tues'</span>, <span class="string">'Mon'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h4><p>sort() 方法用于在原来的位置对列表进行排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">9</span>,<span class="number">6</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.sort()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>]</div></pre></td></tr></table></figure>
+<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>元组和列表一样，也属序列的一种，唯一不同的是:元组不能修改</p>
+<p><code>mTuple = (&#39;Mon&#39;,&#39;Tues&#39;,&#39;Wed&#39;,&#39;Thur&#39;,&#39;Fri&#39;)</code></p>
+<p>需要主要的是元组是用 () 括起来的，并且不能修改内部对象</p>
+<h4 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a>tuple</h4><p>tuple() 把序列转换成元组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>tuple(mList)</div><div class="line">(<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>)</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+</the>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python基础(1)-序列操作]]></title>
+      <url>http://nenglee.com/2017/03/07/Python/Python%E5%9F%BA%E7%A1%80(1)-%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C/</url>
+      <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。<br>序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。</excerpt></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h2 id="序列通用操作分别"><a href="#序列通用操作分别" class="headerlink" title="序列通用操作分别:"></a>序列通用操作分别:</h2><ol>
+<li>索引</li>
+<li>分片</li>
+<li>序列相加</li>
+<li>乘法</li>
+<li>成员资格</li>
+<li>长度/最小值/最大值</li>
+<li>迭代</li>
+</ol>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>序列中所有的元素都存在自己的编号，从0开始递增，那么这些元素可以通过编号分别访问</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>sequence = <span class="string">"Hello Word"</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>sequence[<span class="number">0</span>]</div><div class="line"><span class="string">'H'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>sequence[<span class="number">-1</span>]</div><div class="line"><span class="string">'d'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p><code>第一个索引是0，第二则是1，依此内退，最后一个为-1</code></p>
+<h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p>与索引类似访问单个元素，可以使用分片操作一定范围内的元素。分片通过冒号隔开的俩个索引来实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">0</span>:<span class="number">3</span>]</div><div class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p><code>总而言之，分片的操作提供俩个索引的边界，第一个索引含在切片内，第二索引不在切片内</code></p>
+<p>假设： 取最后3个元素？</p>
+<p><strong> 要知道-1是取最后一个索引，可是在切片中第二个索引不包含在切片的范围内</strong></p>
+<p><del>错误：</del><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">-3</span>:<span class="number">-1</span>]</div><div class="line">[<span class="string">'f'</span>,<span class="string">'g'</span>]    <span class="comment">#显然这种方式取不到最后3个</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<p>正确：<br> <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">-3</span>:]   <span class="comment">#这里为空，不是代表0， 如果是0那么切片是空数值</span></div><div class="line">[<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]  </div><div class="line"> &gt;&gt;&gt;</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">-3</span>:<span class="number">9</span>]   <span class="comment">#为什么是9？letter总长度为8个，第9个向前推一个刚好最后一个索引位</span></div><div class="line">[<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]  </div><div class="line"> &gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="1-步长-Step-length"><a href="#1-步长-Step-length" class="headerlink" title="1.步长(Step length)"></a>1.步长(Step length)</h4><p> 在进行分片的时候，分片的开始和结束点需要进行指定，(不管是直接或是间接)，而另一种参数“步<br> 长”通常都是隐士设置的。<br> <code>先按照分片的定义操作，然后更具步长【比值数】逐步遍历序列中的元素，最后返回开始和结束的元素</code></p>
+<p> 举个例子:<br> <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">0</span>:<span class="number">9</span>:<span class="number">2</span>]  </div><div class="line">[<span class="string">'a'</span>,<span class="string">'c'</span>,<span class="string">'e'</span>,<span class="string">'g'</span>]</div><div class="line"> &gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析一下：首先按照[0:9]来分片，然后再根据1的步长遍历，返回最后的结果集。</p>
+</blockquote>
+<p>其中步长不能为0，但是可以为空值，空值相当于1，那么问题来了。能不能为负数呢？</p>
+<p>当然可以，只不过要先反着分片【从右(尾)向左开始（倒序）】,然后遍历步长</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [<span class="number">9</span>:<span class="number">0</span>:<span class="number">-3</span>]  </div><div class="line">[<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">b']</span></div><div class="line"> &gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p><code>letter [9:0:-3]   等价于  letter [:0:-3]</code></p>
+<h4 id="2-分片其他"><a href="#2-分片其他" class="headerlink" title="2.分片其他"></a>2.分片其他</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>letter [:]  </div><div class="line"> [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>]  <span class="comment">#相当于复制整个序列</span></div><div class="line"> &gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="序列相加"><a href="#序列相加" class="headerlink" title="序列相加"></a>序列相加</h3><p>通过使用运算符可以进行序列的连接操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] + [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'Hello'</span> + <span class="string">'World'</span></div><div class="line"><span class="string">'HelloWorld'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] + <span class="string">'Hello'</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">TypeError: can only concatenate list (<span class="keyword">not</span> <span class="string">"str"</span>) to list</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>当列表和字符串是无法连接在一块，即使它们都是序列，但是属于不同的类型序列。</p>
+<h3 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"Pyhton"</span> * <span class="number">5</span></div><div class="line"><span class="string">'PyhtonPyhtonPyhtonPyhtonPyhton'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">10</span>] * <span class="number">10</span></div><div class="line">[<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="1-None，空列表"><a href="#1-None，空列表" class="headerlink" title="1.None，空列表"></a>1.None，空列表</h4><ol>
+<li>空列表：可以直接用[]表示</li>
+<li>None: Python的内建值，确切的含义“这里面什么都没有”，因此想表示初始化长度为10的空列表<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>noneSequence = [<span class="keyword">None</span>] * <span class="number">10</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>noneSequence</div><div class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="成员资格"><a href="#成员资格" class="headerlink" title="成员资格"></a>成员资格</h3><p>用于检查一个数值是否存在序列中，可以用in运算符，然后接收布尔值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>language = <span class="string">"Python"</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'o'</span> <span class="keyword">in</span> language</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"s"</span> <span class="keyword">in</span> language</div><div class="line"><span class="keyword">False</span></div><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>users = [<span class="string">'neng'</span>,<span class="string">'Mack'</span>,<span class="string">'baby'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input(<span class="string">'your users name :'</span>) <span class="keyword">in</span> users</div><div class="line">your users name :neng</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input(<span class="string">'your users name :'</span>) <span class="keyword">in</span> users</div><div class="line">your users name :xxx</div><div class="line"><span class="keyword">False</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="长度、最小值和最大值"><a href="#长度、最小值和最大值" class="headerlink" title="长度、最小值和最大值"></a>长度、最小值和最大值</h3><ul>
+<li>len()   长度</li>
+<li>min()   最小值</li>
+<li>max()   最大值</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>nunber = [<span class="number">1</span>,<span class="number">24</span>,<span class="number">100</span>,<span class="number">50</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>len(nunber)</div><div class="line"><span class="number">4</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>min(nunber)</div><div class="line"><span class="number">1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>max(nunber)</div><div class="line"><span class="number">100</span></div><div class="line">&gt;&gt;&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>max(<span class="number">2</span>,<span class="number">3</span>)</div><div class="line"><span class="number">3</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>min(<span class="number">26</span>,<span class="number">62</span>)</div><div class="line"><span class="number">26</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</the>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[人生苦短 我用Python]]></title>
+      <url>http://nenglee.com/2017/03/07/Python/Python%E7%9A%84%E8%AE%A4%E7%9F%A5/</url>
+      <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>如果说 <code>&quot;PHP是最好的语言&quot;</code></excerpt></p>
+<p>来调侃其它语言</p>
+<p>那么 <code>“人生苦短,我用python”</code></p>
+<p>来回敬</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>本身做移动开发，一直这块领域匍匐，对移动互联网的了解，08开始Phone os和Android os俩大操<br>作系统，从萌芽到野蛮生长，11年的时候这类开发缺乏人才，到目前的瓶颈及饱和，在2016《时间的<br>朋友》跨年演讲中老罗说：移动互联网的红利开始结束，移动互联网的上半场结束，下半场即将开始。</p>
+<p>对这个行业的认知和了解，确实如此，身边有很多同行，都觉得目前移动就业不是非常乐观，其实这<br>就是互联网，高速发展，优胜劣汰。很现实，也很无奈，不得不接收，不得不重新起航。好在当初很<br>幸运，当初赶上了这般末班车。</p>
+<blockquote>
+<p>经历一些成长后，心算是静了下来了吧！也在这个春暖花开的季节，选择开始播种</p>
+</blockquote>
+<h3 id="1-学习后台语言"><a href="#1-学习后台语言" class="headerlink" title="1.学习后台语言"></a>1.学习后台语言</h3><p>特意在知乎查了下 PHP、Java、Python、C、C++ 特点，我想以下几点最能说明特性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">PHP:    没啥特别优点好说，中规中矩</div><div class="line">java:   库多，库多，库多</div><div class="line">Python: 语法清楚，语法清楚，语法清楚</div><div class="line">C:      操作底层，细腻到性能优化</div><div class="line">C++:    啥都有，啥都有，啥都有</div></pre></td></tr></table></figure>
+<p>那么根据自身条件，特点觉得Python这款最适合,简洁风格最好，毕竟人生苦短，能懒就懒吧！嘿..</p>
+<p>在自我工作经历中，项目后台一般就三种，java/Pyhton/PHP</p>
+<p>按理说搞搞java会是非常吃香，毕竟没有语法障碍，但是就是不想，不要问我为什么。PHP真心没兴<br>趣。</p>
+<p>Pyhon至少在项目中看的不那么头疼，据说有很强的缩进要求，这下开心死了，最厌烦别人代码不格<br>式化，没有整体感。</p>
+<h3 id="2-未来趋势"><a href="#2-未来趋势" class="headerlink" title="2.未来趋势"></a>2.未来趋势</h3><p>就目前AR &amp;&amp; VR技术非常流行，开发牵涉的领域太广，国内人才偏少，，报道2020左右会有一个比<br>较成熟的普及。</p>
+<p>自动化人工智能也将是一种趋势，刚好最近俩会支持，“用人工智能推动我国产业新变革”,跟着政策<br>走总会有肉吃，而人工智能其中需要一个非常大的数据分析和机器学习，那么Python在这俩点非常、<br>非常的适合。</p>
+<h3 id="3-拿它做什么"><a href="#3-拿它做什么" class="headerlink" title="3.拿它做什么"></a>3.拿它做什么</h3><p>我也不知道会不会以这么语言为生，但是语言这东西也会跟新换代，谁好用就用谁，偏爱谁就去追随，<br>哪有那么多为什么？你开心就好了。</p>
+<p>想拿它做一些爬虫，觉得很有意思，然后分析分析数据，在互联网里面，数据的价值非常的高；搞些<br>脚本，让懒成为一种艺术。</p>
+<p>据说什么都能做，只有你想不到，没有做不到，真是太神奇了！</p>
+</the>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Atom 编译器]]></title>
+      <url>http://nenglee.com/2017/03/03/Atom%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+      <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
+
+<p>Atom是Github发布的一款产品，作为一款高效率的编译器，非常适合文字编写从业人员。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<p><a href="https://atom.io/" target="_blank" rel="external">Atom下载地址</a></p>
+<p>如果不经常用，一些快捷键都忘记不行不行的，严重影响操作，不爽…</p>
+<h3 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">英文</th>
+<th style="text-align:center">中文</th>
+<th style="text-align:left">快捷键(Windows)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">New Windows</td>
+<td style="text-align:center">新建新窗口</td>
+<td style="text-align:left">Ctrl + Shift + N</td>
+</tr>
+<tr>
+<td style="text-align:left">New File</td>
+<td style="text-align:center">新建文件</td>
+<td style="text-align:left">Ctrl  + N</td>
+</tr>
+<tr>
+<td style="text-align:left">Ope File</td>
+<td style="text-align:center">打开文件</td>
+<td style="text-align:left">Ctrl + Shift + O</td>
+</tr>
+<tr>
+<td style="text-align:left">Add Project Folder</td>
+<td style="text-align:center">加载项目包</td>
+<td style="text-align:left">Ctrl + Shift + A</td>
+</tr>
+<tr>
+<td style="text-align:left">Close Tab</td>
+<td style="text-align:center">关闭当前页面</td>
+<td style="text-align:left">Ctrl + W</td>
+</tr>
+<tr>
+<td style="text-align:left">Reopen Last Item</td>
+<td style="text-align:center">重新打开最后一项</td>
+<td style="text-align:left">Ctrl + Shift + T</td>
+</tr>
+<tr>
+<td style="text-align:left">Settings</td>
+<td style="text-align:center">设置</td>
+<td style="text-align:left">Ctrl + Comma</td>
+</tr>
+<tr>
+<td style="text-align:left">Save</td>
+<td style="text-align:center">保存</td>
+<td style="text-align:left">Ctrl + S</td>
+</tr>
+<tr>
+<td style="text-align:left">Save As</td>
+<td style="text-align:center">另存为</td>
+<td style="text-align:left">Ctrl + Shift + S</td>
+</tr>
+<tr>
+<td style="text-align:left">Toggle Tree View</td>
+<td style="text-align:center">显示/隐藏 列表目录</td>
+<td style="text-align:left">Ctrl + \</td>
+</tr>
+<tr>
+<td style="text-align:left">Toggle Full Screen</td>
+<td style="text-align:center">全屏</td>
+<td style="text-align:left">F11</td>
+</tr>
+<tr>
+<td style="text-align:left">Turn on the switch</td>
+<td style="text-align:center">打开中的文件切换</td>
+<td style="text-align:left">Ctrl + B 或 Ctrl + Tab</td>
+</tr>
+<tr>
+<td style="text-align:left">Find the file</td>
+<td style="text-align:center">查找文件</td>
+<td style="text-align:left">Ctrl + P</td>
+</tr>
+<tr>
+<td style="text-align:left">Find in Buffer</td>
+<td style="text-align:center">查找关键字</td>
+<td style="text-align:left">Ctrl + F</td>
+</tr>
+<tr>
+<td style="text-align:left">Find Project Buffer</td>
+<td style="text-align:center">项目查找</td>
+<td style="text-align:left">Ctrl + Shift +F</td>
+</tr>
+<tr>
+<td style="text-align:left">Indent</td>
+<td style="text-align:center">增加缩进</td>
+<td style="text-align:left">Ctrl + [</td>
+</tr>
+<tr>
+<td style="text-align:left">Outdent</td>
+<td style="text-align:center">减少缩进</td>
+<td style="text-align:left">Ctrl + ]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3></the></excerpt>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[2016的最后一天]]></title>
       <url>http://nenglee.com/2016/12/31/%E9%9A%8F%E7%AC%94/2016%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/</url>
       <content type="html"><![CDATA[<p>很幸运2016年的最后一天算在元旦假期<br>这与往年不同<br>至少还有这么一天空闲时间<br>回想今年还有哪些未了的事情<br>不然明天，又在懊悔过去</p>
 <a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
 <p><strong>2016年给自己定了三个小目标</strong></p>
 <ul>
 <li>学一门新语言新技术</li>
@@ -31,7 +289,7 @@
 <p><br><br>2016年眼看就要过去</p>
 <p><code>祝愿家人 || 朋友： 身体健康、幸福安好</code></p>
 <p>2017年~ 你好！</p>
-]]></content>
+</the>]]></content>
     </entry>
     
     <entry>
@@ -920,7 +1178,7 @@
       <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
 
 <p>项目中遇到重写自定义View,特别是对事件交互、如果处理不当，就会造成事件冲突，影响体验。那么事件的分发就尤为重要,理解来龙去脉是前提,在面试中八成都会问到这个体系，所以说很重要、很重要，在说一遍很重要。</p>
-<a id="more"></a>
+<a id="more"></a>   
 <the rest="" of="" contents="" |="" 余下全文="">
 
 <hr>
@@ -1273,7 +1531,63 @@
 <p>前后各一个 ``</p>
 </blockquote>
 <p><code>Markdown.md</code></p>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>最后附加一个<strong>MackDonw</strong>文档速查  </p>
+<h2 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~~这个删除线~~</div></pre></td></tr></table></figure>
+<p><del>这个删除线</del></p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">| Tables        | Are           | Cool  |</div><div class="line">| ------------- |:-------------:| -----:|</div><div class="line">| col 3 is      | right-aligned | $1600 |</div><div class="line">| col 2 is      | centered      |   $12 |</div><div class="line">| zebra stripes | are neat      |    $1 |</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th style="text-align:center">Are</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col 3 is</td>
+<td style="text-align:center">right-aligned</td>
+<td style="text-align:right">$1600</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td style="text-align:center">centered</td>
+<td style="text-align:right">$12</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td style="text-align:center">are neat</td>
+<td style="text-align:right">$1</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dog | bird | cat</div><div class="line">----|------|----</div><div class="line">foo | foo  | foo</div><div class="line">bar | bar  | bar</div><div class="line">baz | baz  | baz</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>dog</th>
+<th>bird</th>
+<th>cat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>foo</td>
+<td>foo</td>
+<td>foo</td>
+</tr>
+<tr>
+<td>bar</td>
+<td>bar</td>
+<td>bar</td>
+</tr>
+<tr>
+<td>baz</td>
+<td>baz</td>
+<td>baz</td>
+</tr>
+</tbody>
+</table>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>最后附加一个<strong>MackDonw</strong>文档速查  </p>
 <p><a href="http://wowubuntu.com/markdown/#p" target="_blank" rel="external"><strong>Markdown文档速查</strong></a></p>
 <p><a href="http://www.williamlong.info/archives/4319.html" target="_blank" rel="external"><strong>关于Markdown工具</strong></a></p>
 </the></excerpt>]]></content>

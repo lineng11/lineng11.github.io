@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Python基础(2)-列表-元组"/>
+
+
+
+
+  <meta name="keywords" content="Python基础," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2017/03/09/Python/Python基础(2)-列表-元组/"/>
+
+
+<meta name="description" content="Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础(2)-列表-元组">
+<meta property="og:url" content="http://nenglee.com/2017/03/09/Python/Python基础(2)-列表-元组/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。">
+<meta property="og:updated_time" content="2017-03-16T17:26:09.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python基础(2)-列表-元组">
+<meta name="twitter:description" content="Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Python基础(2)-列表-元组 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Python基础(2)-列表-元组
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年3月9日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python包含6中内建序列分别："><span class="toc-text">Python包含6中内建序列分别：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本列表操作"><span class="toc-text">基本列表操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表-list"><span class="toc-text">列表 list</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#append"><span class="toc-text">append</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#count"><span class="toc-text">count</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#extend"><span class="toc-text">extend</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#index"><span class="toc-text">index</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#insert"><span class="toc-text">insert</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pop"><span class="toc-text">pop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#remove"><span class="toc-text">remove</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reverse"><span class="toc-text">reverse</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sort"><span class="toc-text">sort</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组"><span class="toc-text">元组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tuple"><span class="toc-text">tuple</span></a></li></ol></li></ol></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。<br>序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。</excerpt></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h2 id="Python包含6中内建序列分别："><a href="#Python包含6中内建序列分别：" class="headerlink" title="Python包含6中内建序列分别："></a>Python包含6中内建序列分别：</h2><ol>
+<li>列表</li>
+<li>元组</li>
+<li>字符串</li>
+<li>Unicode字符串</li>
+<li>buffer对象</li>
+<li>xrange对象</li>
+</ol>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>列表可以使用所有适用于序列的标准操作，例如索引、分片、连接和乘法，当然还有最基本的增删改查等..</p>
+<p>例如集合：<br><code>mList = [&#39;Mon&#39;,&#39;Tues&#39;,&#39;Wed&#39;,&#39;Thur&#39;,&#39;Fri&#39;]</code></p>
+<h4 id="基本列表操作"><a href="#基本列表操作" class="headerlink" title="基本列表操作"></a>基本列表操作</h4><ol>
+<li><p>元素赋值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList[<span class="number">0</span>] = <span class="string">'Mon-1'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon-1'</span>,<span class="string">'Tues'</span>,<span class="string">'Wed'</span>,<span class="string">'Thur'</span>,<span class="string">'Fri'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除元素</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; del mList[0]</div><div class="line">&gt;&gt;&gt; mList</div><div class="line">[Tues','Wed','Thur','Fri']</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>分片赋值</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList[<span class="number">1</span>:<span class="number">-1</span>]</div><div class="line">[<span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>]</div><div class="line">&gt;&gt;&gt;</div><div class="line"></div><div class="line"><span class="comment"># 分片还有一个步长的定义, 例如 mList[::2]</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList[::<span class="number">2</span>]</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Wed'</span>, <span class="string">'Fri'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="列表-list"><a href="#列表-list" class="headerlink" title="列表 list"></a>列表 list</h3><p>方法是一个与某些对象有密切联系的函数，对象可能是列表、数字、也可能是字符串或者是其他类型<br>的对象，方法可以这样进行调用:</p>
+<p><code>对象.方法 (参数)</code></p>
+<p>除了对象被放置到方法名之前，并且俩者之间用一个点号隔开，方法调用与参数调用很类似。</p>
+<h4 id="append"><a href="#append" class="headerlink" title="append"></a>append</h4><p>append() 方法用于在列表的末尾追加新的对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.append(<span class="string">'Sat'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="count"><a href="#count" class="headerlink" title="count"></a>count</h4><p>count() 方法用于统计某个元素在列表中出现的次数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Mon'</span>, <span class="string">'Mon'</span>, <span class="string">'Tues'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.count(<span class="string">'Mon'</span>)</div><div class="line"><span class="number">3</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="extend"><a href="#extend" class="headerlink" title="extend"></a>extend</h4><p>extend() 方法可以在列表的末尾一次性追加另一个序列中的多个值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList1 = [<span class="string">'Mon'</span>,<span class="string">'Tues'</span>,<span class="string">'Wed'</span>,<span class="string">'Thur'</span>,<span class="string">'Fri'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList2 = [<span class="string">'Sat'</span>,<span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList1.extend(mList2)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList1</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList2</div><div class="line">[<span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="index"><a href="#index" class="headerlink" title="index"></a>index</h4><p>index() 方法用于列表中找出某个值第一个匹配项的索引位置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>, <span class="string">'Tues'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.index(<span class="string">'Tues'</span>)</div><div class="line"><span class="number">1</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h4><p>insert() 方法用于将对象插入到列表中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>]</div><div class="line"><span class="comment">#索引0的时候 插入一个元素</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.insert(<span class="number">0</span>,<span class="string">'Mon'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>]</div><div class="line"></div><div class="line"><span class="comment">#列表末尾添加对象，用insert需要知道最后的索引，而用append就是直接追加在末尾，并且可读性较高</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.insert(len(mList)+<span class="number">1</span>,<span class="string">'Sun'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.append(<span class="string">'Sun'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>, <span class="string">'Sun'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="pop"><a href="#pop" class="headerlink" title="pop"></a>pop</h4><p>pop() 方法会移除列表中最后一个元素(默认是最后一位)，并且返回该元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.pop()</div><div class="line"><span class="string">'Sun'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="remove"><a href="#remove" class="headerlink" title="remove"></a>remove</h4><p>remove() 方法用于移除列表中某一个值，并且第一个匹配项</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.remove(<span class="string">'Sun'</span>)   <span class="comment">#匹配最新出现的索引位置，并且删除  </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h4><p>reverse() 方法是将列表中的元素进行反向存放，俗称倒序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList.reverse()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList</div><div class="line">[<span class="string">'Sun'</span>, <span class="string">'Sat'</span>, <span class="string">'Fri'</span>, <span class="string">'Thur'</span>, <span class="string">'Wed'</span>, <span class="string">'Tues'</span>, <span class="string">'Mon'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h4><p>sort() 方法用于在原来的位置对列表进行排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">9</span>,<span class="number">6</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.sort()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>]</div></pre></td></tr></table></figure>
+<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>元组和列表一样，也属序列的一种，唯一不同的是:元组不能修改</p>
+<p><code>mTuple = (&#39;Mon&#39;,&#39;Tues&#39;,&#39;Wed&#39;,&#39;Thur&#39;,&#39;Fri&#39;)</code></p>
+<p>需要主要的是元组是用 () 括起来的，并且不能修改内部对象</p>
+<h4 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a>tuple</h4><p>tuple() 把序列转换成元组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList = [<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>tuple(mList)</div><div class="line">(<span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>, <span class="string">'Fri'</span>, <span class="string">'Sat'</span>, <span class="string">'Sun'</span>)</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+</the>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python基础/">Python基础</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2017/03/07/Python/Python基础(1)-序列操作/">
+        <span class="next-text nav-default">Python基础(1)-序列操作</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/09/Python/Python基础(2)-列表-元组/"
+           data-title="Python基础(2)-列表-元组" data-url="http://nenglee.com/2017/03/09/Python/Python基础(2)-列表-元组/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>
