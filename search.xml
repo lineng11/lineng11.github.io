@@ -253,9 +253,33 @@
 <td style="text-align:center">减少缩进</td>
 <td style="text-align:left">Ctrl + ]</td>
 </tr>
+<tr>
+<td style="text-align:left">MarkDown</td>
+<td style="text-align:center">查看MarkDown</td>
+<td style="text-align:left">Shift + Ctrl +M</td>
+</tr>
 </tbody>
 </table>
-<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3></the></excerpt>]]></content>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><h4 id="Atom安装"><a href="#Atom安装" class="headerlink" title="Atom安装"></a>Atom安装</h4><p>打开设置(Settings)  —&gt; Packages [查看当前安装插件]  —&gt; install [需要安装插件]</p>
+<p>在Install 搜素 在对应的插件列表点击install安装即可</p>
+<p><img src="http://of6bvxslc.bkt.clouddn.com/atom_settings.png" alt="Atom - Settings"></p>
+<h4 id="终端安装"><a href="#终端安装" class="headerlink" title="终端安装"></a>终端安装</h4><p>有时候，在Atom里面搜素慢卡错，所以建议终端安装</p>
+<p><a href="https://atom.io/packages" target="_blank" rel="external">网页搜索：https://atom.io/packages</a></p>
+<p>例如：搜素 <code>autocomplete-python</code> 插件，点击Repo来到Github仓库，地址为url: <code>https://github.com/autocomplete-python/autocomplete-python</code></p>
+<p><img src="http://of6bvxslc.bkt.clouddn.com/atom_packages.jpg" alt="点击 Repo"></p>
+<h5 id="Atom包管理用法"><a href="#Atom包管理用法" class="headerlink" title="Atom包管理用法"></a>Atom包管理用法</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装指定包</span></div><div class="line">$ apm install &lt;package_name&gt;</div><div class="line"><span class="comment"># 安装指定版本的包</span></div><div class="line">$ apm install &lt;package_name&gt;@&lt;package_version&gt;</div><div class="line"><span class="comment"># 查找包</span></div><div class="line">$ apm search &lt;package_name&gt;</div><div class="line"><span class="comment"># 查看包更多详情</span></div><div class="line">$ apm view &lt;packge_name&gt;</div><div class="line"><span class="comment"># 查看当前已安装包(包含默认Atom捆绑和个人安装)</span></div><div class="line">$ apm list</div></pre></td></tr></table></figure>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#.atom目录中的packges</span></div><div class="line">~/.atom/packages  </div><div class="line">$ ls</div><div class="line">README.md  atom-runner  color-picker  minimap   </div><div class="line"></div><div class="line"><span class="comment">#clone</span></div><div class="line">$ git <span class="built_in">clone</span>  `https://github.com/autocomplete-python/autocomplete-python`</div><div class="line">Cloning into <span class="string">'autocomplete-python'</span>...</div><div class="line">remote: Counting objects: 2312, done.</div><div class="line">remote: Total 2312 (delta 0), reused 0 (delta 0), pack-reused 2312</div><div class="line">Receiving objects: 100% (2312/2312), 589.11 KiB | 8.00 KiB/s, done.</div><div class="line">Resolving deltas: 100% (1446/1446), done.</div><div class="line">Checking connectivity... done.</div><div class="line"></div><div class="line"></div><div class="line">~/.atom/packages</div><div class="line">$ ls</div><div class="line">README.md  atom-runner  autocomplete-python  color-picker  minimap</div><div class="line"></div><div class="line">~/.atom/packages</div><div class="line">$ npm install autocomplete-python   <span class="comment">#install 安装</span></div><div class="line">autocomplete-python@1.8.60 node_modules\autocomplete-python</div><div class="line">├── selector-kit@0.1.0</div><div class="line">├── atom-slick@2.0.0</div><div class="line">├── underscore@1.8.3</div><div class="line">├── mixpanel@0.5.0</div><div class="line">├── fuzzaldrin-plus@0.3.1</div><div class="line">├── kite-installer@0.13.9</div><div class="line">├── atom-space-pen-views@2.1.1 (fuzzaldrin@2.1.0)</div><div class="line">└── space-pen@5.1.2 (jquery@2.1.4, underscore-plus@1.6.6, grim@1.5.0)</div></pre></td></tr></table></figure>
+<p>1.<a href="https://atom.io/packages/minimap.git" target="_blank" rel="external">minimap</a></p>
+<p>  类似sublim text右边的代码缩略图</p>
+<p>2.<a href="https://atom.io/packages/color-picker" target="_blank" rel="external">color-picker</a></p>
+<p>  颜色摄取器    </p>
+<p>3.<a href="https://atom.io/packages/atom-runner" target="_blank" rel="external">atom-runner</a></p>
+<p>  支持JavaScript，CoffeeScript，Ruby和Python</p>
+<p>4.<a href="https://atom.io/packages/autocomplete-python" target="_blank" rel="external">autocomplete-python</a></p>
+<p>  python自动补全</p>
+<p>5.<a href="https://atom.io/packages/python-tools" target="_blank" rel="external">python-tools</a></p>
+<p>  python工具</p>
+</the></excerpt>]]></content>
     </entry>
     
     <entry>
