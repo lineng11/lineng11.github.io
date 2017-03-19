@@ -39,7 +39,7 @@
 <meta property="og:url" content="http://nenglee.com/2017/03/09/Python/Python基础(2)-列表-元组/index.html">
 <meta property="og:site_name" content="Neng Lee">
 <meta property="og:description" content="Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。">
-<meta property="og:updated_time" content="2017-03-16T17:26:09.402Z">
+<meta property="og:updated_time" content="2017-03-18T05:12:53.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python基础(2)-列表-元组">
 <meta name="twitter:description" content="Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。">
@@ -196,7 +196,7 @@
       <div class="post-toc" id="post-toc">
         <h2 class="post-toc-title">文章目录</h2>
         <div class="post-toc-content">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python包含6中内建序列分别："><span class="toc-text">Python包含6中内建序列分别：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本列表操作"><span class="toc-text">基本列表操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表-list"><span class="toc-text">列表 list</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#append"><span class="toc-text">append</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#count"><span class="toc-text">count</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#extend"><span class="toc-text">extend</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#index"><span class="toc-text">index</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#insert"><span class="toc-text">insert</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pop"><span class="toc-text">pop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#remove"><span class="toc-text">remove</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reverse"><span class="toc-text">reverse</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sort"><span class="toc-text">sort</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组"><span class="toc-text">元组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tuple"><span class="toc-text">tuple</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#内建序列分别："><span class="toc-text">内建序列分别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本列表操作"><span class="toc-text">基本列表操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表（list）方法"><span class="toc-text">列表（list）方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#append"><span class="toc-text">append</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#count"><span class="toc-text">count</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#extend"><span class="toc-text">extend</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#index"><span class="toc-text">index</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#insert"><span class="toc-text">insert</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pop"><span class="toc-text">pop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#remove"><span class="toc-text">remove</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reverse"><span class="toc-text">reverse</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sort"><span class="toc-text">sort</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组"><span class="toc-text">元组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tuple"><span class="toc-text">tuple</span></a></li></ol></li></ol>
         </div>
       </div>
     
@@ -208,7 +208,7 @@
 <the rest="" of="" contents="" |="" 余下全文="">
 
 <hr>
-<h2 id="Python包含6中内建序列分别："><a href="#Python包含6中内建序列分别：" class="headerlink" title="Python包含6中内建序列分别："></a>Python包含6中内建序列分别：</h2><ol>
+<h3 id="内建序列分别："><a href="#内建序列分别：" class="headerlink" title="内建序列分别："></a>内建序列分别：</h3><ol>
 <li>列表</li>
 <li>元组</li>
 <li>字符串</li>
@@ -229,7 +229,7 @@
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList[<span class="number">1</span>:<span class="number">-1</span>]</div><div class="line">[<span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>]</div><div class="line">&gt;&gt;&gt;</div><div class="line"></div><div class="line"><span class="comment"># 分片还有一个步长的定义, 例如 mList[::2]</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList[::<span class="number">2</span>]</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Wed'</span>, <span class="string">'Fri'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
-<h3 id="列表-list"><a href="#列表-list" class="headerlink" title="列表 list"></a>列表 list</h3><p>方法是一个与某些对象有密切联系的函数，对象可能是列表、数字、也可能是字符串或者是其他类型<br>的对象，方法可以这样进行调用:</p>
+<h3 id="列表（list）方法"><a href="#列表（list）方法" class="headerlink" title="列表（list）方法"></a>列表（list）方法</h3><p>方法是一个与某些对象有密切联系的函数，对象可能是列表、数字、也可能是字符串或者是其他类型<br>的对象，方法可以这样进行调用:</p>
 <p><code>对象.方法 (参数)</code></p>
 <p>除了对象被放置到方法名之前，并且俩者之间用一个点号隔开，方法调用与参数调用很类似。</p>
 <h4 id="append"><a href="#append" class="headerlink" title="append"></a>append</h4><p>append() 方法用于在列表的末尾追加新的对象</p>
@@ -268,6 +268,12 @@
 
         
   <nav class="post-nav">
+    
+      <a class="prev" href="/2017/03/11/Python/Python基础(3)-字符串/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Python基础(3)-字符串</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
     
     
       <a class="next" href="/2017/03/07/Python/Python基础(1)-序列操作/">

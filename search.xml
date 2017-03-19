@@ -4,6 +4,112 @@
   
     
     <entry>
+      <title><![CDATA[Python基础(3)-字符串]]></title>
+      <url>http://nenglee.com/2017/03/11/Python/Python%E5%9F%BA%E7%A1%80(3)-%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+      <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
+
+<p>字符串是 Python 中最常用的数据类型,可以使用引号(‘或”)来创建字符串,并且通过索引和分片访<br>问字符串中单个字符。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<p>创建一个简单的字符串<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>website=<span class="string">'http://www.nenglee.com'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>website</div><div class="line"><span class="string">'http://www.nenglee.com'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>len(website)</div><div class="line"><span class="number">22</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>website[<span class="number">7</span>:]</div><div class="line"><span class="string">'www.nenglee.com'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="简单转换"><a href="#简单转换" class="headerlink" title="简单转换"></a>简单转换</h3><p>字符串格式化转换类型</p>
+<table>
+<thead>
+<tr>
+<th>转换类型</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d , i</td>
+<td style="text-align:center">到符号的十进制整数</td>
+</tr>
+<tr>
+<td>o</td>
+<td style="text-align:center">不带符号的八进制</td>
+</tr>
+<tr>
+<td>u</td>
+<td style="text-align:center">不带符号的十进制</td>
+</tr>
+<tr>
+<td>x</td>
+<td style="text-align:center">不带符号的十六进制(小写)</td>
+</tr>
+<tr>
+<td>X</td>
+<td style="text-align:center">不带符号的十六进制(大写)</td>
+</tr>
+<tr>
+<td>e</td>
+<td style="text-align:center">科学计数法表示的浮点数(小写)</td>
+</tr>
+<tr>
+<td>E</td>
+<td style="text-align:center">科学计数法表示的浮点数(大写)</td>
+</tr>
+<tr>
+<td>f , F</td>
+<td style="text-align:center">十进制浮点数</td>
+</tr>
+<tr>
+<td>g</td>
+<td style="text-align:center">如果指数大于-4或者小于精度值则和e相同，其他情况和f相同</td>
+</tr>
+<tr>
+<td>G</td>
+<td style="text-align:center">如果指数大于-4或者小于精度值则和E相同，其他情况和F相同</td>
+</tr>
+<tr>
+<td>C</td>
+<td style="text-align:center">单字符 (接收整数或者单字符字符串)</td>
+</tr>
+<tr>
+<td>r</td>
+<td style="text-align:center">字符串 (使用repr转换任意Python对象)</td>
+</tr>
+<tr>
+<td>s</td>
+<td style="text-align:center">字符串 (使用str转换任意Python对象)</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'Price of eggs: $%d'</span> % <span class="number">42</span>  </div><div class="line"><span class="string">'Price of eggs: $42'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'Headecimal price of eggs: %x'</span> % <span class="number">42</span></div><div class="line"><span class="string">'Headecimal price of eggs: 2a'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> math <span class="keyword">import</span> pi</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'pi: %f...'</span> % pi</div><div class="line"><span class="string">'pi: 3.141593...'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'Very inexact estimate of pi: %i'</span> % pi</div><div class="line"><span class="string">'Very inexact estimate of pi: 3'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'Using str: %s'</span> % <span class="number">42L</span></div><div class="line"><span class="string">'Using str: 42'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'Using repr: %r'</span> % <span class="number">42L</span></div><div class="line"><span class="string">'Using repr: 42L'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="宽度和精度"><a href="#宽度和精度" class="headerlink" title="宽度和精度"></a>宽度和精度</h3><ul>
+<li>宽度：转换后的值保留最小字数个数</li>
+<li>精度：结果中包含小数位数(对于数字转换来说)，或者说是包含最大字符个数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> math <span class="keyword">import</span> pi</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>pi</div><div class="line"><span class="number">3.141592653589793</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'%10f'</span> % pi         <span class="comment">#字段宽度10</span></div><div class="line"><span class="string">'  3.141593'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'%10.2f'</span> % pi       <span class="comment">#字段宽度10，精度2</span></div><div class="line"><span class="string">'      3.14'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'%.2f'</span> % pi         <span class="comment">#精度2</span></div><div class="line"><span class="string">'3.14'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'%.5s'</span> % <span class="string">'Guido van Rossum'</span>     <span class="comment">#精度5</span></div><div class="line"><span class="string">'Guido'</span></div><div class="line">&gt;&gt;&gt;</div><div class="line"></div><div class="line"><span class="comment">#也可以使用 *作为字段宽度或者精度 (或者俩者都使用*),此时数值会从元组参数读出:</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'%.*s'</span> % (<span class="number">5</span>,<span class="string">'Guido van Rossum'</span>)</div><div class="line"><span class="string">'Guido'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="符号、对齐、0填充"><a href="#符号、对齐、0填充" class="headerlink" title="符号、对齐、0填充"></a>符号、对齐、0填充</h3><p>在字段宽度和精度值之前还可以放置一个“标志”，该标志可以是零(0)、加号、减号、或者空格</p>
+<ul>
+<li>减号(-)： 左对齐数值</li>
+<li>加号(+)： 在正数前面显示加号(+)</li>
+<li>0：      显示的数字前面填充’0’而不是默认的空格</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> math <span class="keyword">import</span> pi</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'%10.2f'</span> % pi</div><div class="line"><span class="string">'      3.14'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'%010.2f'</span> % pi   <span class="comment">#0填充</span></div><div class="line"><span class="string">'0000003.14'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'%+10.2f'</span> % pi  <span class="comment">#正数前面+</span></div><div class="line"><span class="string">'     +3.14'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'%-10.2f'</span> % pi  <span class="comment">#左边对齐</span></div><div class="line"><span class="string">'3.14'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h3 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法"></a>字符串方法</h3><p>字符串从String模块中”继承”了很多方法，字符串的方法实在是太多，掌握一些特别重用及有用的即可。</p>
+<h4 id="find"><a href="#find" class="headerlink" title="find"></a>find</h4><p>find()方法可以在一个较长的字符串中查找子串，它返回子串所在位置的最左端索引。如果没有找到则返回-1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>subject = <span class="string">'$$$ Get rich now!!! $$$'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>subject.find(<span class="string">'$$$'</span>)</div><div class="line"><span class="number">0</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>subject.find(<span class="string">'Get'</span>)</div><div class="line"><span class="number">4</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>subject.find(<span class="string">'$$$$'</span>)</div><div class="line"><span class="number">-1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>subject.find(<span class="string">'$$$'</span>,<span class="number">1</span>)   <span class="comment">#1定义了开始查找索引位置</span></div><div class="line"><span class="number">20</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>subject.find(<span class="string">'!!!'</span>)</div><div class="line"><span class="number">16</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>subject.find(<span class="string">'!!!'</span>,<span class="number">0</span>,<span class="number">16</span>)  <span class="comment">#0和16 分别定义索引开始和结束的区间位置内查找</span></div><div class="line"><span class="number">-1</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="join-连接"><a href="#join-连接" class="headerlink" title="join [连接]"></a>join [连接]</h4><p>join()方法是非常重要的字符串方法，她是Sqlit方法的逆方法，用来连接序列中的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>symol = <span class="string">'+'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>seq = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>symol.join(seq)</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">TypeError: sequence item <span class="number">0</span>: expected string, int found</div><div class="line"><span class="comment"># TypeError 类型异常 序列项0：期望的字符串，int找到</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>seq = [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>symol.join(seq)</div><div class="line"><span class="string">'1+2+3+4+5'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p><code>可以看到连接的字符串必须都是字符串</code></p>
+<h4 id="lower-小写转换"><a href="#lower-小写转换" class="headerlink" title="lower [小写转换]"></a>lower [小写转换]</h4><p>lower()方法返回字符串的小写母板</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr = <span class="string">'I Love Python'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr.lower()</div><div class="line"><span class="string">'i love python'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="replace-替换"><a href="#replace-替换" class="headerlink" title="replace [替换]"></a>replace [替换]</h4><p>replace()方法返回某个字符串的所有匹配项均被替换之后得到字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr = <span class="string">'This is a test  is a test'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr.replace(<span class="string">'is'</span>,<span class="string">'xXx'</span>)</div><div class="line"><span class="string">'ThxXx xXx a test  xXx a test'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="split-切割"><a href="#split-切割" class="headerlink" title="split [切割]"></a>split [切割]</h4><p>split()方法是join()逆方法，用来将字符串分割成序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr = <span class="string">'1+2+3+4+5'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr.split(<span class="string">'+'</span>)</div><div class="line">[<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'4'</span>, <span class="string">'5'</span>]</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'/User/.python/mode'</span>.split(<span class="string">'/'</span>)</div><div class="line">[<span class="string">''</span>, <span class="string">'User'</span>, <span class="string">'.python'</span>, <span class="string">'mode'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="strip-去除空格"><a href="#strip-去除空格" class="headerlink" title="strip [去除空格]"></a>strip [去除空格]</h4><p>strip()方法返回去除俩侧(不包括内部) 空格的字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'     Python strip string   '</span>.strip()</div><div class="line"><span class="string">'Python strip string'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="translate"><a href="#translate" class="headerlink" title="translate"></a>translate</h4><p>translate()方法和replace()方法一样，替换字符串中的某些部分，但是前者不同的是:translate()<br>处理单个字符<br>string.translate(str, del=””)<br>例如：根据 str 给出的表(包含 256 个字符)转换 string 的字符,要过滤掉的字符放到 del 参数中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; from string import maketrans</div><div class="line">&gt;&gt;&gt; intab = 'aeiou'</div><div class="line">&gt;&gt;&gt; outtab = '12345'</div><div class="line">&gt;&gt;&gt; trantab = maketrans(intab,outtab)</div><div class="line">&gt;&gt;&gt; trantab</div><div class="line">'\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b\x0c\r\x0e\x0f\x10\x11\x12\x13\x14\</div><div class="line">x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&amp;\'()*+,-./0123456789:;&lt;=&gt;?@ABC</div><div class="line">DEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`1bcd2fgh3jklmn4pqrst5vwxyz&#123;|&#125;~\x7f\x80\x81\x82\x83</div><div class="line">\x84\x85\x86\x87\x88\x89\x8a\x8b\x8c\x8d\x8e\x8f\x90\x91\x92\x93\x94\x95\x96\x97</div><div class="line">\x98\x99\x9a\x9b\x9c\x9d\x9e\x9f\xa0\xa1\xa2\xa3\xa4\xa5\xa6\xa7\xa8\xa9\xaa\xab</div><div class="line">\xac\xad\xae\xaf\xb0\xb1\xb2\xb3\xb4\xb5\xb6\xb7\xb8\xb9\xba\xbb\xbc\xbd\xbe\xbf</div><div class="line">\xc0\xc1\xc2\xc3\xc4\xc5\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd0\xd1\xd2\xd3</div><div class="line">\xd4\xd5\xd6\xd7\xd8\xd9\xda\xdb\xdc\xdd\xde\xdf\xe0\xe1\xe2\xe3\xe4\xe5\xe6\xe7</div><div class="line">\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf0\xf1\xf2\xf3\xf4\xf5\xf6\xf7\xf8\xf9\xfa\xfb</div><div class="line">\xfc\xfd\xfe\xff'</div><div class="line"></div><div class="line">&gt;&gt;&gt; mStr = 'this is string ..aeiou... wo!'</div><div class="line">&gt;&gt;&gt; mStr.translate(trantab)</div><div class="line">'th3s 3s str3ng ..12345... w4!'</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</the></excerpt>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python基础(2)-列表-元组]]></title>
       <url>http://nenglee.com/2017/03/09/Python/Python%E5%9F%BA%E7%A1%80(2)-%E5%88%97%E8%A1%A8-%E5%85%83%E7%BB%84/</url>
       <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>Python的数据结构，和很多语言一样，就是一些列元素存放集合，那么最基本的数据结构就是序列。<br>序列中的每一个元素被分配一个序号–即元素的位置，也称为：索引。</excerpt></p>
@@ -11,7 +117,7 @@
 <the rest="" of="" contents="" |="" 余下全文="">
 
 <hr>
-<h2 id="Python包含6中内建序列分别："><a href="#Python包含6中内建序列分别：" class="headerlink" title="Python包含6中内建序列分别："></a>Python包含6中内建序列分别：</h2><ol>
+<h3 id="内建序列分别："><a href="#内建序列分别：" class="headerlink" title="内建序列分别："></a>内建序列分别：</h3><ol>
 <li>列表</li>
 <li>元组</li>
 <li>字符串</li>
@@ -32,7 +138,7 @@
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList[<span class="number">1</span>:<span class="number">-1</span>]</div><div class="line">[<span class="string">'Tues'</span>, <span class="string">'Wed'</span>, <span class="string">'Thur'</span>]</div><div class="line">&gt;&gt;&gt;</div><div class="line"></div><div class="line"><span class="comment"># 分片还有一个步长的定义, 例如 mList[::2]</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mList[::<span class="number">2</span>]</div><div class="line">[<span class="string">'Mon'</span>, <span class="string">'Wed'</span>, <span class="string">'Fri'</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
-<h3 id="列表-list"><a href="#列表-list" class="headerlink" title="列表 list"></a>列表 list</h3><p>方法是一个与某些对象有密切联系的函数，对象可能是列表、数字、也可能是字符串或者是其他类型<br>的对象，方法可以这样进行调用:</p>
+<h3 id="列表（list）方法"><a href="#列表（list）方法" class="headerlink" title="列表（list）方法"></a>列表（list）方法</h3><p>方法是一个与某些对象有密切联系的函数，对象可能是列表、数字、也可能是字符串或者是其他类型<br>的对象，方法可以这样进行调用:</p>
 <p><code>对象.方法 (参数)</code></p>
 <p>除了对象被放置到方法名之前，并且俩者之间用一个点号隔开，方法调用与参数调用很类似。</p>
 <h4 id="append"><a href="#append" class="headerlink" title="append"></a>append</h4><p>append() 方法用于在列表的末尾追加新的对象</p>
@@ -148,8 +254,8 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Atom 编译器]]></title>
-      <url>http://nenglee.com/2017/03/03/Atom%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+      <title><![CDATA[Atom 编辑器]]></title>
+      <url>http://nenglee.com/2017/03/03/Atom%E7%BC%96%E8%BE%91%E5%99%A8/</url>
       <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
 
 <p>Atom是Github发布的一款产品，作为一款高效率的编译器，非常适合文字编写从业人员。</p>
