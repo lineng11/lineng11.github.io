@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="搭建VPS用Shadowsocks科学上网"/>
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2017/05/13/随笔/搭建VPS用Shadowsocks科学上网/"/>
+
+
+<meta name="description" content="科学上网俗称:”翻墙”、“梯子”，主要是应为中国为了“国家安全”和“国家网络安全”等目的，建设了“强大的” GFW（中国防火长城）以禁止中国大陆网民访问国外的“敏感网站”和“可能敏感网站”。就好如一面墙，屏蔽正常视野，并不是完全的格挡，也算。例如工作特殊，程序员、外贸外企等等，都需要与外网查询交易浏览等业务。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建VPS用Shadowsocks科学上网">
+<meta property="og:url" content="http://nenglee.com/2017/05/13/随笔/搭建VPS用Shadowsocks科学上网/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="科学上网俗称:”翻墙”、“梯子”，主要是应为中国为了“国家安全”和“国家网络安全”等目的，建设了“强大的” GFW（中国防火长城）以禁止中国大陆网民访问国外的“敏感网站”和“可能敏感网站”。就好如一面墙，屏蔽正常视野，并不是完全的格挡，也算。例如工作特殊，程序员、外贸外企等等，都需要与外网查询交易浏览等业务。">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/GFW_principle.png">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/vps_hosting.jpg">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/product.jpg">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/FastStoneEditor1.png">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/KiWiVMs.jpg">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/KiWiVM_main.jpg">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/Xshot-0002.png">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/Migrate.jpg">
+<meta property="og:updated_time" content="2017-05-14T06:06:50.825Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建VPS用Shadowsocks科学上网">
+<meta name="twitter:description" content="科学上网俗称:”翻墙”、“梯子”，主要是应为中国为了“国家安全”和“国家网络安全”等目的，建设了“强大的” GFW（中国防火长城）以禁止中国大陆网民访问国外的“敏感网站”和“可能敏感网站”。就好如一面墙，屏蔽正常视野，并不是完全的格挡，也算。例如工作特殊，程序员、外贸外企等等，都需要与外网查询交易浏览等业务。">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/GFW_principle.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 搭建VPS用Shadowsocks科学上网 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          搭建VPS用Shadowsocks科学上网
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年5月13日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是Shadowsocks"><span class="toc-text">什么是Shadowsocks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建VPS"><span class="toc-text">搭建VPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何购买Banwagong-VPS"><span class="toc-text">如何购买Banwagong VPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建Shadowsocks-VPN"><span class="toc-text">搭建Shadowsocks VPN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Shadowsocks-Server"><span class="toc-text">安装Shadowsocks Server</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通过OpenVPN-Server进行安装"><span class="toc-text">通过OpenVPN Server进行安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过远程进入OS系统手动安装"><span class="toc-text">通过远程进入OS系统手动安装</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#电脑和手机端如何配置"><span class="toc-text">电脑和手机端如何配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iPhone手机如何配置"><span class="toc-text">iPhone手机如何配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-手机如何配置"><span class="toc-text">Android 手机如何配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bandwagon如何换服务器机房"><span class="toc-text">Bandwagon如何换服务器机房</span></a></li></ol></li></ol></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <p>科学上网俗称:”翻墙”、“梯子”，主要是应为中国为了“国家安全”和“国家网络安全”等目的，建设了“强大的” GFW（中国防火长城）以禁止中国大陆网民访问国外的“敏感网站”和“可能敏感网站”。就好如一面墙，屏蔽正常视野，并不是完全的格挡，也算。例如工作特殊，程序员、外贸外企等等，都需要与外网查询交易浏览等业务。</p>
+<a id="more"></a>
+<p>记得以前面试时候提过，’工作中你遇到苦难是通过什么样的方式解决问题？</p>
+<p>这个无非是搜素引擎的问题，那么国内的百度、国外的Google，这样就显得前者比后者low很多，准确的说前者查出来的千篇一律，后者更加显具有专业性，毕竟技术大多领域都是国外带头领跑，学会用Google是最基本用法，加上国内国情因素，学会科学上网尤为重要。</p>
+<p>那么问题来.如何用正确的姿势科学上网呢？</p>
+<font color="#0099ff"> 1. <strong>第三方提供插件或者软件【免费/付费】</strong> </font><br><font color="#0099ff"> 2. <strong>通过手动搭建海外服务器进行科学上网</strong> </font>
+
+<p>以前呀，都是用第一中方式，花钱买帐号，导致原因很多，不稳定、而且做这一块的都是小公司或者个人，当时续了一年的“红杏”，结果用了三个月就用不成，官网只提供‘维修服务’之后就了无音讯，导致后期买服务都不敢续年费。</p>
+<p>那么免费的如何呢？你要相信没有免费的午饭，特别是安全性无法保证，网速也不能提供稳定性，每天也就几个小时根本无法满足，随查随用的自由。</p>
+<p>而就在今年1月出《工信部发文规范网络接入服务市场:未经批准不得自行建立或租用VPN》，导致今年很服务商很难过。所以还是不要相信他人，自我动手丰衣足食。</p>
+<h2 id="什么是Shadowsocks"><a href="#什么是Shadowsocks" class="headerlink" title="什么是Shadowsocks"></a>什么是Shadowsocks</h2><p>维基百科是这么解释：</p>
+<blockquote>
+<p>Shadowsocks是使用Python、C++、C#以及Go等语言开发、基于Apache许可证的开放源代码软件，用于保护网络流量、加密数据传输以及突破中国网络审查。<br>Shadowsocks使用Socks5代理方式，Shadowsocks分为服务器端和客户端。在使用之前，需要先将服务器端部署到服务器上面，然后通过客户端连接并创建本地代理。<br>在中国大陆，本工具也被广泛用于突破防火长城（GFW），以浏览被封锁、屏蔽或干扰的内容。在2015年8月22日，Shadowsocks原作者Clowwindy称受到了中国政府的压力，宣布停止维护此计划（项目）并移除其个人页面所存储的源代码。因为移除之前就有大量的复制副本，所以并未停止维护，而是由多位贡献者维护</p>
+</blockquote>
+<p><img src="http://of6bvxslc.bkt.clouddn.com/GFW_principle.png" alt="GFW"></p>
+<p>Shadowsocks 将原来 <a href="https://zh.wikipedia.org/wiki/Secure_Shell" target="_blank" rel="external">ssh</a>创建的<a href="https://zh.wikipedia.org/wiki/SOCKS#SOCK5" target="_blank" rel="external">Socks5</a> 协议拆开成 Server 端和 Client端，两个端分别安装在境外服务器和境内设备上,Client 和 Server 之间可以通过多种方式加密，并要求提供密码确保链路的安全性.</p>
+<p>Shadowsocks充当了境内外的桥梁连接着，并且具有很多加密方式，绕过防火墙的监控。</p>
+<h2 id="搭建VPS"><a href="#搭建VPS" class="headerlink" title="搭建VPS"></a>搭建VPS</h2><p>那么如何搭建服务器呢？在此之前要搞清楚「服务器」，是指服务器主机商提供的VPS（Virtual Private Server 虚拟专用服务器）技术，将一台服务器分割成多个虚拟专享服务器的优质服务。首先选服务器机房必须是境外的吧，不然国内的然并卵。那么选择如何呢？又牵扯到境外？</p>
+<p>目前解了俩家提供商：</p>
+<ol>
+<li><a href="https://bwh1.net/" target="_blank" rel="external">bandwagong(搬瓦工)</a></li>
+<li><a href="https://billing.virmach.com" target="_blank" rel="external">virmach</a></li>
+</ol>
+<p>主要从价格，搭建，稳定性以及支付方式几个方面考虑，在这里我选择的第一个banwagong，同时不满意支持退款等服务，还是相当不错。</p>
+<h2 id="如何购买Banwagong-VPS"><a href="#如何购买Banwagong-VPS" class="headerlink" title="如何购买Banwagong VPS"></a>如何购买Banwagong VPS</h2><p>官网 <a href="https://bwh1.net/" target="_blank" rel="external">https://bwh1.net/</a> ,可以看到有不同配置VPS，当然价格也是不同 如图：<br><img src="http://of6bvxslc.bkt.clouddn.com/vps_hosting.jpg" alt="产品配置VPS"><br><br></p>
+<p>根据需求选择适合的一款，如果只是仅仅学习或者自用VPN选择RAM256也足够用，避免资源浪费，如果你是土豪就当我什么也没有说哈。这里都是以月多少刀计算，也可以选择季度或者半年及年的周期续费。</p>
+<p>选择一款产品后，Product Configuration 配置产品，主要是选择付费周期和服务器机房区域<br><br><br><img src="http://of6bvxslc.bkt.clouddn.com/product.jpg" alt="Product Configuration"><br><br></p>
+<p>如果有优惠码可以在 Promotional Code 中填写，点击Checkout 如果没有注册就在订单下面填写用户信息，主要是左侧 Email Address &amp;&amp; Password请认真填写是帐号，已经选择你所支付的方式，默认是境外主流的PayPal，值得一提的是有支持Alipay(支付宝)方式。2.99刀=20.74RMB (2017-05-13)</p>
+<p><br><br><img src="http://of6bvxslc.bkt.clouddn.com/FastStoneEditor1.png" alt="支付与注册信息"><br><br></p>
+<h2 id="搭建Shadowsocks-VPN"><a href="#搭建Shadowsocks-VPN" class="headerlink" title="搭建Shadowsocks VPN"></a>搭建Shadowsocks VPN</h2><p>这里已经有了VPS，那么还有最后俩步:</p>
+<ol>
+<li>VPS装一个OS Server</li>
+<li>安装Shadowsocks Server</li>
+</ol>
+<p>首先要进入 VPS KiWiVM管理页面，入口参考:<br><img src="http://of6bvxslc.bkt.clouddn.com/KiWiVMs.jpg" alt="VPS KiWiVM"></p>
+<p>到达KiWiVM管理控制页面,<br><img src="http://of6bvxslc.bkt.clouddn.com/KiWiVM_main.jpg" alt="KiWiVM_MAIN"></p>
+<p>步骤:</p>
+<ol>
+<li>在Main controls 里面 <strong>Actions:Stop</strong> 停止</li>
+<li>Install new OS 重装系统，这里以 <strong>centos-6-x86_64minimal</strong> 为例，选中，点击Reload</li>
+<li>返回Main controls <strong>Actions:    Start</strong> 开启</li>
+</ol>
+<h3 id="安装Shadowsocks-Server"><a href="#安装Shadowsocks-Server" class="headerlink" title="安装Shadowsocks Server"></a>安装Shadowsocks Server</h3><p>OS Server装载完毕后，就要搭建安装Shadowsocks Server，这里有俩种方式</p>
+<ol>
+<li><code>通过KiWiVM内置OpenVPN Server进行安装</code></li>
+<li><code>通过远程进入OS系统手动安装</code></li>
+</ol>
+<h4 id="通过OpenVPN-Server进行安装"><a href="#通过OpenVPN-Server进行安装" class="headerlink" title="通过OpenVPN Server进行安装"></a>通过OpenVPN Server进行安装</h4><ol>
+<li><p>这种方式贼简单了，在 <strong>OpenVPN Server</strong> 点击 <strong>Install and Configure OpenVPN server</strong> 进行安装和配置OpenVPN服务器</p>
+</li>
+<li><p>接下里点击 <strong>Shadowsocks Server</strong> 安装 Shadowsocks</p>
+</li>
+</ol>
+<p>成功之后就会看到<br><img src="http://of6bvxslc.bkt.clouddn.com/Xshot-0002.png" alt="Shadowsocks Server"></p>
+<h4 id="通过远程进入OS系统手动安装"><a href="#通过远程进入OS系统手动安装" class="headerlink" title="通过远程进入OS系统手动安装"></a>通过远程进入OS系统手动安装</h4><p>可以通过远程的方式登录服务器进行配置，这里需要linux系统一些基本知识，根据不同的平台操作方式不同，特别是Window平台可以通过 PuTTY ssh方式登录 配置Shadowsocks。</p>
+<p>远程服务器需要Python和pip环境，具体如何安装这里方法就很多了。</p>
+<p>可以参考：</p>
+<p><a href="http://blog.csdn.net/gekkoou/article/details/50839785" target="_blank" rel="external">CentOS 平台配置</a><br><a href="http://blog.lxx1.com/1209" target="_blank" rel="external">Ubuntu 平台配置</a></p>
+<h3 id="电脑和手机端如何配置"><a href="#电脑和手机端如何配置" class="headerlink" title="电脑和手机端如何配置"></a>电脑和手机端如何配置</h3><p>电脑客户端需要下载 <strong>Shadowsocks</strong> 客户端, 其实在 <strong>Shadowsocks Server</strong> 下面有对应介绍</p>
+<p>Android users: install from Google Play: <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" target="_blank" rel="external">Shadowsocks-Android</a></p>
+<p>iOS users: install from App Store: <a href="https://www.apple.com/itunes/download/" target="_blank" rel="external">Shadowsocks-iOS</a></p>
+<p>For Windows 7  or earlier, download <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" target="_blank" rel="external">shadowsocks-win-2.3.zip</a></p>
+<p>For Windows 8 or later, download <a href="https://kiwivm.64clouds.com/dist/shadowsocks-win-dotnet4.0-2.3.zip" target="_blank" rel="external">shadowsocks-win-dotnet4.0-2.3.zip</a></p>
+<p>Alternatively, you may download the latest version from developer’s website: <a href="http://sourceforge.net/projects/shadowsocksgui/files/dist/" target="_blank" rel="external">http://sourceforge.net/projects/shadowsocksgui/files/dist/</a></p>
+<p>Once downloaded, extract the .zip file and launch Shadowsocks.exe</p>
+<h3 id="iPhone手机如何配置"><a href="#iPhone手机如何配置" class="headerlink" title="iPhone手机如何配置"></a>iPhone手机如何配置</h3><p><code>App Store 下载免费的 Wingy  进行参数配置</code></p>
+<h3 id="Android-手机如何配置"><a href="#Android-手机如何配置" class="headerlink" title="Android 手机如何配置"></a>Android 手机如何配置</h3><p> <code>商城下载 影梭(Shadowsocks) 客户端 进行参数配置</code></p>
+<hr>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="Bandwagon如何换服务器机房"><a href="#Bandwagon如何换服务器机房" class="headerlink" title="Bandwagon如何换服务器机房"></a>Bandwagon如何换服务器机房</h4><p>Migration –&gt; Migrate to another DC  【迁移服务器时候注意数据备份】<br><img src="http://of6bvxslc.bkt.clouddn.com/Migrate.jpg" alt="Migrate to another DC"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">美国：纽约[USNY_2]</div><div class="line">美国：加州洛杉矶（DC1 QNET）[USCA_2]（当前）</div><div class="line">美国：洛杉矶，加州（DC2 MCOM）[USCA_4]</div><div class="line">美国：加利福尼亚州弗里蒙特[USCA_FMT]</div><div class="line">美国：亚利桑那州凤凰城[USAZ_2]</div><div class="line">美国：杰克逊维尔，佛罗里达[USFL_2]</div><div class="line">欧盟：荷兰阿姆斯特丹[EUNL_3]</div><div class="line">加利福尼亚州：不列颠哥伦比亚省，温哥华[CABC_1]</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/13/随笔/搭建VPS用Shadowsocks科学上网/"
+           data-title="搭建VPS用Shadowsocks科学上网" data-url="http://nenglee.com/2017/05/13/随笔/搭建VPS用Shadowsocks科学上网/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

@@ -4,6 +4,82 @@
   
     
     <entry>
+      <title><![CDATA[搭建VPS用Shadowsocks科学上网]]></title>
+      <url>http://nenglee.com/2017/05/13/%E9%9A%8F%E7%AC%94/%E6%90%AD%E5%BB%BAVPS%E7%94%A8Shadowsocks%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</url>
+      <content type="html"><![CDATA[<p>科学上网俗称:”翻墙”、“梯子”，主要是应为中国为了“国家安全”和“国家网络安全”等目的，建设了“强大的” GFW（中国防火长城）以禁止中国大陆网民访问国外的“敏感网站”和“可能敏感网站”。就好如一面墙，屏蔽正常视野，并不是完全的格挡，也算。例如工作特殊，程序员、外贸外企等等，都需要与外网查询交易浏览等业务。</p>
+<a id="more"></a>
+<p>记得以前面试时候提过，’工作中你遇到苦难是通过什么样的方式解决问题？</p>
+<p>这个无非是搜素引擎的问题，那么国内的百度、国外的Google，这样就显得前者比后者low很多，准确的说前者查出来的千篇一律，后者更加显具有专业性，毕竟技术大多领域都是国外带头领跑，学会用Google是最基本用法，加上国内国情因素，学会科学上网尤为重要。</p>
+<p>那么问题来.如何用正确的姿势科学上网呢？</p>
+<font color="#0099ff"> 1. <strong>第三方提供插件或者软件【免费/付费】</strong> </font><br><font color="#0099ff"> 2. <strong>通过手动搭建海外服务器进行科学上网</strong> </font>
+
+<p>以前呀，都是用第一中方式，花钱买帐号，导致原因很多，不稳定、而且做这一块的都是小公司或者个人，当时续了一年的“红杏”，结果用了三个月就用不成，官网只提供‘维修服务’之后就了无音讯，导致后期买服务都不敢续年费。</p>
+<p>那么免费的如何呢？你要相信没有免费的午饭，特别是安全性无法保证，网速也不能提供稳定性，每天也就几个小时根本无法满足，随查随用的自由。</p>
+<p>而就在今年1月出《工信部发文规范网络接入服务市场:未经批准不得自行建立或租用VPN》，导致今年很服务商很难过。所以还是不要相信他人，自我动手丰衣足食。</p>
+<h2 id="什么是Shadowsocks"><a href="#什么是Shadowsocks" class="headerlink" title="什么是Shadowsocks"></a>什么是Shadowsocks</h2><p>维基百科是这么解释：</p>
+<blockquote>
+<p>Shadowsocks是使用Python、C++、C#以及Go等语言开发、基于Apache许可证的开放源代码软件，用于保护网络流量、加密数据传输以及突破中国网络审查。<br>Shadowsocks使用Socks5代理方式，Shadowsocks分为服务器端和客户端。在使用之前，需要先将服务器端部署到服务器上面，然后通过客户端连接并创建本地代理。<br>在中国大陆，本工具也被广泛用于突破防火长城（GFW），以浏览被封锁、屏蔽或干扰的内容。在2015年8月22日，Shadowsocks原作者Clowwindy称受到了中国政府的压力，宣布停止维护此计划（项目）并移除其个人页面所存储的源代码。因为移除之前就有大量的复制副本，所以并未停止维护，而是由多位贡献者维护</p>
+</blockquote>
+<p><img src="http://of6bvxslc.bkt.clouddn.com/GFW_principle.png" alt="GFW"></p>
+<p>Shadowsocks 将原来 <a href="https://zh.wikipedia.org/wiki/Secure_Shell" target="_blank" rel="external">ssh</a>创建的<a href="https://zh.wikipedia.org/wiki/SOCKS#SOCK5" target="_blank" rel="external">Socks5</a> 协议拆开成 Server 端和 Client端，两个端分别安装在境外服务器和境内设备上,Client 和 Server 之间可以通过多种方式加密，并要求提供密码确保链路的安全性.</p>
+<p>Shadowsocks充当了境内外的桥梁连接着，并且具有很多加密方式，绕过防火墙的监控。</p>
+<h2 id="搭建VPS"><a href="#搭建VPS" class="headerlink" title="搭建VPS"></a>搭建VPS</h2><p>那么如何搭建服务器呢？在此之前要搞清楚「服务器」，是指服务器主机商提供的VPS（Virtual Private Server 虚拟专用服务器）技术，将一台服务器分割成多个虚拟专享服务器的优质服务。首先选服务器机房必须是境外的吧，不然国内的然并卵。那么选择如何呢？又牵扯到境外？</p>
+<p>目前解了俩家提供商：</p>
+<ol>
+<li><a href="https://bwh1.net/" target="_blank" rel="external">bandwagong(搬瓦工)</a></li>
+<li><a href="https://billing.virmach.com" target="_blank" rel="external">virmach</a></li>
+</ol>
+<p>主要从价格，搭建，稳定性以及支付方式几个方面考虑，在这里我选择的第一个banwagong，同时不满意支持退款等服务，还是相当不错。</p>
+<h2 id="如何购买Banwagong-VPS"><a href="#如何购买Banwagong-VPS" class="headerlink" title="如何购买Banwagong VPS"></a>如何购买Banwagong VPS</h2><p>官网 <a href="https://bwh1.net/" target="_blank" rel="external">https://bwh1.net/</a> ,可以看到有不同配置VPS，当然价格也是不同 如图：<br><img src="http://of6bvxslc.bkt.clouddn.com/vps_hosting.jpg" alt="产品配置VPS"><br><br></p>
+<p>根据需求选择适合的一款，如果只是仅仅学习或者自用VPN选择RAM256也足够用，避免资源浪费，如果你是土豪就当我什么也没有说哈。这里都是以月多少刀计算，也可以选择季度或者半年及年的周期续费。</p>
+<p>选择一款产品后，Product Configuration 配置产品，主要是选择付费周期和服务器机房区域<br><br><br><img src="http://of6bvxslc.bkt.clouddn.com/product.jpg" alt="Product Configuration"><br><br></p>
+<p>如果有优惠码可以在 Promotional Code 中填写，点击Checkout 如果没有注册就在订单下面填写用户信息，主要是左侧 Email Address &amp;&amp; Password请认真填写是帐号，已经选择你所支付的方式，默认是境外主流的PayPal，值得一提的是有支持Alipay(支付宝)方式。2.99刀=20.74RMB (2017-05-13)</p>
+<p><br><br><img src="http://of6bvxslc.bkt.clouddn.com/FastStoneEditor1.png" alt="支付与注册信息"><br><br></p>
+<h2 id="搭建Shadowsocks-VPN"><a href="#搭建Shadowsocks-VPN" class="headerlink" title="搭建Shadowsocks VPN"></a>搭建Shadowsocks VPN</h2><p>这里已经有了VPS，那么还有最后俩步:</p>
+<ol>
+<li>VPS装一个OS Server</li>
+<li>安装Shadowsocks Server</li>
+</ol>
+<p>首先要进入 VPS KiWiVM管理页面，入口参考:<br><img src="http://of6bvxslc.bkt.clouddn.com/KiWiVMs.jpg" alt="VPS KiWiVM"></p>
+<p>到达KiWiVM管理控制页面,<br><img src="http://of6bvxslc.bkt.clouddn.com/KiWiVM_main.jpg" alt="KiWiVM_MAIN"></p>
+<p>步骤:</p>
+<ol>
+<li>在Main controls 里面 <strong>Actions:Stop</strong> 停止</li>
+<li>Install new OS 重装系统，这里以 <strong>centos-6-x86_64minimal</strong> 为例，选中，点击Reload</li>
+<li>返回Main controls <strong>Actions:    Start</strong> 开启</li>
+</ol>
+<h3 id="安装Shadowsocks-Server"><a href="#安装Shadowsocks-Server" class="headerlink" title="安装Shadowsocks Server"></a>安装Shadowsocks Server</h3><p>OS Server装载完毕后，就要搭建安装Shadowsocks Server，这里有俩种方式</p>
+<ol>
+<li><code>通过KiWiVM内置OpenVPN Server进行安装</code></li>
+<li><code>通过远程进入OS系统手动安装</code></li>
+</ol>
+<h4 id="通过OpenVPN-Server进行安装"><a href="#通过OpenVPN-Server进行安装" class="headerlink" title="通过OpenVPN Server进行安装"></a>通过OpenVPN Server进行安装</h4><ol>
+<li><p>这种方式贼简单了，在 <strong>OpenVPN Server</strong> 点击 <strong>Install and Configure OpenVPN server</strong> 进行安装和配置OpenVPN服务器</p>
+</li>
+<li><p>接下里点击 <strong>Shadowsocks Server</strong> 安装 Shadowsocks</p>
+</li>
+</ol>
+<p>成功之后就会看到<br><img src="http://of6bvxslc.bkt.clouddn.com/Xshot-0002.png" alt="Shadowsocks Server"></p>
+<h4 id="通过远程进入OS系统手动安装"><a href="#通过远程进入OS系统手动安装" class="headerlink" title="通过远程进入OS系统手动安装"></a>通过远程进入OS系统手动安装</h4><p>可以通过远程的方式登录服务器进行配置，这里需要linux系统一些基本知识，根据不同的平台操作方式不同，特别是Window平台可以通过 PuTTY ssh方式登录 配置Shadowsocks。</p>
+<p>远程服务器需要Python和pip环境，具体如何安装这里方法就很多了。</p>
+<p>可以参考：</p>
+<p><a href="http://blog.csdn.net/gekkoou/article/details/50839785" target="_blank" rel="external">CentOS 平台配置</a><br><a href="http://blog.lxx1.com/1209" target="_blank" rel="external">Ubuntu 平台配置</a></p>
+<h3 id="电脑和手机端如何配置"><a href="#电脑和手机端如何配置" class="headerlink" title="电脑和手机端如何配置"></a>电脑和手机端如何配置</h3><p>电脑客户端需要下载 <strong>Shadowsocks</strong> 客户端, 其实在 <strong>Shadowsocks Server</strong> 下面有对应介绍</p>
+<p>Android users: install from Google Play: <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" target="_blank" rel="external">Shadowsocks-Android</a></p>
+<p>iOS users: install from App Store: <a href="https://www.apple.com/itunes/download/" target="_blank" rel="external">Shadowsocks-iOS</a></p>
+<p>For Windows 7  or earlier, download <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" target="_blank" rel="external">shadowsocks-win-2.3.zip</a></p>
+<p>For Windows 8 or later, download <a href="https://kiwivm.64clouds.com/dist/shadowsocks-win-dotnet4.0-2.3.zip" target="_blank" rel="external">shadowsocks-win-dotnet4.0-2.3.zip</a></p>
+<p>Alternatively, you may download the latest version from developer’s website: <a href="http://sourceforge.net/projects/shadowsocksgui/files/dist/" target="_blank" rel="external">http://sourceforge.net/projects/shadowsocksgui/files/dist/</a></p>
+<p>Once downloaded, extract the .zip file and launch Shadowsocks.exe</p>
+<h3 id="iPhone手机如何配置"><a href="#iPhone手机如何配置" class="headerlink" title="iPhone手机如何配置"></a>iPhone手机如何配置</h3><p><code>App Store 下载免费的 Wingy  进行参数配置</code></p>
+<h3 id="Android-手机如何配置"><a href="#Android-手机如何配置" class="headerlink" title="Android 手机如何配置"></a>Android 手机如何配置</h3><p> <code>商城下载 影梭(Shadowsocks) 客户端 进行参数配置</code></p>
+<hr>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="Bandwagon如何换服务器机房"><a href="#Bandwagon如何换服务器机房" class="headerlink" title="Bandwagon如何换服务器机房"></a>Bandwagon如何换服务器机房</h4><p>Migration –&gt; Migrate to another DC  【迁移服务器时候注意数据备份】<br><img src="http://of6bvxslc.bkt.clouddn.com/Migrate.jpg" alt="Migrate to another DC"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">美国：纽约[USNY_2]</div><div class="line">美国：加州洛杉矶（DC1 QNET）[USCA_2]（当前）</div><div class="line">美国：洛杉矶，加州（DC2 MCOM）[USCA_4]</div><div class="line">美国：加利福尼亚州弗里蒙特[USCA_FMT]</div><div class="line">美国：亚利桑那州凤凰城[USAZ_2]</div><div class="line">美国：杰克逊维尔，佛罗里达[USFL_2]</div><div class="line">欧盟：荷兰阿姆斯特丹[EUNL_3]</div><div class="line">加利福尼亚州：不列颠哥伦比亚省，温哥华[CABC_1]</div></pre></td></tr></table></figure>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python基础(5)-条件、循环和其他语句]]></title>
       <url>http://nenglee.com/2017/03/15/Python/Python%E5%9F%BA%E7%A1%80(5)-%E6%9D%A1%E4%BB%B6%E3%80%81%E5%BE%AA%E7%8E%AF%E5%92%8C%E5%85%B6%E4%BB%96%E8%AF%AD%E5%8F%A5/</url>
       <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
@@ -35,7 +111,7 @@
 <h4 id="并行迭代"><a href="#并行迭代" class="headerlink" title="并行迭代"></a>并行迭代</h4><p>程序可以同时迭代俩个序列</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">names = [<span class="string">'anne'</span>,<span class="string">'beth'</span>,<span class="string">'george'</span>,<span class="string">'damon'</span>]</div><div class="line">ages = [<span class="number">12</span>,<span class="number">20</span>,<span class="number">32</span>,<span class="number">15</span>]</div><div class="line"></div><div class="line"><span class="comment">#方法一</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(names)):</div><div class="line">    <span class="keyword">print</span> names[i] , <span class="string">'is '</span>, ages[i] ,<span class="string">'years old'</span></div><div class="line"></div><div class="line"><span class="comment">#方法二</span></div><div class="line"><span class="keyword">for</span> name,age <span class="keyword">in</span> zip(names,ages):  <span class="comment">#zip函数内建，特点可以处理长短不同的序列，但短序列完就结束</span></div><div class="line">    <span class="keyword">print</span> name,<span class="string">'is'</span>,age,<span class="string">'years old'</span></div></pre></td></tr></table></figure>
 <h4 id="索引迭代"><a href="#索引迭代" class="headerlink" title="索引迭代"></a>索引迭代</h4><p>有时候项要迭代访问序列中对象，同时还要获得当前对象的索引。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">names = [<span class="string">'anne'</span>,<span class="string">'beth'</span>,<span class="string">'george'</span>,<span class="string">'damon'</span>]</div><div class="line"></div><div class="line"><span class="comment">#方法一</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(names)):</div><div class="line">    <span class="keyword">print</span> <span class="string">'is '</span> , names[i] , <span class="string">'index:'</span> , i</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#方法二</span></div><div class="line">i = <span class="number">0</span></div><div class="line"><span class="keyword">while</span> ( i &lt; len(names)):</div><div class="line">    <span class="keyword">print</span> <span class="string">'is '</span>, names[i], <span class="string">'index:'</span>, i</div><div class="line">    i+=<span class="number">1</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">names = [<span class="string">'anne'</span>,<span class="string">'beth'</span>,<span class="string">'george'</span>,<span class="string">'damon'</span>]</div><div class="line"></div><div class="line"><span class="comment">#方法一  推荐 enumerate()  enumerate其实是一个元组tuple</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i,v <span class="keyword">in</span> enumerate(names):</div><div class="line"><span class="meta">... </span>   <span class="keyword">print</span> i,<span class="string">'-'</span>,v</div><div class="line">...</div><div class="line"><span class="number">0</span> - anne</div><div class="line"><span class="number">1</span> - beth</div><div class="line"><span class="number">2</span> - george</div><div class="line"><span class="number">3</span> - damon</div><div class="line">&gt;&gt;&gt;</div><div class="line"></div><div class="line"><span class="comment">#方法二</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(names)):</div><div class="line">    <span class="keyword">print</span> <span class="string">'is '</span> , names[i] , <span class="string">'index:'</span> , i</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#方法三</span></div><div class="line">i = <span class="number">0</span></div><div class="line"><span class="keyword">while</span> ( i &lt; len(names)):</div><div class="line">    <span class="keyword">print</span> <span class="string">'is '</span>, names[i], <span class="string">'index:'</span>, i</div><div class="line">    i+=<span class="number">1</span>;</div></pre></td></tr></table></figure>
 <h4 id="翻转-和-排序迭代"><a href="#翻转-和-排序迭代" class="headerlink" title="翻转 和 排序迭代"></a>翻转 和 排序迭代</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">s = sorted([<span class="number">4</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">6</span>])  <span class="comment">#排序从小到大</span></div><div class="line"><span class="keyword">print</span> s</div><div class="line"></div><div class="line"><span class="comment">#排序 ascii码表  0～31控制字符  32是空格    </span></div><div class="line"><span class="comment"># 48～57为0到9十个阿拉伯数字</span></div><div class="line"><span class="comment"># 65～90为26个大写英文字母，97～122号为26个小写英文字母</span></div><div class="line">ss = sorted(<span class="string">'abcABC123!'</span>)   </div><div class="line"><span class="keyword">print</span> ss</div><div class="line"></div><div class="line">sss = list(reversed(<span class="string">'abcABC123!'</span>))  <span class="comment">#倒序翻转</span></div><div class="line"><span class="keyword">print</span> sss</div><div class="line"></div><div class="line">ssss = <span class="string">'-'</span>.join(reversed(<span class="string">'abcABC123!'</span>)) <span class="comment">#拼接 + 倒序</span></div><div class="line"><span class="keyword">print</span> ssss</div><div class="line"></div><div class="line"><span class="comment">#-------输出</span></div><div class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div><div class="line">[<span class="string">'!'</span>, <span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</div><div class="line">[<span class="string">'!'</span>, <span class="string">'3'</span>, <span class="string">'2'</span>, <span class="string">'1'</span>, <span class="string">'C'</span>, <span class="string">'B'</span>, <span class="string">'A'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>]</div><div class="line">!<span class="number">-3</span><span class="number">-2</span><span class="number">-1</span>-C-B-A-c-b-a</div></pre></td></tr></table></figure>
 <h3 id="跳出循环"><a href="#跳出循环" class="headerlink" title="跳出循环"></a>跳出循环</h3><p>一般来说，循环会一直执行到条件为假，或者序列的元素结束，要么就是死循环(哈哈–.)，有时候需要跳出结果，或者直接进入”下一个”循环</p>
 <h4 id="break"><a href="#break" class="headerlink" title="break"></a>break</h4><p>结束(跳出)循环可以使用break语句</p>
@@ -49,6 +125,7 @@
 <p><code>Python厉害，还可以这么玩，厉害叻！！！</code></p>
 <h3 id="pass"><a href="#pass" class="headerlink" title="pass"></a>pass</h3><p>pass语句表示，什么都不做，什么都没发生，起到一个占行作用，比较Python对语法的缩进，格式非常非常非常的重要！</p>
 <h3 id="del"><a href="#del" class="headerlink" title="del"></a>del</h3><p>有时候不需要的字段，还存在内存中，即使设置了None，只能说明数值是None，变量名还是存在，使用del删除。就彻底说拜拜。</p>
+<p>###</p>
 </the></excerpt>]]></content>
     </entry>
     
@@ -204,6 +281,8 @@
 <p><code>可以看到连接的字符串必须都是字符串</code></p>
 <h4 id="lower-小写转换"><a href="#lower-小写转换" class="headerlink" title="lower [小写转换]"></a>lower [小写转换]</h4><p>lower()方法返回字符串的小写母板</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr = <span class="string">'I Love Python'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr.lower()</div><div class="line"><span class="string">'i love python'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="upper-转换大写"><a href="#upper-转换大写" class="headerlink" title="upper [转换大写]"></a>upper [转换大写]</h4><p>upper()方法返回字符串的大写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr = <span class="string">'I Love Python'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr.upper()</div><div class="line"><span class="string">'I LOVE PYTHON'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
 <h4 id="replace-替换"><a href="#replace-替换" class="headerlink" title="replace [替换]"></a>replace [替换]</h4><p>replace()方法返回某个字符串的所有匹配项均被替换之后得到字符串</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr = <span class="string">'This is a test  is a test'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>mStr.replace(<span class="string">'is'</span>,<span class="string">'xXx'</span>)</div><div class="line"><span class="string">'ThxXx xXx a test  xXx a test'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
 <h4 id="split-切割"><a href="#split-切割" class="headerlink" title="split [切割]"></a>split [切割]</h4><p>split()方法是join()逆方法，用来将字符串分割成序</p>
@@ -498,12 +577,11 @@
     <entry>
       <title><![CDATA[2016的最后一天]]></title>
       <url>http://nenglee.com/2016/12/31/%E9%9A%8F%E7%AC%94/2016%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/</url>
-      <content type="html"><![CDATA[<p>很幸运2016年的最后一天算在元旦假期<br>这与往年不同<br>至少还有这么一天空闲时间<br>回想今年还有哪些未了的事情<br>不然明天，又在懊悔过去</p>
-<a id="more"></a>
+      <content type="html"><![CDATA[<p>很幸运<br>2016年的最后一天算在元旦假期</p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
 <hr>
-<p><strong>2016年给自己定了三个小目标</strong></p>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p><strong>2016年给自己定了三个小目标</strong></p>
 <ul>
 <li>学一门新语言新技术</li>
 <li>新款MackBook Pro</li>
@@ -512,19 +590,12 @@
 <p>关于学习这件事，一直没有放弃，当时纠结着ios还是Python，是现在小程序，只要坚持学习这件事上，何必又区别内容上的定义？</p>
 <p>一直想买一台Mac，供货要等到年底，一直没下订单，后来爆出花屏门，好在机智如我，前俩天咨询了客服，定制需要2周左右，到手也就春节，来年新产品稳定再做打算</p>
 <p>说到父母，总觉得亏欠太多，一直想让他们过来转一转，深知做父母的都不容易，五一得知父亲大病了一场，加上那个时候发生其他事情,整自己可以用“崩溃”俩个字形容，好在时间是良好，治愈了所有</p>
-<p><br></p>
-<blockquote>
-<p>一路走来，不是计划路的完美，而是要有效行动</p>
-</blockquote>
-<p>罗振宇在逻辑思维说过:</p>
-<p><code>你的想法在精彩，那是想法的价值，而你的价值永远体现在行动之中</code></p>
-<p>再回看这里一年，多多少少会觉得“碌碌无为”而感叹，岁月催人老，也为目标前进，在新项目中学到画图制表，双11图书打折扣买了各种编程教材，买了域名搭建自己网站，坚持学习维护Blog。今年给家人说了几次让他们过来玩，虽然家人特殊情况没有过来，好在暑假妹妹有时间，带着妹妹东转西转的，也是开心坏了，明年暖和了在让家人过来玩。思而学，学而不做，则有害了，一些事去做了，至少心无遗憾，怕就怕在只是想想而已。</p>
-<p><br><br>海子在书中写到:</p>
+<h2 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h2><p>再回看这里一年，多多少少会觉得“碌碌无为”而感叹，岁月催人老，也为目标前进，在新项目中学到画图制表，双11图书打折扣买了各种编程教材，买了域名搭建自己网站，坚持学习维护Blog。今年给家人说了几次让他们过来玩，虽然家人特殊情况没有过来，好在暑假妹妹有时间，带着妹妹东转西转的，也是开心坏了，明年暖和了在让家人过来玩。思而学，学而不做，则有害了，一些事去做了，至少心无遗憾，怕就怕在只是想想而已。</p>
+<h2 id="感情"><a href="#感情" class="headerlink" title="感情"></a>感情</h2><p>海子在书中写到:</p>
 <p><code>今夜我不关心人类，我只想你</code></p>
-<p>关于感情生活，无从说起<br>曾经经历种种，历历在目</p>
-<p>此时 若你安好，祝福你<br>此时 依旧在这里<br>来年 我继续爱你</p>
-<p><br><br>2016年眼看就要过去</p>
-<p><code>祝愿家人 || 朋友： 身体健康、幸福安好</code></p>
+<p>此时 若你安好，祝福你<br>此时 若你依旧在那里<br>来年 我继续爱你</p>
+<h2 id="祝语"><a href="#祝语" class="headerlink" title="祝语"></a>祝语</h2><p>2016年眼看就要过去</p>
+<p><code>祝愿家人和朋友： 身体健康、幸福安好</code></p>
 <p>2017年~ 你好！</p>
 </the>]]></content>
     </entry>
@@ -1193,6 +1264,24 @@
 <p>优点：解释器模式提供了一个简单的方式来执行语法，而且容易修改或者扩展语法。一般系统中很多类使用相似的语法，可以使用一个解释器来代替为每一个规则实现一个解释器。而且在解释器中不同的规则是由不同的类来实现的，这样使得添加一个新的语法规则变得简单。</p>
 <p><a href="https://github.com/lineng11/DesingPatter/tree/master/app/src/main/java/com/neng/app/interpreter" target="_blank" rel="external">解释器模式 案例参考code</a></p>
 </the></excerpt>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[孤独深处]]></title>
+      <url>http://nenglee.com/2016/11/18/%E9%9A%8F%E7%AC%94/%E5%AD%A4%E7%8B%AC%E6%B7%B1%E5%A4%84/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>科幻小说构想一个可能性的世界，人站在这个世界的边缘，最容易感觉到出世和异化。出离世界的感觉是最孤独的孤独。</p>
+</blockquote>
+<p>——郝景芳《孤独深处》</p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+
+
+<p>2016年8月21日，中国科幻女作家 <a href="http://baike.baidu.com/item/%E9%83%9D%E6%99%AF%E8%8A%B3" target="_blank" rel="external">郝景芳</a> 凭借《北京折叠》(Folding Beijing)获得最佳中短篇小说奖。这也是继刘慈欣《三体》之后又一位中国科幻作家获得雨果奖。</p>
+<p>“时间”，一天24小时，这个是人类你我平等的享用权，而在《北京折叠》中，把城市大地分成三层。<br>第一空间，享用全天24的自由时间，五百万人口，从清晨六点到第二天清晨六点<br>第二空间16小时，俩千五百万人口，从次日清晨六点到夜晚十点<br>第三空间只有8小时，人口最多五千万人，从夜间十点到第二天清晨六点。</p>
+<p>主人公老刀，因为要帮养女糖糖‘交学费’上幼儿园，为了得高额的金钱，老刀铤而走险，完成一项信差，从而获取一笔报酬，去二空间空间见雇主，帮忙转递一封情书，并且亲手递给第一空间的姑娘，然后返回交代的故事。</p>
+<p>虽说是科幻小说，就好像生活被的放大，犹如50年或是100年后；和很多年轻人一样，也处于海漂，颇有感受，公寓租房，朝夕上班，日落而归，面对各种有形无形压力，各种不确定，生怕淘汰。当然这些只是浅，而那些被「地域」隔开，连自由时间都被限定；为孩子的教育问题，不顾黑白颠倒的抢购学区房；机器智能时代完完全全取代，低效能的用人成本，而那些丧失就业底层吃着社会福利；不同身份特征，连沟通都难，更别说做朋友。才让人感叹。</p>
+</the>]]></content>
     </entry>
     
     <entry>
