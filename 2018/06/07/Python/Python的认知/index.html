@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="人生苦短 我用Python"/>
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/06/07/Python/Python的认知/"/>
+
+
+<meta name="description" content="如果说 &amp;quot;PHP是最好的语言&amp;quot;
+来调侃其它语言
+那么 “人生苦短,我用python”
+来回敬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人生苦短 我用Python">
+<meta property="og:url" content="http://nenglee.com/2018/06/07/Python/Python的认知/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="如果说 &amp;quot;PHP是最好的语言&amp;quot;
+来调侃其它语言
+那么 “人生苦短,我用python”
+来回敬">
+<meta property="og:updated_time" content="2018-07-04T15:57:30.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="人生苦短 我用Python">
+<meta name="twitter:description" content="如果说 &amp;quot;PHP是最好的语言&amp;quot;
+来调侃其它语言
+那么 “人生苦短,我用python”
+来回敬">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 人生苦短 我用Python · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          人生苦短 我用Python
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年6月7日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python"><span class="toc-text">Python</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-学习后台语言"><span class="toc-text">1.学习后台语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-未来趋势"><span class="toc-text">2.未来趋势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-拿它做什么"><span class="toc-text">3.拿它做什么</span></a></li></ol></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>如果说 <code>&quot;PHP是最好的语言&quot;</code></excerpt></p>
+<p>来调侃其它语言</p>
+<p>那么 <code>“人生苦短,我用python”</code></p>
+<p>来回敬</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>本身做移动开发，一直这块领域匍匐，对移动互联网的了解，08开始Phone os和Android os俩大操<br>作系统，从萌芽到野蛮生长，11年的时候这类开发缺乏人才，到目前的瓶颈及饱和，在2016《时间的<br>朋友》跨年演讲中老罗说：移动互联网的红利开始结束，移动互联网的上半场结束，下半场即将开始。</p>
+<p>对这个行业的认知和了解，确实如此，身边有很多同行，都觉得目前移动就业不是非常乐观，其实这<br>就是互联网，高速发展，优胜劣汰。很现实，也很无奈，不得不接收，不得不重新起航。好在当初很<br>幸运，当初赶上了这般末班车。</p>
+<blockquote>
+<p>经历一些成长后，心算是静了下来了吧！也在这个春暖花开的季节，选择开始播种</p>
+</blockquote>
+<h3 id="1-学习后台语言"><a href="#1-学习后台语言" class="headerlink" title="1.学习后台语言"></a>1.学习后台语言</h3><p>特意在知乎查了下 PHP、Java、Python、C、C++ 特点，我想以下几点最能说明特性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">PHP:    没啥特别优点好说，中规中矩</div><div class="line">java:   库多，库多，库多</div><div class="line">Python: 语法清楚，语法清楚，语法清楚</div><div class="line">C:      操作底层，细腻到性能优化</div><div class="line">C++:    啥都有，啥都有，啥都有</div></pre></td></tr></table></figure>
+<p>那么根据自身条件，特点觉得Python这款最适合,简洁风格最好，毕竟人生苦短，能懒就懒吧！嘿..</p>
+<p>在自我工作经历中，项目后台一般就三种，java/Pyhton/PHP</p>
+<p>按理说搞搞java会是非常吃香，毕竟没有语法障碍，但是就是不想，不要问我为什么。PHP真心没兴<br>趣。</p>
+<p>Pyhon至少在项目中看的不那么头疼，据说有很强的缩进要求，这下开心死了，最厌烦别人代码不格<br>式化，没有整体感。</p>
+<h3 id="2-未来趋势"><a href="#2-未来趋势" class="headerlink" title="2.未来趋势"></a>2.未来趋势</h3><p>就目前AR &amp;&amp; VR技术非常流行，开发牵涉的领域太广，国内人才偏少，，报道2020左右会有一个比<br>较成熟的普及。</p>
+<p>自动化人工智能也将是一种趋势，刚好最近俩会支持，“用人工智能推动我国产业新变革”,跟着政策<br>走总会有肉吃，而人工智能其中需要一个非常大的数据分析和机器学习，那么Python在这俩点非常、<br>非常的适合。</p>
+<h3 id="3-拿它做什么"><a href="#3-拿它做什么" class="headerlink" title="3.拿它做什么"></a>3.拿它做什么</h3><p>我也不知道会不会以这么语言为生，但是语言这东西也会跟新换代，谁好用就用谁，偏爱谁就去追随，<br>哪有那么多为什么？你开心就好了。</p>
+<p>想拿它做一些爬虫，觉得很有意思，然后分析分析数据，在互联网里面，数据的价值非常的高；搞些<br>脚本，让懒成为一种艺术。</p>
+<p>据说什么都能做，只有你想不到，没有做不到，真是太神奇了！</p>
+</the>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python/">Python</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/06/07/Python/Python基础(1)-序列操作/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Python基础(1)-序列操作</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/06/17/随笔/你陪我长大，我陪你变老/">
+        <span class="next-text nav-default">你陪我长大，我陪你变老</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/06/07/Python/Python的认知/"
+           data-title="人生苦短 我用Python" data-url="http://nenglee.com/2018/06/07/Python/Python的认知/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="PyQuery库"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/06/18/Python/PyQuery/"/>
+
+
+<meta name="description" content="如果正则写起来太麻烦
+如果 BeautifulSoup 语法不好记
+刚好你熟悉JQuery的语法，那么PyQuery就是你绝佳的选择。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyQuery库">
+<meta property="og:url" content="http://nenglee.com/2018/06/18/Python/PyQuery/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="如果正则写起来太麻烦
+如果 BeautifulSoup 语法不好记
+刚好你熟悉JQuery的语法，那么PyQuery就是你绝佳的选择。">
+<meta property="og:updated_time" content="2018-07-05T16:32:31.073Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PyQuery库">
+<meta name="twitter:description" content="如果正则写起来太麻烦
+如果 BeautifulSoup 语法不好记
+刚好你熟悉JQuery的语法，那么PyQuery就是你绝佳的选择。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> PyQuery库 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          PyQuery库
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年6月18日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#初始化方法"><span class="toc-text">初始化方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS基本选择器"><span class="toc-text">CSS基本选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找子元素"><span class="toc-text">查找子元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查找父元素"><span class="toc-text">查找父元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查找兄弟元素"><span class="toc-text">查找兄弟元素</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#获取属性"><span class="toc-text">获取属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#获取文本"><span class="toc-text">获取文本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#获取HTML文本"><span class="toc-text">获取HTML文本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM操作"><span class="toc-text">DOM操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他API"><span class="toc-text">其他API</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>如果正则写起来太麻烦</p>
+<p>如果 BeautifulSoup 语法不好记</p>
+<p>刚好你熟悉JQuery的语法，那么PyQuery就是你绝佳的选择。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+
+
+<p>PyQuery 是 Python 仿照 jQuery 的严格实现，强大又灵活的网页解析库，语法与 jQuery 几乎完全相同，</p>
+<p>所以不用再去费心去记一些奇怪的方法了，熟悉Web开发将会事半功倍。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pyquery</div></pre></td></tr></table></figure>
+<h1 id="初始化方法"><a href="#初始化方法" class="headerlink" title="初始化方法"></a>初始化方法</h1><ol>
+<li>解析Html字符串</li>
+<li>通过URL获取网页</li>
+<li>加载本地文件</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">html = <span class="string">'''</span></div><div class="line">    &lt;div&gt;</div><div class="line">        &lt;ul&gt;</div><div class="line">          &lt;li class="item-0"&gt;frst item&lt;/li&gt;</div><div class="line">          &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;Second item-0&lt;/a&gt;&lt;/li&gt;</div><div class="line">          &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</div><div class="line">          &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;</div><div class="line">          &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth tiem&lt;/li&gt;</div><div class="line">          &lt;li class="item-3"&gt;frst item 333333333333&lt;/li&gt;</div><div class="line">        &lt;/ul&gt;</div><div class="line">    &lt;/div&gt;'''</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span>  pq</div><div class="line"></div><div class="line"><span class="comment">#html字符串 初始化</span></div><div class="line">docStr = pq(html)</div><div class="line"></div><div class="line"><span class="comment">#url 初始化</span></div><div class="line">docURL = pq(url = <span class="string">"http://www.taobao.com"</span>)</div><div class="line"></div><div class="line"><span class="comment">#filename文件 初始化   目前存放同级根目录中</span></div><div class="line">docFile = pq(filename = <span class="string">"./dome.html"</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#取出所有的&lt;li&gt; 标签</span></div><div class="line">print(docStr(<span class="string">"li"</span>))</div><div class="line"></div><div class="line"><span class="comment">#取出html网页 &lt;title&gt;标签</span></div><div class="line">print(docURL(<span class="string">"title"</span>))</div><div class="line"></div><div class="line"><span class="comment">#取出本地文件 &lt;ul&gt;标签</span></div><div class="line">print(docFile(<span class="string">"a"</span>))</div></pre></td></tr></table></figure>
+<pre><code>&lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+          &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;frst item 333333333333&lt;/li&gt;
+
+&lt;title&gt;淘宝网 - 淘！我喜欢&lt;/title&gt;
+
+&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;
+</code></pre><h1 id="CSS基本选择器"><a href="#CSS基本选择器" class="headerlink" title="CSS基本选择器"></a>CSS基本选择器</h1><ul>
+<li><strong> # </strong>  是查找id的标签</li>
+<li><strong> .</strong>  是查找class的标签</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">html = <span class="string">'''</span></div><div class="line">    &lt;div id="container"&gt;</div><div class="line">        &lt;ul class="list"&gt;</div><div class="line">          &lt;li class="item-0"&gt;frst item&lt;/li&gt;</div><div class="line">          &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;Second item-0&lt;/a&gt;&lt;/li&gt;</div><div class="line">          &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</div><div class="line">          &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;</div><div class="line">          &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth tiem&lt;/li&gt;</div><div class="line">          &lt;li class="item-3"&gt;frst item 333333333333&lt;/li&gt;</div><div class="line">        &lt;/ul&gt;</div><div class="line">    &lt;/div&gt;'''</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</div><div class="line"></div><div class="line">doc = pq(html)</div><div class="line"></div><div class="line"><span class="comment"># 输出 class="item-0"所有的标签内容</span></div><div class="line">lis = doc(<span class="string">"#container .list .item-0"</span>);</div><div class="line">print(lis)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> lis.items():</div><div class="line">        print(i)</div><div class="line">        print(i.text())   <span class="comment">#取出标签内部的内容</span></div></pre></td></tr></table></figure>
+<pre><code>&lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+          &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+
+&lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+
+frst item
+&lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+
+third item
+&lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+
+fifth tiem
+</code></pre><h2 id="查找子元素"><a href="#查找子元素" class="headerlink" title="查找子元素"></a>查找子元素</h2><ul>
+<li><p>find()  通过标签名字获取</p>
+</li>
+<li><p>children()  当前标签的子标签，其中返回值是 pyQuery 方便再次查找</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">doc_list = doc(<span class="string">".list"</span>)</div><div class="line">print(doc_list)</div><div class="line">print(type(doc_list))</div><div class="line"></div><div class="line">fin_a = doc_list.find(<span class="string">"a"</span>)</div><div class="line">print(fin_a)</div><div class="line"></div><div class="line">print(<span class="string">"*"</span>*<span class="number">100</span>)</div><div class="line"></div><div class="line">chdrStr = doc_list.children()  <span class="comment">#当前doc_list 内部是所有子标签</span></div><div class="line">print(chdrStr)</div><div class="line"></div><div class="line">print(type(chdrStr))  <span class="comment">#类型依然是PyQuery，然而又可以直接用</span></div><div class="line"></div><div class="line">print(doc_list.children(<span class="string">".item-0 a"</span>))</div></pre></td></tr></table></figure>
+<pre><code>&lt;ul class=&quot;list&quot;&gt;
+          &lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+          &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;frst item 333333333333&lt;/li&gt;
+        &lt;/ul&gt;
+
+&lt;class &apos;pyquery.pyquery.PyQuery&apos;&gt;
+&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;
+****************************************************************************************************
+&lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+          &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;frst item 333333333333&lt;/li&gt;
+
+&lt;class &apos;pyquery.pyquery.PyQuery&apos;&gt;
+&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;
+</code></pre><h2 id="查找父元素"><a href="#查找父元素" class="headerlink" title="查找父元素"></a>查找父元素</h2><ul>
+<li>parent() 查找当前位置的父节点</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">print(doc)</div><div class="line">print(doc.find(<span class="string">".item-1"</span>))</div><div class="line">print(doc(<span class="string">".item-1"</span>).parent())</div></pre></td></tr></table></figure>
+<pre><code>&lt;div id=&quot;container&quot;&gt;
+        &lt;ul class=&quot;list&quot;&gt;
+          &lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+          &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;frst item 333333333333&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+
+&lt;ul class=&quot;list&quot;&gt;
+          &lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+          &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;frst item 333333333333&lt;/li&gt;
+        &lt;/ul&gt;
+</code></pre><h2 id="查找兄弟元素"><a href="#查找兄弟元素" class="headerlink" title="查找兄弟元素"></a>查找兄弟元素</h2><ul>
+<li>siblings()  获取当前平级的所有标签</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">print(doc)</div><div class="line">print(<span class="string">""</span>)</div><div class="line">print(type(doc))</div><div class="line">print(<span class="string">""</span>)</div><div class="line">label =doc(<span class="string">".item-1"</span>)</div><div class="line">print(label)</div><div class="line">print(<span class="string">"label 的len：&#123;0&#125;"</span>.format(len(label)))</div><div class="line">print(<span class="string">""</span>)</div><div class="line"></div><div class="line">print(label.siblings()) <span class="comment">#当前label有多少个就对应有多少兄弟元素</span></div></pre></td></tr></table></figure>
+<pre><code>&lt;div id=&quot;container&quot;&gt;
+        &lt;ul class=&quot;list&quot;&gt;
+          &lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+          &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;frst item 333333333333&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+
+&lt;class &apos;pyquery.pyquery.PyQuery&apos;&gt;
+
+&lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+
+label 的len：2
+
+&lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+          &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+          &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;frst item 333333333333&lt;/li&gt;
+        &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;frst item 333333333333&lt;/li&gt;
+</code></pre><h1 id="获取属性"><a href="#获取属性" class="headerlink" title="获取属性"></a>获取属性</h1><ul>
+<li>attr(“key_name”)  或者  attr.key_name  </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">print(doc)</div><div class="line">label_a =doc(<span class="string">'.item-0.active a'</span>)</div><div class="line">print(label_a)</div><div class="line"><span class="comment">#方法一</span></div><div class="line">print(label_a.attr(<span class="string">"href"</span>))</div><div class="line"><span class="comment">#方法二</span></div><div class="line">print(label_a.attr.href)</div></pre></td></tr></table></figure>
+<pre><code>&lt;div id=&quot;container&quot;&gt;
+        &lt;ul class=&quot;list&quot;&gt;
+          &lt;li class=&quot;item-0&quot;&gt;frst item&lt;/li&gt;
+          &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;Second item-0&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth tiem&lt;/a&gt;&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;frst item 333333333333&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;
+link3.html
+link3.html
+</code></pre><h1 id="获取文本"><a href="#获取文本" class="headerlink" title="获取文本"></a>获取文本</h1><ul>
+<li>text()</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">label_a =doc(<span class="string">'.item-0.active a'</span>)</div><div class="line">print(label_a)</div><div class="line">print(label_a.text()) <span class="comment">#获取text文本内容</span></div></pre></td></tr></table></figure>
+<pre><code>&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;
+third item
+</code></pre><h1 id="获取HTML文本"><a href="#获取HTML文本" class="headerlink" title="获取HTML文本"></a>获取HTML文本</h1><ul>
+<li>html()</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">label_a =doc(<span class="string">'.item-0.active a'</span>)</div><div class="line">print(label_a)</div><div class="line">print(label_a.html()) <span class="comment">#获取标签内部所有的html</span></div></pre></td></tr></table></figure>
+<pre><code>&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;
+&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;
+</code></pre><h1 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h1><ul>
+<li><p>addClass 添加在Class Name字段</p>
+</li>
+<li><p>removeClass 移出Class Name字段</p>
+</li>
+<li><p>attr attr属性</p>
+</li>
+<li><p>css css属性</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">html = <span class="string">'''</span></div><div class="line">    &lt;div id="container"&gt;</div><div class="line">        &lt;ul class="list"&gt;</div><div class="line">          &lt;li class="item-0"&gt;frst item&lt;/li&gt;</div><div class="line">          &lt;li class="item-1"&gt;&lt;a href="link2.html"&gt;Second item-0&lt;/a&gt;&lt;/li&gt;</div><div class="line">          &lt;li class="item-0 active"&gt;&lt;a href="link3.html"&gt;&lt;span class="bold"&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</div><div class="line">          &lt;li class="item-1 active"&gt;&lt;a href="link4.html"&gt;fourth item&lt;/a&gt;&lt;/li&gt;</div><div class="line">          &lt;li class="item-0"&gt;&lt;a href="link5.html"&gt;fifth tiem&lt;/li&gt;</div><div class="line">          &lt;li class="item-3"&gt;frst item 333333333333&lt;/li&gt;</div><div class="line">        &lt;/ul&gt;</div><div class="line">    &lt;/div&gt;'''</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</div><div class="line"></div><div class="line">doc = pq(html)</div><div class="line">label_li =doc(<span class="string">'.item-0.active'</span>)</div><div class="line">print(label_li)</div><div class="line"></div><div class="line"><span class="comment"># removeCLas</span></div><div class="line">print(label_li.removeClass(<span class="string">"active"</span>))</div><div class="line"></div><div class="line"><span class="comment"># AddClass</span></div><div class="line">print(label_li.addClass(<span class="string">"active"</span>))</div><div class="line"></div><div class="line"><span class="comment"># atte</span></div><div class="line">print(label_li.attr(<span class="string">"name"</span>,<span class="string">"like"</span>))</div><div class="line"></div><div class="line"><span class="comment"># css</span></div><div class="line">print(label_li.css(<span class="string">"font-size"</span>,<span class="string">"14px"</span>))</div></pre></td></tr></table></figure>
+<pre><code>&lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li class=&quot;item-0 active&quot; name=&quot;like&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li class=&quot;item-0 active&quot; name=&quot;like&quot; style=&quot;font-size: 14px&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</code></pre><h1 id="其他API"><a href="#其他API" class="headerlink" title="其他API"></a>其他API</h1><ul>
+<li><p>remove()  删除当前表情</p>
+</li>
+<li><p>eq(num)  在列表集合标签，返回确定num位置的标签</p>
+</li>
+</ul>
+<p>pyQuery 官方API：<a href="https://pythonhosted.org/pyquery/api.html" target="_blank" rel="external">https://pythonhosted.org/pyquery/api.html</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/06/17/Jupyter NoteBook/">
+        <span class="next-text nav-default">Jupyter NoteBook</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/06/18/Python/PyQuery/"
+           data-title="PyQuery库" data-url="http://nenglee.com/2018/06/18/Python/PyQuery/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

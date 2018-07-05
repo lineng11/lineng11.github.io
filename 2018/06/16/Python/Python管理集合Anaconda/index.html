@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Python管理集合Anaconda"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/06/16/Python/Python管理集合Anaconda/"/>
+
+
+<meta name="description" content="Anaconda是专注于数据分析的Python发行版本，包含了 conda、Python等190多个科学包及其依赖项 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python管理集合Anaconda">
+<meta property="og:url" content="http://nenglee.com/2018/06/16/Python/Python管理集合Anaconda/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="Anaconda是专注于数据分析的Python发行版本，包含了 conda、Python等190多个科学包及其依赖项 。">
+<meta property="og:updated_time" content="2018-07-04T16:05:56.682Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python管理集合Anaconda">
+<meta name="twitter:description" content="Anaconda是专注于数据分析的Python发行版本，包含了 conda、Python等190多个科学包及其依赖项 。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Python管理集合Anaconda · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Python管理集合Anaconda
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年6月16日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#conda管理"><span class="toc-text">conda管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda-安装"><span class="toc-text">conda 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda-删除"><span class="toc-text">conda 删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda-更新"><span class="toc-text">conda 更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#code-查询当前存在的包"><span class="toc-text">code 查询当前存在的包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境管理"><span class="toc-text">环境管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建新环境"><span class="toc-text">创建新环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示所有环境"><span class="toc-text">显示所有环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进入环境"><span class="toc-text">进入环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#退出环境"><span class="toc-text">退出环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除env-name环境"><span class="toc-text">删除env_name环境</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>Anaconda是专注于数据分析的Python发行版本，包含了 <strong>conda、Python等190多个科学包及其依赖项</strong> 。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p>Anaconda简单来说就是一款Pyhton的包管理工具，减少初学者在使用过程中因缺失依赖包导致 <strong>Error</strong> 问题；</p>
+<p>以及Pyhton的不同环境管理工具；其用法和 <strong>pip</strong> 一模一样，只不过用到的是 <strong>conda</strong> 当然你选择 <strong>pip</strong> 来安装</p>
+<p>包也是没问题的。</p>
+<h4 id="conda管理"><a href="#conda管理" class="headerlink" title="conda管理"></a>conda管理</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># conda 的基本信息</span></div><div class="line">conda info</div><div class="line"></div><div class="line"><span class="comment"># 确认conda 版本信息</span></div><div class="line">conda --version</div></pre></td></tr></table></figure>
+<h4 id="conda-安装"><a href="#conda-安装" class="headerlink" title="conda 安装"></a>conda 安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装一个package</span></div><div class="line">conda install requests</div><div class="line"></div><div class="line"><span class="comment"># 同时安装多个package</span></div><div class="line">conda install requests numpy scipy</div><div class="line"></div><div class="line"><span class="comment"># 也可以指定版本安装</span></div><div class="line">conda install requests=2.18.1</div></pre></td></tr></table></figure>
+<h4 id="conda-删除"><a href="#conda-删除" class="headerlink" title="conda 删除"></a>conda 删除</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda remove requests</div></pre></td></tr></table></figure>
+<h4 id="conda-更新"><a href="#conda-更新" class="headerlink" title="conda 更新"></a>conda 更新</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda update requests</div></pre></td></tr></table></figure>
+<h4 id="code-查询当前存在的包"><a href="#code-查询当前存在的包" class="headerlink" title="code 查询当前存在的包"></a>code 查询当前存在的包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda list</div></pre></td></tr></table></figure>
+<h3 id="环境管理"><a href="#环境管理" class="headerlink" title="环境管理"></a>环境管理</h3><p>在conda中可以建立多个虚拟环境，用于隔离不同项目所需的不同版本的工具包，以防止版本上的冲突。对纠结于 Python 版本的同学们，我们也可以建立 Python2 和 Python3 两个环境，来分别运行不同版本的 Python 代码。</p>
+<p>默认环境是Base，当然你也可以创建一个新的环境</p>
+<h4 id="创建新环境"><a href="#创建新环境" class="headerlink" title="创建新环境"></a>创建新环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">conda create -n env_name list of packages</div><div class="line"></div><div class="line"><span class="comment">#env_name是：需要创建的环境名称</span></div><div class="line"><span class="comment">#list of packages是：列出新环境中需要的安装工具包</span></div><div class="line"></div><div class="line"><span class="comment">#例如</span></div><div class="line">conda create -n py2 python=2.7 pandas</div><div class="line"><span class="comment">#env 目录下面有一个名为 py2的pyhton环境</span></div></pre></td></tr></table></figure>
+<h4 id="显示所有环境"><a href="#显示所有环境" class="headerlink" title="显示所有环境"></a>显示所有环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda env list</div></pre></td></tr></table></figure>
+<h4 id="进入环境"><a href="#进入环境" class="headerlink" title="进入环境"></a>进入环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">activate  env_name</div></pre></td></tr></table></figure>
+<h4 id="退出环境"><a href="#退出环境" class="headerlink" title="退出环境"></a>退出环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">deactivate</div></pre></td></tr></table></figure>
+<h4 id="删除env-name环境"><a href="#删除env-name环境" class="headerlink" title="删除env_name环境"></a>删除env_name环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda env remove -n env_name</div></pre></td></tr></table></figure>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/06/17/Jupyter NoteBook/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Jupyter NoteBook</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/06/15/Python/Python基础(5)-条件、循环和其他语句/">
+        <span class="next-text nav-default">Python基础(5)-条件、循环和其他语句</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/06/16/Python/Python管理集合Anaconda/"
+           data-title="Python管理集合Anaconda" data-url="http://nenglee.com/2018/06/16/Python/Python管理集合Anaconda/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>
