@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Python多线程"/>
+
+
+
+
+  <meta name="keywords" content="Python基础," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/07/17/Python/Python多线程/"/>
+
+
+<meta name="description" content="多线程适合I/O密集型任务，如网络资源下载或者读写文件；多进程适合CPU密集型任务，比如需要大量计算的任务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python多线程">
+<meta property="og:url" content="http://nenglee.com/2018/07/17/Python/Python多线程/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="多线程适合I/O密集型任务，如网络资源下载或者读写文件；多进程适合CPU密集型任务，比如需要大量计算的任务">
+<meta property="og:updated_time" content="2018-07-17T11:55:50.538Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python多线程">
+<meta name="twitter:description" content="多线程适合I/O密集型任务，如网络资源下载或者读写文件；多进程适合CPU密集型任务，比如需要大量计算的任务">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Python多线程 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Python多线程
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年7月17日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是多线程"><span class="toc-text">什么是多线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#thread"><span class="toc-text">thread</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#threading"><span class="toc-text">threading</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程锁-Lock-amp-RLock"><span class="toc-text">线程锁 Lock & RLock</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>多线程适合I/O密集型任务，如网络资源下载或者读写文件；多进程适合CPU密集型任务，比如需要大量计算的任务</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="什么是多线程"><a href="#什么是多线程" class="headerlink" title="什么是多线程"></a>什么是多线程</h3><p>多线程编程的本质是 <strong>异步</strong> ,需要多个并发活动，而且每个任务处理的顺序可能是不确定，或者说有随机性、不可预测。</p>
+<p><strong>进程：</strong></p>
+<ul>
+<li>一个可执行的程序，被计算机程序加载到内存中被操作系统调用，才拥有其生命周期</li>
+<li>进程都有属于自己的地址空间，内存，数据栈</li>
+<li>进程和进程数据通信采用IPC(Inter-Process Communication)</li>
+</ul>
+<p><strong>线程：</strong></p>
+<ul>
+<li>进程的独立运行片段，一个进程可以由多个线程组成，至少有一个主线程</li>
+<li>线程可以理解为轻量化的进程</li>
+<li>一个进程的多个线程间共享数据和上下文运行环境</li>
+<li>多个线程同时工作容易产生互斥问题</li>
+</ul>
+<p>Python 标准库提供了 thread 和 threading 两个模块来对多线程进行支持。<br>其中， thread 模块以低级、原始的方式来处理和控制线程，而 threading 模块通过对 thread 进行二次封装，提供了更方便的 api 来处理线程。</p>
+<p>避免使用thread的另一个原因是该模块不支持 <strong>守护线程</strong> ,当主线程退出时候，所有的子线程都将终止，不管它们是否仍在工作，显然这个弊端是不希望发生的，就需要引入守护线程。</p>
+<h3 id="thread"><a href="#thread" class="headerlink" title="thread"></a>thread</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="comment"># 导入多线程包并更名为thread  * python2为: thread  python3为：_thread</span></div><div class="line"><span class="keyword">import</span> _thread <span class="keyword">as</span> thread</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop1</span><span class="params">(in1)</span>:</span></div><div class="line">    <span class="comment"># ctime 得到当前时间</span></div><div class="line">    print(<span class="string">'Start loop 1 at :'</span>, time.ctime())</div><div class="line">    <span class="comment"># 把参数打印出来</span></div><div class="line">    print(<span class="string">"我是参数 "</span>, in1)</div><div class="line">    <span class="comment"># 睡眠多长时间，单位是秒</span></div><div class="line">    time.sleep(<span class="number">4</span>)</div><div class="line">    print(<span class="string">'End loop 1 at:'</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop2</span><span class="params">(in1, in2)</span>:</span></div><div class="line">    <span class="comment"># ctime 得到当前时间</span></div><div class="line">    print(<span class="string">'Start loop 2 at :'</span>, time.ctime())</div><div class="line">    <span class="comment"># 把参数in 和 in2打印出来，代表使用</span></div><div class="line">    print(<span class="string">"我是参数 "</span>, in1, <span class="string">"和参数  "</span>, in2)</div><div class="line">    <span class="comment"># 睡眠多长时间，单位是秒</span></div><div class="line">    time.sleep(<span class="number">2</span>)</div><div class="line">    print(<span class="string">'End loop 2 at:'</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">"Main Start ---------"</span>, time.ctime())</div><div class="line">    <span class="comment"># 启动多线程的意思是用多线程去执行某个函数</span></div><div class="line">    <span class="comment"># 启动多线程函数为start_new_thead</span></div><div class="line">    <span class="comment"># 参数两个，一个是需要运行的函数名，第二是函数的参数作为元祖使用，为空则使用空元祖</span></div><div class="line">    <span class="comment"># 注意：如果函数只有一个参数，需要参数后由一个逗号</span></div><div class="line">    thread.start_new_thread(loop1, (<span class="string">"李美丽"</span>,))</div><div class="line">    thread.start_new_thread(loop2, (<span class="string">"王大鹏"</span>, <span class="string">"王小鹏"</span>))</div><div class="line"></div><div class="line">    print(<span class="string">"Main end ---------"</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    main()</div><div class="line">    <span class="comment"># 如果主线程执行完毕，则子线程可能也需要终止</span></div><div class="line">    <span class="comment"># time.sleep(10)</span></div></pre></td></tr></table></figure>
+<h3 id="threading"><a href="#threading" class="headerlink" title="threading"></a>threading</h3><p>threading模块除了Tread类以外，该模块还包块了非常好用的同步机制。</p>
+<p>初始化：</p>
+<p><code>def __init__(self, group=None, target=None, name=None,args=(), kwargs=None, *, daemon=None):</code></p>
+<ul>
+<li>group是预留的，用于将来扩展；</li>
+<li>target是一个可调用对象（也称为活动[activity]），在线程启动后执行；</li>
+<li>name是线程的名字。默认值为“Thread-N“，N是一个数字。</li>
+<li>args和kwargs分别表示调用target时的参数列表和关键字参数。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="comment"># 导入多线程包并更名为thread  * python2为: thread  python3为：_thread</span></div><div class="line"><span class="keyword">import</span> threading</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop1</span><span class="params">(in1)</span>:</span></div><div class="line">    <span class="comment"># ctime 得到当前时间</span></div><div class="line">    print(<span class="string">'Start loop 1 at :'</span>, time.ctime())</div><div class="line">    <span class="comment"># 把参数打印出来</span></div><div class="line">    print(<span class="string">"我是参数 "</span>, in1)</div><div class="line">    <span class="comment"># 睡眠多长时间，单位是秒</span></div><div class="line">    time.sleep(<span class="number">4</span>)</div><div class="line">    print(<span class="string">'End loop 1 at:'</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop2</span><span class="params">(in1, in2)</span>:</span></div><div class="line">    <span class="comment"># ctime 得到当前时间</span></div><div class="line">    print(<span class="string">'Start loop 2 at :'</span>, time.ctime())</div><div class="line">    <span class="comment"># 把参数in 和 in2打印出来，代表使用</span></div><div class="line">    print(<span class="string">"我是参数 "</span>, in1, <span class="string">"和参数  "</span>, in2)</div><div class="line">    <span class="comment"># 睡眠多长时间，单位是秒</span></div><div class="line">    time.sleep(<span class="number">2</span>)</div><div class="line">    print(<span class="string">'End loop 2 at:'</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">"Main Start ---------"</span>, time.ctime())</div><div class="line"></div><div class="line">    <span class="comment"># 生成threading.Thread实例</span></div><div class="line">    t1 = threading.Thread(target=loop1, args=(<span class="string">"李美丽"</span>,))</div><div class="line">    t2 = threading.Thread(target=loop2, args=(<span class="string">"王大鹏"</span>, <span class="string">"王小鹏"</span>))</div><div class="line"></div><div class="line">    <span class="comment"># t1.setDaemon(True)</span></div><div class="line">    <span class="comment"># t2.setDaemon(True)</span></div><div class="line"></div><div class="line">    t1.start()</div><div class="line">    <span class="comment"># t1.join()</span></div><div class="line">    <span class="comment"># t1.join(2)</span></div><div class="line"></div><div class="line">    t2.start()</div><div class="line">    <span class="comment"># t2.join()</span></div><div class="line"></div><div class="line">    print(<span class="string">"Main end ---------"</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure>
+<p>打印结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Main Start --------- Tue Jul 17 16:58:53 2018</div><div class="line">Start loop 1 at : Tue Jul 17 16:58:53 2018</div><div class="line">我是参数  李美丽</div><div class="line">Start loop 2 at : Tue Jul 17 16:58:53 2018</div><div class="line">我是参数  王大鹏 和参数   王小鹏</div><div class="line">Main end --------- Tue Jul 17 16:58:53 2018</div><div class="line">End loop 2 at: Tue Jul 17 16:58:55 2018</div><div class="line">End loop 1 at: Tue Jul 17 16:58:57 2018</div></pre></td></tr></table></figure></p>
+<p>可以发现虽然 主线程mian继续往下执行，没有等待实现了异步，然而已经启动的线程t1和t2依然执行</p>
+<ul>
+<li><p>join(self, timeout=None)  </p>
+<ul>
+<li><p>.join()将会使主调线程堵塞，直到被调用线程运行结束或超时；例如主线程mian创建启动t1线程，这个时候主线程要等待t1执行完毕，主线程main方可继续向下执行</p>
+</li>
+<li><p>timeout=None(秒) 参数表示超时时间，主线程在此堵塞时间，过时不候，需要注意的是t1线程依然会在后台执行</p>
+</li>
+<li><p>设置start()启动后</p>
+</li>
+</ul>
+</li>
+<li><p>setDaemon(daemonic)   设置守护线程，表示并不重要</p>
+<ul>
+<li><p>t1.setDaemon(True)相当于把t1设置线程守护，要是主线程main执行完毕，就不管t1线程是否完毕已经不重要，一并退出，恰恰与join相反</p>
+</li>
+<li><p>设置start()启动前才有效</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><ul>
+<li><p><code>.currentThread：</code> 返回当前线程变量</p>
+</li>
+<li><p><code>.enumerate:</code>  返回一个包含正在运行的线程的list，正在运行的线程指的是线程启动后，结束前的状态</p>
+</li>
+<li><p><code>.activeCount:</code> 返回正在运行的线程数量，效果跟 <code>len(threading.enumerate)</code> 相同</p>
+</li>
+<li><p><code>.setName:</code> 给线程设置名字</p>
+</li>
+<li><p><code>.getName:</code> 得到线程的名字</p>
+</li>
+<li><p><code>.isAlivel/is_alive</code> 返回这个线程是否还存活</p>
+</li>
+<li><p><code>.isDecmon</code> 是否为守护线程</p>
+</li>
+</ul>
+<h3 id="线程锁-Lock-amp-RLock"><a href="#线程锁-Lock-amp-RLock" class="headerlink" title="线程锁 Lock &amp; RLock"></a>线程锁 Lock &amp; RLock</h3><p>在threading模块中，定义两种类型的琐：<code>threading.Lock</code> 和 <code>threading.RLock</code></p>
+<p>它们之间有一点细微的区别，通过比较下面两段代码来说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading</div><div class="line">lock = threading.Lock()	<span class="comment">#Lock对象</span></div><div class="line">lock.acquire()</div><div class="line">lock.acquire()  <span class="comment">#产生了死琐。</span></div><div class="line">lock.release()</div><div class="line">lock.release()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading</div><div class="line">rLock = threading.RLock()  <span class="comment">#RLock对象</span></div><div class="line">rLock.acquire()</div><div class="line">rLock.acquire()	<span class="comment">#在同一线程内，程序不会堵塞。</span></div><div class="line">rLock.release()</div><div class="line">rLock.release()</div></pre></td></tr></table></figure>
+<p>这两种琐的主要区别是：</p>
+<blockquote>
+<p>RLock允许在同一线程中被多次acquire。而Lock却不允许这种情况。</p>
+</blockquote>
+<p><code>注意：如果使用RLock，那么acquire和release必须成对出现，即调用了n次acquire，必须调用n次的release才能真正释放所占用的琐。</code></p>
+<p>Lock 对象和 with 语句块一起使用可以保证互斥执行，就是每次只有一个线程可以执行 with 语句包含的代码块。with 语句会在这个代码块执行前自动获取锁，在执行结束后自动释放锁。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> lock:</div><div class="line">	<span class="comment"># do something</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">lock = threading.Lock()</div><div class="line">thread_list = []</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadClass</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, threadName)</span>:</span></div><div class="line">        threading.Thread.__init__(self)</div><div class="line">        self.threadName = threadName</div><div class="line"></div><div class="line">    <span class="comment"># run函数必须实现</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment"># with 支持自动枷锁，解锁</span></div><div class="line">        <span class="keyword">with</span> lock:</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</div><div class="line">                print(<span class="string">'&#123;&#125;'</span>.format(self.threadName), <span class="string">':'</span>, str(i))</div><div class="line">                time.sleep(<span class="number">2</span>)</div><div class="line"></div><div class="line">        <span class="comment"># lock.acquire()  # 加锁</span></div><div class="line">        <span class="comment"># for i in range(0, 10):</span></div><div class="line">        <span class="comment">#     print('&#123;&#125;'.format(self.threadName), ':', str(i))</span></div><div class="line">        <span class="comment">#     time.sleep(2)</span></div><div class="line">        <span class="comment"># lock.release()  # 解锁</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</div><div class="line">    thread = ThreadClass(<span class="string">'thread &#123;&#125;'</span>.format(i))</div><div class="line">    thread_list.append(thread)</div><div class="line">    thread.start()</div><div class="line"></div><div class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> thread_list:</div><div class="line">    <span class="keyword">if</span> thread:</div><div class="line">        thread.join()</div></pre></td></tr></table></figure>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python基础/">Python基础</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/07/17/Python/Python队列/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Python队列</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/06/18/Python/PyQuery/">
+        <span class="next-text nav-default">PyQuery库</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/07/17/Python/Python多线程/"
+           data-title="Python多线程" data-url="http://nenglee.com/2018/07/17/Python/Python多线程/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>
