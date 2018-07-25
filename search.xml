@@ -4,6 +4,236 @@
   
     
     <entry>
+      <title><![CDATA[Selenium]]></title>
+      <url>http://nenglee.com/2018/07/24/Python/Selenium/</url>
+      <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
+
+<p>Selenium Python 一个提供自动化操作驱动js浏览器，可以直观地使用所有的 Selenium WebDriver 功能。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>conda install selenium</code></p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>小刀牛试，先启动一个浏览器瞧瞧</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"></div><div class="line"><span class="comment"># GOOGLE浏览器驱动</span></div><div class="line">chromedriver_path = <span class="string">r"E:\Program Files (x86)\Driver\chromedriver.exe"</span></div><div class="line">browser = webdriver.Chrome(chromedriver_path)</div><div class="line">browser.get(<span class="string">'https://www.baidu.com'</span>)</div></pre></td></tr></table></figure>
+<h3 id="浏览器-amp-驱动器"><a href="#浏览器-amp-驱动器" class="headerlink" title="浏览器&amp;驱动器"></a>浏览器&amp;驱动器</h3><p>常用的浏览：</p>
+<ul>
+<li><p>webdriver.Chrome()    <a href="http://chromedriver.storage.googleapis.com/index.html" target="_blank" rel="external">Google浏览器驱动</a></p>
+</li>
+<li><p>webdriver.Firefox()   <a href="https://github.com/mozilla/geckodriver/releases" target="_blank" rel="external">火狐浏览器驱动</a></p>
+</li>
+<li><p>webdriver.Safari()    <a href="https://support.apple.com/zh_CN/downloads/safari" target="_blank" rel="external">Apple浏览器驱动</a></p>
+</li>
+<li><p>webdriver.Edge()      <a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/" target="_blank" rel="external">Microsoft浏览器驱动</a></p>
+</li>
+</ul>
+<h3 id="selenium基本使用"><a href="#selenium基本使用" class="headerlink" title="selenium基本使用"></a>selenium基本使用</h3><p>需求：用 selenium 启动 taobao.com首页，并且在搜素栏，输入‘苹果手机’，清除输入类容，重新输入‘apple iPhone’ 并且点击搜素按钮。打印出当前的URL的地方，以及HTML页面代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.keys <span class="keyword">import</span> Keys</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="comment"># googel浏览器驱动</span></div><div class="line">chromedriver_path = <span class="string">r"E:\Program Files (x86)\Driver\chromedriver.exe"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">taobao</span><span class="params">()</span>:</span></div><div class="line">    browser = webdriver.Chrome(chromedriver_path)</div><div class="line">    browser.get(<span class="string">'https://www.taobao.com'</span>)</div><div class="line"></div><div class="line">    element = browser.find_element_by_id(<span class="string">'q'</span>)</div><div class="line">    element.send_keys(<span class="string">'苹果手机'</span>)</div><div class="line">    time.sleep(<span class="number">2</span>)</div><div class="line">    element.clear()  <span class="comment">#清空</span></div><div class="line">    element.send_keys(<span class="string">'Apple iphone'</span>)</div><div class="line"></div><div class="line">    element_button = browser.find_element_by_class_name(<span class="string">'btn-search'</span>)</div><div class="line">    element_button.send_keys(Keys.ENTER)</div><div class="line"></div><div class="line">    print(browser.name)  <span class="comment"># chrome</span></div><div class="line">    print(browser.title)  <span class="comment"># Apple iphone_淘宝搜索</span></div><div class="line">    print(browser.current_url)  <span class="comment"># 搜素结果最终url</span></div><div class="line">    print(browser.page_source)  <span class="comment"># html代码</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    taobao()</div></pre></td></tr></table></figure>
+<h3 id="查找元素"><a href="#查找元素" class="headerlink" title="查找元素"></a>查找元素</h3><p>一个页面中有很多不同的策略可以定位一个元素，selenium给予各种方法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"loginForm"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">type</span>=<span class="string">"password"</span> /&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"continue"</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Login"</span> /&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"continue"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Clear"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>用ID查找：</p>
+<p><code>login_form = driver.find_element_by_id(&#39;loginForm&#39;)</code></p>
+</li>
+<li><p>用Name查找：</p>
+<p><code>username = driver.find_element_by_name(&#39;username&#39;)</code></p>
+</li>
+<li><p>用xpath查找:</p>
+<p>其中需要注意的是XPath，是一种xml的位置的查找，可以同浏览器的审查元素中的xpath获取得到</p>
+<p><code>login_form = driver.find_element_by_xpath(&quot;/html/body/form[1]&quot;)</code></p>
+<p><code>login_form = driver.find_element_by_xpath(&quot;//form[1]&quot;)</code></p>
+<p><code>login_form = driver.find_element_by_xpath(&quot;//form[@id=&#39;loginForm&#39;]&quot;)</code></p>
+<ol>
+<li><p>第一个form元素中包含name属性并且其值为 username 的input元素</p>
+</li>
+<li><p>id为 loginForm 的form元素的第一个input子元素</p>
+</li>
+<li><p>第一个name属性为 username 的input元素</p>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="单一查找"><a href="#单一查找" class="headerlink" title="单一查找"></a>单一查找</h4><ul>
+<li><p><code>find_element_by_id</code></p>
+</li>
+<li><p><code>find_element_by_name</code></p>
+</li>
+<li><p><code>find_element_by_xpath</code></p>
+</li>
+<li><p><code>find_element_by_link_text</code></p>
+</li>
+<li><p><code>find_element_by_partial_link_text</code></p>
+</li>
+<li><p><code>find_element_by_tag_name</code></p>
+</li>
+<li><p><code>find_element_by_class_name</code></p>
+</li>
+<li><p><code>find_element_by_css_selector</code></p>
+</li>
+</ul>
+<h4 id="查找多个返回-list"><a href="#查找多个返回-list" class="headerlink" title="查找多个返回(list)"></a>查找多个返回(list)</h4><ul>
+<li><p><code>find_elements_by_name</code></p>
+</li>
+<li><p><code>find_elements_by_xpath</code></p>
+</li>
+<li><p><code>find_elements_by_link_text</code></p>
+</li>
+<li><p><code>find_elements_by_partial_link_text</code></p>
+</li>
+<li><p><code>find_elements_by_tag_name</code></p>
+</li>
+<li><p><code>find_elements_by_class_name</code></p>
+</li>
+<li><p><code>find_elements_by_css_selector</code></p>
+</li>
+</ul>
+<hr>
+<p><strong>与之对应俩个通用的函数：</strong></p>
+<ul>
+<li><p><code>find_element(self, by=By.ID, value=None)</code></p>
+</li>
+<li><p><code>find_elements(self, by=By.ID, value=None)</code></p>
+</li>
+</ul>
+<p>其中By是包含以上所有的查找类型</p>
+<p><code>from selenium.webdriver.common.by import By</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">By</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Set of supported locator strategies.</div><div class="line">    """</div><div class="line">    ID = <span class="string">"id"</span></div><div class="line">    XPATH = <span class="string">"xpath"</span></div><div class="line">    LINK_TEXT = <span class="string">"link text"</span></div><div class="line">    PARTIAL_LINK_TEXT = <span class="string">"partial link text"</span></div><div class="line">    NAME = <span class="string">"name"</span></div><div class="line">    TAG_NAME = <span class="string">"tag name"</span></div><div class="line">    CLASS_NAME = <span class="string">"class name"</span></div><div class="line">    CSS_SELECTOR = <span class="string">"css selector"</span></div></pre></td></tr></table></figure>
+<h3 id="selenium常用API"><a href="#selenium常用API" class="headerlink" title="selenium常用API"></a>selenium常用API</h3><ul>
+<li><p>获取当前页面的Url<br><code>.current_url</code></p>
+</li>
+<li><p>获取元素坐标<br><code>.location</code></p>
+</li>
+<li><p>表单的提交<br><code>.submit()</code></p>
+</li>
+<li><p>获取CSS的属性值<br><code>.value_of_css_property(css_name)</code></p>
+</li>
+<li><p>获取元素的属性值<br><code>.get_attribute(element_name)</code></p>
+</li>
+<li><p>判断元素是否被选中<br><code>.is_selected()</code></p>
+</li>
+<li><p>返回元素的大小<br><code>.size</code></p>
+</li>
+<li><p>判断元素是否显示<br><code>.is_displayed()</code></p>
+</li>
+<li><p>判断元素是否被使用<br><code>.is_enabled()</code></p>
+</li>
+<li><p>获取元素的文本值<br><code>.text</code></p>
+</li>
+<li><p>元素赋值<br><code>.send_keys(*values)</code></p>
+</li>
+<li><p>返回元素的tagName<br><code>.tag_name</code></p>
+</li>
+<li><p>删除浏览器所有的cookies<br><code>.delete_all_cookies()</code></p>
+</li>
+<li><p>删除指定的cookie<br><code>.delete_cookie(name)</code></p>
+</li>
+<li><p>关闭浏览器选项卡<br><code>.close()</code></p>
+</li>
+<li><p>关闭浏览器并且退出驱动程序<br><code>.quit()</code></p>
+</li>
+<li><p>返回上一页<br><code>.back()</code></p>
+</li>
+<li><p>清空输入框<br><code>.clear()</code></p>
+</li>
+<li><p>浏览器窗口最大化<br><code>.maximize_window()</code></p>
+</li>
+<li><p>查看浏览器的名字<br><code>.name</code></p>
+</li>
+<li><p>返回当前会话中的cookies<br><code>.get_cookies()</code></p>
+</li>
+<li><p>根据cookie name 查找映射Value值<br><code>.driver.get_cookie(cookie_name)</code></p>
+</li>
+<li><p>截取当前页面<br><code>.get_screenshot_as_file(filename)</code></p>
+</li>
+<li><p>获取当前窗口的坐标<br><code>.get_window_position()</code></p>
+</li>
+<li><p>获取当前窗口的长和宽<br><code>.get_window_size()</code></p>
+</li>
+</ul>
+<h3 id="ActionChains鼠标操作"><a href="#ActionChains鼠标操作" class="headerlink" title="ActionChains鼠标操作"></a>ActionChains鼠标操作</h3><p>  引入ActionChains类包：: <code>from selenium.webdriver.common.action_chains import ActionChains</code></p>
+<ul>
+<li><p>右击<br><code>.context_click()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ActionChains(driver).context_click(driver.find_element_by_id(<span class="string">"id"</span>)).perform()</div></pre></td></tr></table></figure>
+</li>
+<li><p>双击<br><code>.double_click()</code></p>
+</li>
+<li><p>鼠标拖放</p>
+<p><code>.drag_and_drop(source, target)</code></p>
+<p>source：鼠标按下的源元素</p>
+<p>target：鼠标释放的目标元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">element = driver.find_element_by_name(<span class="string">"name"</span>)</div><div class="line">target = driver.find_element_by_name(<span class="string">"name"</span>)</div><div class="line">ActionChains(driver).drag_and_drop(element, target).perform()</div></pre></td></tr></table></figure>
+</li>
+<li><p>鼠标悬停在一个元素上（hover）<br><code>.move_to_element()</code></p>
+</li>
+<li><p>按下鼠标左键在一个元素上<br><code>.click_and_hold()</code></p>
+</li>
+</ul>
+<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><p>  引入Keys类包：<code>from selenium.webdriver.common.keys import Keys</code></p>
+<ul>
+<li><p>输入<br><code>.send_keys()</code></p>
+</li>
+<li><p>输入空格<br><code>.send_keys(Keys.SPACE)</code></p>
+</li>
+<li><p>ctrl + a [组合键xxx]<br><code>.send_keys(Keys.CONTROL,&#39;a&#39;)</code></p>
+</li>
+<li><p>回车代替点击<br><code>.send_keys(ENTER)</code></p>
+</li>
+<li><p>制表键(Tab)<br><code>.send_keys(Keys.TAB)</code></p>
+</li>
+<li><p>回退键(Esc)<br><code>.send_keys(Keys.ESCAPE)</code></p>
+</li>
+</ul>
+<hr>
+<p>  <strong>等待时间：</strong></p>
+<p>  导入 WebDriverWait 包 ：<code>from selenium.webdriver.support.ui import WebDriverWait</code></p>
+<p>  导入 time 包 : <code>import time</code></p>
+<ul>
+<li><p>固定等待时间<br><code>time.sleep(5)  # 等待5秒</code></p>
+</li>
+<li><p>等待一个元素被发现，或一个命令完成，超出了设置时间则抛出异常智能等待<br><code>driver.implicitly_wait(30)</code></p>
+</li>
+<li><p>在设置时间内，默认每隔一段时间检测一次当前页面元素是否存在，如果超过设置时间检测不到则抛出异常<br><code>WebDriverWait(driver, timeout, poll_frequency=0.5, ignored_exceptions=None)</code></p>
+<p><strong>driver：</strong> WebDriver的驱动程序(Ie, Firefox, Chrome或远程)</p>
+<p><strong>timeout：</strong> 最长超时时间，默认以秒为单位</p>
+<p><strong>poll_frequency：</strong> 休眠时间的间隔（步长）时间，默认为0.5秒</p>
+<p><strong>ignored_exceptions：</strong> 超时后的异常信息，默认情况下抛NoSuchElementException异常</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 案例一：</span></div><div class="line"></div><div class="line"><span class="comment"># 一般由unit()或until_not()方法配合使用</span></div><div class="line">element = WebDriverWait(driver, <span class="number">10</span>).until(<span class="keyword">lambda</span> x: x.find_element_by_id(<span class="string">"id"</span>))</div><div class="line"></div><div class="line"><span class="comment"># until(method, message=’’) 调用该方法提供的驱动程序作为一个参数，直到返回值不为False。</span></div><div class="line"></div><div class="line"><span class="comment"># until_not(method, message=’’) 调用该方法提供的驱动程序作为一个参数，直到返回值为False。</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 案例二：</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</div><div class="line"></div><div class="line"><span class="comment"># 实例： 判断某个元素是否可见并且是enable的，这样才clickable</span></div><div class="line">WebDriverWait(dr,<span class="number">15</span>,<span class="number">1</span>).until(EC.element_to_be_clickable((By.ID,<span class="string">"EmployeeListMenu"</span>)),<span class="string">"Not Find element"</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>选择当前页面上所有tag[标签]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># name为input的元素</span></div><div class="line">inputs = driver.find_elements_by_tag_name(<span class="string">'input'</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>从中过滤出type为checkbox的元素，并勾选上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> input <span class="keyword">in</span> inputs:</div><div class="line"><span class="keyword">if</span> input.get_attribute(<span class="string">'type'</span>) == <span class="string">'checkbox'</span>:</div><div class="line">    input.click()</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用CSS定位选择所有type为checkbox的元素，并勾选上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">checkboxes = driver.find_elements_by_css_selector(<span class="string">'input[type = checkbox]'</span>)</div><div class="line"><span class="keyword">for</span> checkbox <span class="keyword">in</span> checkboxes:</div><div class="line">  　　checkbox.click()</div></pre></td></tr></table></figure>
+</li>
+<li><p>把最后一个checkbox的勾去掉，pop()方法空参数时，默认移除list中的最后一个元素<br><code>driver.find_elements_by_css_selector(‘input[type = checkbox]‘).pop().click()</code></p>
+</li>
+</ul>
+<h3 id="切换活动对象"><a href="#切换活动对象" class="headerlink" title="切换活动对象"></a>切换活动对象</h3><ul>
+<li><p>切换浏览器选项卡<br><code>driver.switch_to.window(window_name)</code></p>
+</li>
+<li><p>返回上一级表单<br><code>driver.switch_to.parent_content</code></p>
+</li>
+<li><p>返回最外层表单<br><code>driver.switch_to.default_content()</code></p>
+</li>
+<li><p>切换到指定frame中<br><code>driver.switch_to.frame(&#39;xxx&#39;)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">driver.switch_to.frame(<span class="string">'frame_name'</span>)</div><div class="line">driver.switch_to.frame(index)</div><div class="line">driver.switch_to.frame(driver.find_elements_by_tag_name(<span class="string">'iframe'</span>)[<span class="number">0</span>])</div></pre></td></tr></table></figure>
+</li>
+<li><p>焦点切换到弹窗<br><code>driver.switch_to_alert()</code></p>
+</li>
+<li><p>前进<br><code>driver.forward()</code></p>
+</li>
+<li><p>刷新页面<br><code>driver.refresh()</code></p>
+</li>
+<li><p>获取当前page的title<br><code>driver.title</code></p>
+</li>
+</ul>
+</the></excerpt>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Python 迭代器和生成器]]></title>
       <url>http://nenglee.com/2018/07/19/Python/Python%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/</url>
       <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
@@ -13,14 +243,17 @@
 <the rest="" of="" contents="" |="" 余下全文="">
 
 <hr>
-<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>Python中 <strong>list，truple，str，dict</strong> 这些都可以被迭代，俗称可迭代对象(Iterable)，但他们并不是迭代器(Iterator)。为什么？</p>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>Python中 <strong>list，truple，str，dict</strong> 这些都可以被迭代，俗称可迭代对象 (Iterable) ，但他们并不是迭代器 (Iterator) 。为什么？</p>
 <p>因为和迭代器相比有一个很大的不同，<code>ist/truple/map/dict</code> 这些数据的大小是确定的，是可知。但迭代器不是，迭代器不知道要执行多少次，所以可以理解为不知道有多少个元素，每调用一次next()，就会往下走一步，是惰性的。</p>
 <h4 id="迭代对象-Iterable"><a href="#迭代对象-Iterable" class="headerlink" title="迭代对象(Iterable)"></a>迭代对象(Iterable)</h4><p>直接作用于<code>for循环</code>的变量</p>
 <h4 id="迭代器-Iterator"><a href="#迭代器-Iterator" class="headerlink" title="迭代器(Iterator)"></a>迭代器(Iterator)</h4><p>不但可以作用于<code>for循环</code>，还可以提供<code>next()</code>方法</p>
 <ul>
-<li>list是典型的可迭代对象，但不是迭代器</li>
-<li>迭代器一定是可迭代对象，反过过来就不一定</li>
-<li>可迭代对象可以通过内置 iter() 函数转换成迭代器</li>
+<li><p>list是典型的可迭代对象，但不是迭代器</p>
+</li>
+<li><p>迭代器一定是可迭代对象，反过过来就不一定</p>
+</li>
+<li><p>可迭代对象可以通过内置 iter() 函数转换成迭代器</p>
+</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">iter</span><span class="params">(source, sentinel=None)</span>:</span> <span class="comment"># known special case of iter</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    iter(iterable) -&gt; iterator</div><div class="line">    iter(callable, sentinel) -&gt; iterator</div><div class="line"></div><div class="line">    Get an iterator from an object.  In the first form, the argument must</div><div class="line">    supply its own iterator, or be a sequence.</div><div class="line">    In the second form, the callable is called until it returns the sentinel.</div><div class="line">    """</div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
 <h4 id="迭代器协议"><a href="#迭代器协议" class="headerlink" title="迭代器协议"></a>迭代器协议</h4><ul>
@@ -122,6 +355,95 @@
 <li><p>Full：当队列中满了以后，再放数据的话，就会抛出此异常。</p>
 </li>
 </ul>
+</the></excerpt>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python多线程]]></title>
+      <url>http://nenglee.com/2018/07/17/Python/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B0/</url>
+      <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
+
+<p>多线程适合I/O密集型任务，如网络资源下载或者读写文件；多进程适合CPU密集型任务，比如需要大量计算的任务</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="什么是多线程"><a href="#什么是多线程" class="headerlink" title="什么是多线程"></a>什么是多线程</h3><p>多线程编程的本质是 <strong>异步</strong> ,需要多个并发活动，而且每个任务处理的顺序可能是不确定，或者说有随机性、不可预测。</p>
+<p><strong>进程：</strong></p>
+<ul>
+<li>一个可执行的程序，被计算机程序加载到内存中被操作系统调用，才拥有其生命周期</li>
+<li>进程都有属于自己的地址空间，内存，数据栈</li>
+<li>进程和进程数据通信采用IPC(Inter-Process Communication)</li>
+</ul>
+<p><strong>线程：</strong></p>
+<ul>
+<li>进程的独立运行片段，一个进程可以由多个线程组成，至少有一个主线程</li>
+<li>线程可以理解为轻量化的进程</li>
+<li>一个进程的多个线程间共享数据和上下文运行环境</li>
+<li>多个线程同时工作容易产生互斥问题</li>
+</ul>
+<p>Python 标准库提供了 thread 和 threading 两个模块来对多线程进行支持。<br>其中， thread 模块以低级、原始的方式来处理和控制线程，而 threading 模块通过对 thread 进行二次封装，提供了更方便的 api 来处理线程。</p>
+<p>避免使用thread的另一个原因是该模块不支持 <strong>守护线程</strong> ,当主线程退出时候，所有的子线程都将终止，不管它们是否仍在工作，显然这个弊端是不希望发生的，就需要引入守护线程。</p>
+<h3 id="thread"><a href="#thread" class="headerlink" title="thread"></a>thread</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="comment"># 导入多线程包并更名为thread  * python2为: thread  python3为：_thread</span></div><div class="line"><span class="keyword">import</span> _thread <span class="keyword">as</span> thread</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop1</span><span class="params">(in1)</span>:</span></div><div class="line">    <span class="comment"># ctime 得到当前时间</span></div><div class="line">    print(<span class="string">'Start loop 1 at :'</span>, time.ctime())</div><div class="line">    <span class="comment"># 把参数打印出来</span></div><div class="line">    print(<span class="string">"我是参数 "</span>, in1)</div><div class="line">    <span class="comment"># 睡眠多长时间，单位是秒</span></div><div class="line">    time.sleep(<span class="number">4</span>)</div><div class="line">    print(<span class="string">'End loop 1 at:'</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop2</span><span class="params">(in1, in2)</span>:</span></div><div class="line">    <span class="comment"># ctime 得到当前时间</span></div><div class="line">    print(<span class="string">'Start loop 2 at :'</span>, time.ctime())</div><div class="line">    <span class="comment"># 把参数in 和 in2打印出来，代表使用</span></div><div class="line">    print(<span class="string">"我是参数 "</span>, in1, <span class="string">"和参数  "</span>, in2)</div><div class="line">    <span class="comment"># 睡眠多长时间，单位是秒</span></div><div class="line">    time.sleep(<span class="number">2</span>)</div><div class="line">    print(<span class="string">'End loop 2 at:'</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">"Main Start ---------"</span>, time.ctime())</div><div class="line">    <span class="comment"># 启动多线程的意思是用多线程去执行某个函数</span></div><div class="line">    <span class="comment"># 启动多线程函数为start_new_thead</span></div><div class="line">    <span class="comment"># 参数两个，一个是需要运行的函数名，第二是函数的参数作为元祖使用，为空则使用空元祖</span></div><div class="line">    <span class="comment"># 注意：如果函数只有一个参数，需要参数后由一个逗号</span></div><div class="line">    thread.start_new_thread(loop1, (<span class="string">"李美丽"</span>,))</div><div class="line">    thread.start_new_thread(loop2, (<span class="string">"王大鹏"</span>, <span class="string">"王小鹏"</span>))</div><div class="line"></div><div class="line">    print(<span class="string">"Main end ---------"</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    main()</div><div class="line">    <span class="comment"># 如果主线程执行完毕，则子线程可能也需要终止</span></div><div class="line">    <span class="comment"># time.sleep(10)</span></div></pre></td></tr></table></figure>
+<h3 id="threading"><a href="#threading" class="headerlink" title="threading"></a>threading</h3><p>threading模块除了Tread类以外，该模块还包块了非常好用的同步机制。</p>
+<p>初始化：</p>
+<p><code>def __init__(self, group=None, target=None, name=None,args=(), kwargs=None, *, daemon=None):</code></p>
+<ul>
+<li>group是预留的，用于将来扩展；</li>
+<li>target是一个可调用对象（也称为活动[activity]），在线程启动后执行；</li>
+<li>name是线程的名字。默认值为“Thread-N“，N是一个数字。</li>
+<li>args和kwargs分别表示调用target时的参数列表和关键字参数。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="comment"># 导入多线程包并更名为thread  * python2为: thread  python3为：_thread</span></div><div class="line"><span class="keyword">import</span> threading</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop1</span><span class="params">(in1)</span>:</span></div><div class="line">    <span class="comment"># ctime 得到当前时间</span></div><div class="line">    print(<span class="string">'Start loop 1 at :'</span>, time.ctime())</div><div class="line">    <span class="comment"># 把参数打印出来</span></div><div class="line">    print(<span class="string">"我是参数 "</span>, in1)</div><div class="line">    <span class="comment"># 睡眠多长时间，单位是秒</span></div><div class="line">    time.sleep(<span class="number">4</span>)</div><div class="line">    print(<span class="string">'End loop 1 at:'</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop2</span><span class="params">(in1, in2)</span>:</span></div><div class="line">    <span class="comment"># ctime 得到当前时间</span></div><div class="line">    print(<span class="string">'Start loop 2 at :'</span>, time.ctime())</div><div class="line">    <span class="comment"># 把参数in 和 in2打印出来，代表使用</span></div><div class="line">    print(<span class="string">"我是参数 "</span>, in1, <span class="string">"和参数  "</span>, in2)</div><div class="line">    <span class="comment"># 睡眠多长时间，单位是秒</span></div><div class="line">    time.sleep(<span class="number">2</span>)</div><div class="line">    print(<span class="string">'End loop 2 at:'</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">"Main Start ---------"</span>, time.ctime())</div><div class="line"></div><div class="line">    <span class="comment"># 生成threading.Thread实例</span></div><div class="line">    t1 = threading.Thread(target=loop1, args=(<span class="string">"李美丽"</span>,))</div><div class="line">    t2 = threading.Thread(target=loop2, args=(<span class="string">"王大鹏"</span>, <span class="string">"王小鹏"</span>))</div><div class="line"></div><div class="line">    <span class="comment"># t1.setDaemon(True)</span></div><div class="line">    <span class="comment"># t2.setDaemon(True)</span></div><div class="line"></div><div class="line">    t1.start()</div><div class="line">    <span class="comment"># t1.join()</span></div><div class="line">    <span class="comment"># t1.join(2)</span></div><div class="line"></div><div class="line">    t2.start()</div><div class="line">    <span class="comment"># t2.join()</span></div><div class="line"></div><div class="line">    print(<span class="string">"Main end ---------"</span>, time.ctime())</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure>
+<p>打印结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Main Start --------- Tue Jul 17 16:58:53 2018</div><div class="line">Start loop 1 at : Tue Jul 17 16:58:53 2018</div><div class="line">我是参数  李美丽</div><div class="line">Start loop 2 at : Tue Jul 17 16:58:53 2018</div><div class="line">我是参数  王大鹏 和参数   王小鹏</div><div class="line">Main end --------- Tue Jul 17 16:58:53 2018</div><div class="line">End loop 2 at: Tue Jul 17 16:58:55 2018</div><div class="line">End loop 1 at: Tue Jul 17 16:58:57 2018</div></pre></td></tr></table></figure></p>
+<p>可以发现虽然 主线程mian继续往下执行，没有等待实现了异步，然而已经启动的线程t1和t2依然执行</p>
+<ul>
+<li><p>join(self, timeout=None)  </p>
+<ul>
+<li><p>.join()将会使主调线程堵塞，直到被调用线程运行结束或超时；例如主线程mian创建启动t1线程，这个时候主线程要等待t1执行完毕，主线程main方可继续向下执行</p>
+</li>
+<li><p>timeout=None(秒) 参数表示超时时间，主线程在此堵塞时间，过时不候，需要注意的是t1线程依然会在后台执行</p>
+</li>
+<li><p>设置start()启动后</p>
+</li>
+</ul>
+</li>
+<li><p>setDaemon(daemonic)   设置守护线程，表示并不重要</p>
+<ul>
+<li><p>t1.setDaemon(True)相当于把t1设置线程守护，要是主线程main执行完毕，就不管t1线程是否完毕已经不重要，一并退出，恰恰与join相反</p>
+</li>
+<li><p>设置start()启动前才有效</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><ul>
+<li><p><code>.currentThread：</code> 返回当前线程变量</p>
+</li>
+<li><p><code>.enumerate:</code>  返回一个包含正在运行的线程的list，正在运行的线程指的是线程启动后，结束前的状态</p>
+</li>
+<li><p><code>.activeCount:</code> 返回正在运行的线程数量，效果跟 <code>len(threading.enumerate)</code> 相同</p>
+</li>
+<li><p><code>.setName:</code> 给线程设置名字</p>
+</li>
+<li><p><code>.getName:</code> 得到线程的名字</p>
+</li>
+<li><p><code>.isAlivel/is_alive</code> 返回这个线程是否还存活</p>
+</li>
+<li><p><code>.isDecmon</code> 是否为守护线程</p>
+</li>
+</ul>
+<h3 id="线程锁-Lock-amp-RLock"><a href="#线程锁-Lock-amp-RLock" class="headerlink" title="线程锁 Lock &amp; RLock"></a>线程锁 Lock &amp; RLock</h3><p>在threading模块中，定义两种类型的琐：<code>threading.Lock</code> 和 <code>threading.RLock</code></p>
+<p>它们之间有一点细微的区别，通过比较下面两段代码来说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading</div><div class="line">lock = threading.Lock()	<span class="comment">#Lock对象</span></div><div class="line">lock.acquire()</div><div class="line">lock.acquire()  <span class="comment">#产生了死琐。</span></div><div class="line">lock.release()</div><div class="line">lock.release()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading</div><div class="line">rLock = threading.RLock()  <span class="comment">#RLock对象</span></div><div class="line">rLock.acquire()</div><div class="line">rLock.acquire()	<span class="comment">#在同一线程内，程序不会堵塞。</span></div><div class="line">rLock.release()</div><div class="line">rLock.release()</div></pre></td></tr></table></figure>
+<p>这两种琐的主要区别是：</p>
+<blockquote>
+<p>RLock允许在同一线程中被多次acquire。而Lock却不允许这种情况。</p>
+</blockquote>
+<p><code>注意：如果使用RLock，那么acquire和release必须成对出现，即调用了n次acquire，必须调用n次的release才能真正释放所占用的琐。</code></p>
+<p>Lock 对象和 with 语句块一起使用可以保证互斥执行，就是每次只有一个线程可以执行 with 语句包含的代码块。with 语句会在这个代码块执行前自动获取锁，在执行结束后自动释放锁。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> lock:</div><div class="line">	<span class="comment"># do something</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">lock = threading.Lock()</div><div class="line">thread_list = []</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadClass</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, threadName)</span>:</span></div><div class="line">        threading.Thread.__init__(self)</div><div class="line">        self.threadName = threadName</div><div class="line"></div><div class="line">    <span class="comment"># run函数必须实现</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment"># with 支持自动枷锁，解锁</span></div><div class="line">        <span class="keyword">with</span> lock:</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</div><div class="line">                print(<span class="string">'&#123;&#125;'</span>.format(self.threadName), <span class="string">':'</span>, str(i))</div><div class="line">                time.sleep(<span class="number">2</span>)</div><div class="line"></div><div class="line">        <span class="comment"># lock.acquire()  # 加锁</span></div><div class="line">        <span class="comment"># for i in range(0, 10):</span></div><div class="line">        <span class="comment">#     print('&#123;&#125;'.format(self.threadName), ':', str(i))</span></div><div class="line">        <span class="comment">#     time.sleep(2)</span></div><div class="line">        <span class="comment"># lock.release()  # 解锁</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</div><div class="line">    thread = ThreadClass(<span class="string">'thread &#123;&#125;'</span>.format(i))</div><div class="line">    thread_list.append(thread)</div><div class="line">    thread.start()</div><div class="line"></div><div class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> thread_list:</div><div class="line">    <span class="keyword">if</span> thread:</div><div class="line">        thread.join()</div></pre></td></tr></table></figure>
 </the></excerpt>]]></content>
     </entry>
     

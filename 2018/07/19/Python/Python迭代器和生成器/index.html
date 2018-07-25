@@ -39,7 +39,7 @@
 <meta property="og:url" content="http://nenglee.com/2018/07/19/Python/Python迭代器和生成器/index.html">
 <meta property="og:site_name" content="Neng Lee">
 <meta property="og:description" content="由于生成器自动实现了迭代器协议，而迭代器协议也是一个较为抽象的概念，所以有必要好好了解一下">
-<meta property="og:updated_time" content="2018-07-19T18:56:47.145Z">
+<meta property="og:updated_time" content="2018-07-20T01:25:09.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 迭代器和生成器">
 <meta name="twitter:description" content="由于生成器自动实现了迭代器协议，而迭代器协议也是一个较为抽象的概念，所以有必要好好了解一下">
@@ -210,14 +210,17 @@
 <the rest="" of="" contents="" |="" 余下全文="">
 
 <hr>
-<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>Python中 <strong>list，truple，str，dict</strong> 这些都可以被迭代，俗称可迭代对象(Iterable)，但他们并不是迭代器(Iterator)。为什么？</p>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>Python中 <strong>list，truple，str，dict</strong> 这些都可以被迭代，俗称可迭代对象 (Iterable) ，但他们并不是迭代器 (Iterator) 。为什么？</p>
 <p>因为和迭代器相比有一个很大的不同，<code>ist/truple/map/dict</code> 这些数据的大小是确定的，是可知。但迭代器不是，迭代器不知道要执行多少次，所以可以理解为不知道有多少个元素，每调用一次next()，就会往下走一步，是惰性的。</p>
 <h4 id="迭代对象-Iterable"><a href="#迭代对象-Iterable" class="headerlink" title="迭代对象(Iterable)"></a>迭代对象(Iterable)</h4><p>直接作用于<code>for循环</code>的变量</p>
 <h4 id="迭代器-Iterator"><a href="#迭代器-Iterator" class="headerlink" title="迭代器(Iterator)"></a>迭代器(Iterator)</h4><p>不但可以作用于<code>for循环</code>，还可以提供<code>next()</code>方法</p>
 <ul>
-<li>list是典型的可迭代对象，但不是迭代器</li>
-<li>迭代器一定是可迭代对象，反过过来就不一定</li>
-<li>可迭代对象可以通过内置 iter() 函数转换成迭代器</li>
+<li><p>list是典型的可迭代对象，但不是迭代器</p>
+</li>
+<li><p>迭代器一定是可迭代对象，反过过来就不一定</p>
+</li>
+<li><p>可迭代对象可以通过内置 iter() 函数转换成迭代器</p>
+</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">iter</span><span class="params">(source, sentinel=None)</span>:</span> <span class="comment"># known special case of iter</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    iter(iterable) -&gt; iterator</div><div class="line">    iter(callable, sentinel) -&gt; iterator</div><div class="line"></div><div class="line">    Get an iterator from an object.  In the first form, the argument must</div><div class="line">    supply its own iterator, or be a sequence.</div><div class="line">    In the second form, the callable is called until it returns the sentinel.</div><div class="line">    """</div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
 <h4 id="迭代器协议"><a href="#迭代器协议" class="headerlink" title="迭代器协议"></a>迭代器协议</h4><ul>
@@ -285,6 +288,12 @@
 
         
   <nav class="post-nav">
+    
+      <a class="prev" href="/2018/07/24/Python/Selenium/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Selenium</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
     
     
       <a class="next" href="/2018/07/17/Python/Python队列/">
