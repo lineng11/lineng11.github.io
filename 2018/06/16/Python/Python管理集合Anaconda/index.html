@@ -39,7 +39,7 @@
 <meta property="og:url" content="http://nenglee.com/2018/06/16/Python/Python管理集合Anaconda/index.html">
 <meta property="og:site_name" content="Neng Lee">
 <meta property="og:description" content="Anaconda是专注于数据分析的Python发行版本，包含了 conda、Python等190多个科学包及其依赖项 。">
-<meta property="og:updated_time" content="2018-07-04T16:05:56.682Z">
+<meta property="og:updated_time" content="2018-07-26T10:16:30.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python管理集合Anaconda">
 <meta name="twitter:description" content="Anaconda是专注于数据分析的Python发行版本，包含了 conda、Python等190多个科学包及其依赖项 。">
@@ -196,7 +196,7 @@
       <div class="post-toc" id="post-toc">
         <h2 class="post-toc-title">文章目录</h2>
         <div class="post-toc-content">
-          <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#conda管理"><span class="toc-text">conda管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda-安装"><span class="toc-text">conda 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda-删除"><span class="toc-text">conda 删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda-更新"><span class="toc-text">conda 更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#code-查询当前存在的包"><span class="toc-text">code 查询当前存在的包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境管理"><span class="toc-text">环境管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建新环境"><span class="toc-text">创建新环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示所有环境"><span class="toc-text">显示所有环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进入环境"><span class="toc-text">进入环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#退出环境"><span class="toc-text">退出环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除env-name环境"><span class="toc-text">删除env_name环境</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#conda管理"><span class="toc-text">conda管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda-安装"><span class="toc-text">conda 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda-删除"><span class="toc-text">conda 删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda-更新"><span class="toc-text">conda 更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#code-查询当前存在的包"><span class="toc-text">code 查询当前存在的包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境管理"><span class="toc-text">环境管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建新环境"><span class="toc-text">创建新环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示所有环境"><span class="toc-text">显示所有环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进入环境"><span class="toc-text">进入环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#退出环境"><span class="toc-text">退出环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除env-name环境"><span class="toc-text">删除env_name环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置镜像"><span class="toc-text">设置镜像</span></a></li></ol>
         </div>
       </div>
     
@@ -219,11 +219,19 @@
 <h4 id="code-查询当前存在的包"><a href="#code-查询当前存在的包" class="headerlink" title="code 查询当前存在的包"></a>code 查询当前存在的包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda list</div></pre></td></tr></table></figure>
 <h3 id="环境管理"><a href="#环境管理" class="headerlink" title="环境管理"></a>环境管理</h3><p>在conda中可以建立多个虚拟环境，用于隔离不同项目所需的不同版本的工具包，以防止版本上的冲突。对纠结于 Python 版本的同学们，我们也可以建立 Python2 和 Python3 两个环境，来分别运行不同版本的 Python 代码。</p>
 <p>默认环境是Base，当然你也可以创建一个新的环境</p>
-<h4 id="创建新环境"><a href="#创建新环境" class="headerlink" title="创建新环境"></a>创建新环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">conda create -n env_name list of packages</div><div class="line"></div><div class="line"><span class="comment">#env_name是：需要创建的环境名称</span></div><div class="line"><span class="comment">#list of packages是：列出新环境中需要的安装工具包</span></div><div class="line"></div><div class="line"><span class="comment">#例如</span></div><div class="line">conda create -n py2 python=2.7 pandas</div><div class="line"><span class="comment">#env 目录下面有一个名为 py2的pyhton环境</span></div></pre></td></tr></table></figure>
+<h4 id="创建新环境"><a href="#创建新环境" class="headerlink" title="创建新环境"></a>创建新环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">conda create -n env_name list of packages</div><div class="line"></div><div class="line"><span class="comment">#env_name是：需要创建的环境名称</span></div><div class="line"><span class="comment">#list of packages是：列出新环境中需要的安装工具包</span></div><div class="line"></div><div class="line"><span class="comment">#例如</span></div><div class="line">conda create -n env_py2 python=3.6.5  </div><div class="line"><span class="comment">#env 目录下面有一个名为 env_py2的pyhton3.6.5环境</span></div></pre></td></tr></table></figure>
 <h4 id="显示所有环境"><a href="#显示所有环境" class="headerlink" title="显示所有环境"></a>显示所有环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda env list</div></pre></td></tr></table></figure>
 <h4 id="进入环境"><a href="#进入环境" class="headerlink" title="进入环境"></a>进入环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">activate  env_name</div></pre></td></tr></table></figure>
 <h4 id="退出环境"><a href="#退出环境" class="headerlink" title="退出环境"></a>退出环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">deactivate</div></pre></td></tr></table></figure>
 <h4 id="删除env-name环境"><a href="#删除env-name环境" class="headerlink" title="删除env_name环境"></a>删除env_name环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda env remove -n env_name</div></pre></td></tr></table></figure>
+<h4 id="设置镜像"><a href="#设置镜像" class="headerlink" title="设置镜像"></a>设置镜像</h4><ul>
+<li><p>添加Anaconda的TUNA镜像</p>
+<p><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</code></p>
+</li>
+<li><p>设置搜索时显示通道地址</p>
+<p><code>conda config --set show_channel_urls yes</code></p>
+</li>
+</ul>
 </the></excerpt>
       
     </div>

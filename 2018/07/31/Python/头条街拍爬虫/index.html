@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="头条街拍爬虫"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/07/31/Python/头条街拍爬虫/"/>
+
+
+<meta name="description" content="爬取今日头条的街拍内容，提取title以及组图，并且通过多线程爬取数据下载图片。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="头条街拍爬虫">
+<meta property="og:url" content="http://nenglee.com/2018/07/31/Python/头条街拍爬虫/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="爬取今日头条的街拍内容，提取title以及组图，并且通过多线程爬取数据下载图片。">
+<meta property="og:updated_time" content="2018-07-31T08:26:24.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="头条街拍爬虫">
+<meta name="twitter:description" content="爬取今日头条的街拍内容，提取title以及组图，并且通过多线程爬取数据下载图片。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> 头条街拍爬虫 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          头条街拍爬虫
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年7月31日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备分析"><span class="toc-text">准备分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-coda"><span class="toc-text">python - coda</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>爬取今日头条的街拍内容，提取title以及组图，并且通过多线程爬取数据下载图片。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="准备分析"><a href="#准备分析" class="headerlink" title="准备分析"></a>准备分析</h3><ul>
+<li>requests 请求库</li>
+<li>pyquery 抓取数据</li>
+<li>re 正则表达式</li>
+</ul>
+<p>分析原网页，主要是类容详情页面，有俩种版面样式：</p>
+<ol>
+<li><p>组图显示 1/n</p>
+</li>
+<li><p>列表页面</p>
+</li>
+</ol>
+<h3 id="python-coda"><a href="#python-coda" class="headerlink" title="python - coda"></a>python - coda</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</div><div class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</div><div class="line"></div><div class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlparse</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</div><div class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</div><div class="line"></div><div class="line">HTTPDOMAIN = <span class="string">'toutiao.com'</span></div><div class="line">STAR = <span class="number">1</span></div><div class="line">END = <span class="number">20</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_page_index</span><span class="params">(offset, keyword=<span class="string">'街拍'</span>)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    获取首页 index  JSON内容</div><div class="line">    :param offset:  起始页面</div><div class="line">    :param keyword: 关键字</div><div class="line">    :return: 页面的内容</div><div class="line">    '''</div><div class="line">    payload = &#123;</div><div class="line">        <span class="string">'offset'</span>: offset,</div><div class="line">        <span class="string">'format'</span>: <span class="string">'json'</span>,</div><div class="line">        <span class="string">'keyword'</span>: keyword,</div><div class="line">        <span class="string">'autoload'</span>: <span class="string">'true'</span>,</div><div class="line">        <span class="string">'count'</span>: <span class="string">'20'</span>,</div><div class="line">        <span class="string">'cur_tab'</span>: <span class="string">'1'</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    url = <span class="string">'https://www.toutiao.com/search_content/?'</span></div><div class="line"></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        rep = requests.get(url, params=payload)</div><div class="line">        <span class="keyword">if</span> rep.status_code == <span class="number">200</span>:</div><div class="line">            <span class="keyword">return</span> rep.text</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">    <span class="keyword">except</span> requests.RequestExcption <span class="keyword">as</span>  e:</div><div class="line">        print(<span class="string">'请求Exception：'</span>, e)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_page_index</span><span class="params">(html)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    解析html 获取详情页面的URL</div><div class="line">    :param html: 首页内容</div><div class="line">    :return:详情的url</div><div class="line">    '''</div><div class="line">    data = json.loads(html)</div><div class="line">    <span class="keyword">if</span> data <span class="keyword">and</span> <span class="string">'data'</span> <span class="keyword">in</span> data.keys():</div><div class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> data.get(<span class="string">'data'</span>):</div><div class="line">            <span class="keyword">yield</span> item.get(<span class="string">'article_url'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_page_detail</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    用正则RE 解析提取俩种不同排版的页面</div><div class="line">    :param url: 详情URL</div><div class="line">    :return: 字典  title：标题  url：详情页面  imageUrl：[组图url] ---&gt; list</div><div class="line">    '''</div><div class="line">    rep = requests.get(url)</div><div class="line">    <span class="keyword">if</span> rep.status_code == <span class="number">200</span>:</div><div class="line">        content = pq(rep.text)</div><div class="line">        title = content(<span class="string">'title'</span>).text()</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="comment"># 情况一：组图是翻页形式 1/n</span></div><div class="line">            pattern1 = re.compile(<span class="string">'gallery:\sJSON.parse\("(.*?)"\),\s*?'</span>, re.S)  <span class="comment"># 正则表达式对象</span></div><div class="line">            result = re.search(pattern1, content.html())  <span class="comment"># 全文查找</span></div><div class="line">            <span class="keyword">if</span> result:</div><div class="line">                result = re.sub(<span class="string">r'\\'</span>, <span class="string">''</span>, result.group(<span class="number">1</span>))  <span class="comment"># 替换</span></div><div class="line">                <span class="keyword">if</span> result: data = json.loads(result)</div><div class="line">                <span class="keyword">if</span> data <span class="keyword">and</span> <span class="string">'sub_images'</span> <span class="keyword">in</span> data.keys():</div><div class="line">                    imageUrl = [item.get(<span class="string">'url'</span>) <span class="keyword">for</span> item <span class="keyword">in</span> data.get(<span class="string">'sub_images'</span>)]</div><div class="line">                    <span class="keyword">for</span> image <span class="keyword">in</span> imageUrl:</div><div class="line">                        save_image(doimload_image(image))</div><div class="line">                    <span class="keyword">return</span> &#123;</div><div class="line">                        <span class="string">'title'</span>: title,</div><div class="line">                        <span class="string">'url'</span>: url,</div><div class="line">                        <span class="string">'imageUrl'</span>: imageUrl</div><div class="line">                    &#125;</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="comment"># 情况二:组团竖排排列在一个页面</span></div><div class="line">                result2 = re.search(<span class="string">'articleInfo:.*?content:\s(.*?),*?groupId'</span>, content.html(), re.S)</div><div class="line">                result3 = re.findall(re.compile(<span class="string">'#x3D;&amp;amp;quot;(http.*?)&amp;amp;'</span>, re.S), result2.group(<span class="number">1</span>))</div><div class="line">                imageUrl = [url <span class="keyword">for</span> url <span class="keyword">in</span> result3]</div><div class="line">                <span class="keyword">for</span> images <span class="keyword">in</span> imageUrl:</div><div class="line">                    save_image(doimload_image(images))</div><div class="line">                <span class="keyword">return</span> &#123;</div><div class="line">                    <span class="string">'title'</span>: title,</div><div class="line">                    <span class="string">'url'</span>: url,</div><div class="line">                    <span class="string">'imageUrl'</span>: imageUrl</div><div class="line">                &#125;</div><div class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span>  e:</div><div class="line">            print(url)</div><div class="line">            print(<span class="string">'Exception ：'</span>, e)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">doimload_image</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        reponse = requests.get(url)</div><div class="line">        <span class="keyword">if</span> reponse.status_code == <span class="number">200</span>:</div><div class="line">            <span class="keyword">return</span> reponse.content</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">    <span class="keyword">except</span> RecursionError:</div><div class="line">        print(<span class="string">'请求异常: '</span>, url)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_image</span><span class="params">(content)</span>:</span></div><div class="line">    <span class="keyword">import</span> os</div><div class="line">    file_path = <span class="string">'&#123;0&#125;/&#123;1&#125;.&#123;2&#125;'</span>.format(os.getcwd() + <span class="string">'\image'</span>, md5(content).hexdigest(), <span class="string">'jpg'</span>)</div><div class="line"></div><div class="line">    image = Image.open(BytesIO(content))</div><div class="line">    image.save(file_path)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(offset)</span>:</span></div><div class="line">    html = get_page_index(offset)</div><div class="line">    <span class="keyword">for</span> url <span class="keyword">in</span> parse_page_index(html):</div><div class="line">        <span class="keyword">if</span> urlparse(url)[<span class="number">1</span>] == HTTPDOMAIN:</div><div class="line">            result = parse_page_detail(url)</div><div class="line">            print(result)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    groups = [x * <span class="number">20</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(STAR, END + <span class="number">1</span>)]</div><div class="line">    print(groups)</div><div class="line">    pool = Pool(<span class="number">5</span>)</div><div class="line">    pool.map(main, groups)</div><div class="line">    pool.close()  <span class="comment"># 执行完close后不会有新的进程加入到pool,join函数等待所有子进程结束</span></div><div class="line">    pool.join()  <span class="comment"># 等待进程运行完毕，先调用close函数，否则会出错</span></div></pre></td></tr></table></figure>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/07/24/Python/Selenium/">
+        <span class="next-text nav-default">Selenium</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/07/31/Python/头条街拍爬虫/"
+           data-title="头条街拍爬虫" data-url="http://nenglee.com/2018/07/31/Python/头条街拍爬虫/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>
