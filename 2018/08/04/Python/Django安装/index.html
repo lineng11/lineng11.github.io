@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Django安装"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/08/04/Python/Django安装/"/>
+
+
+<meta name="description" content="Django自称是“能够很好地应对应用上线的Web框架”，在开发之前，有必须安装必要的组件。这里包括依赖组件和Django本身。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django安装">
+<meta property="og:url" content="http://nenglee.com/2018/08/04/Python/Django安装/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="Django自称是“能够很好地应对应用上线的Web框架”，在开发之前，有必须安装必要的组件。这里包括依赖组件和Django本身。">
+<meta property="og:updated_time" content="2018-08-06T17:39:40.246Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django安装">
+<meta name="twitter:description" content="Django自称是“能够很好地应对应用上线的Web框架”，在开发之前，有必须安装必要的组件。这里包括依赖组件和Django本身。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Django安装 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Django安装
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年8月4日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载Django"><span class="toc-text">卸载Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pip命名异常解决"><span class="toc-text">pip命名异常解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个Django"><span class="toc-text">创建一个Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动Django"><span class="toc-text">启动Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建App应用"><span class="toc-text">创建App应用</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>Django自称是“能够很好地应对应用上线的Web框架”，在开发之前，有必须安装必要的组件。这里包括依赖组件和Django本身。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>用python pip 安装Django</p>
+<p><code>pip install django==1.8.2</code></p>
+<p>安装成功如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Collecting django==1.8.2</div><div class="line">  Downloading https://files.pythonhosted.org/packages/4e/9d/2a1835ccbf8e1f0d6755</div><div class="line">d0e938ffd855f23886d055a7a18cc00a5224a99b/Django-1.8.2-py2.py3-none-any.whl (6.2M</div><div class="line">B)</div><div class="line">    100% |████████████████████████████████| 6.2MB 2M/s</div><div class="line">Installing collected packages: django</div><div class="line">Successfully installed django-1.8.2</div></pre></td></tr></table></figure></p>
+<ul>
+<li>检查Django是否安装成功</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#进入python - code</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> django</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>django.VERSION</div><div class="line">(<span class="number">1</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="string">'final'</span>, <span class="number">0</span>)</div></pre></td></tr></table></figure>
+<h3 id="卸载Django"><a href="#卸载Django" class="headerlink" title="卸载Django"></a>卸载Django</h3><p><code>pip uninsstall django</code></p>
+<h3 id="pip命名异常解决"><a href="#pip命名异常解决" class="headerlink" title="pip命名异常解决"></a>pip命名异常解决</h3><p>虽然安装过程中选择了pip，但是在命令行输入pip后仍然不能成功，尝试一下方法，终于解决问题:</p>
+<ul>
+<li>使用下面的语句确保没有报错了</li>
+</ul>
+<p><code>python -m ensurepip</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Requirement already satisfied: setuptools in e:\program files (x86)\anaconda3-5.</div><div class="line">2.0\lib\site-packages</div><div class="line">Requirement already satisfied: pip in e:\program files (x86)\anaconda3-5.2.0\lib</div><div class="line">\site-packages</div></pre></td></tr></table></figure>
+<ul>
+<li><p>使用pip -V命令查</p>
+<p><code>pip -V</code> 或者 <code>pip --version</code></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pip 18.0 from e:\program files (x86)\anaconda3-5.2.0\lib\site-packages\pip (pyth</div><div class="line">on 3.6)</div></pre></td></tr></table></figure>
+<ul>
+<li>可能是环境没配置好，所以更新一下pip</li>
+</ul>
+<p><code>python -m pip install --upgrade pip</code></p>
+<h3 id="创建一个Django"><a href="#创建一个Django" class="headerlink" title="创建一个Django"></a>创建一个Django</h3><p>命令：</p>
+<p><code>django-admin.py startproject XXX(工程名)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(django) F:\Python\Django&gt;django-admin.py startproject new_test</div></pre></td></tr></table></figure>
+<ul>
+<li>如果出现以下问题：</li>
+</ul>
+<blockquote>
+<p>python: can’t open file ‘django-admin.py’: [Errno 2] No such file or directory</p>
+</blockquote>
+<p>如果没猜错你是在 <strong>env虚拟环境</strong> 下创建的工程</p>
+<ul>
+<li><p>确保django是否安装正确</p>
+<p><code>conda list</code></p>
+<p>如果没有？ django</p>
+<p>那么请执行安装虚拟环境下的django</p>
+<p><code>conda install django</code></p>
+</li>
+</ul>
+<h3 id="启动Django"><a href="#启动Django" class="headerlink" title="启动Django"></a>启动Django</h3><p><code>python manage.py runserver</code></p>
+<p>在pyCharm运行配置：</p>
+<ul>
+<li><p>注意 <code>File | Settings | Project: new_project | Project Interpreter</code> 添加env虚拟的python，确保有Django</p>
+</li>
+<li><p>运行 run设置 <code>Parameters : runserver</code></p>
+</li>
+</ul>
+<h3 id="创建App应用"><a href="#创建App应用" class="headerlink" title="创建App应用"></a>创建App应用</h3><p><code>python manage.py startapp Blog(业务名)</code></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/08/07/Python/Django-urls路由/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Django-urls路由</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/07/31/Python/头条街拍爬虫/">
+        <span class="next-text nav-default">头条街拍爬虫</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/08/04/Python/Django安装/"
+           data-title="Django安装" data-url="http://nenglee.com/2018/08/04/Python/Django安装/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

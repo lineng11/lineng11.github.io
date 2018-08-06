@@ -4,6 +4,86 @@
   
     
     <entry>
+      <title><![CDATA[Django-urls路由]]></title>
+      <url>http://nenglee.com/2018/08/07/Python/Django-urls%E8%B7%AF%E7%94%B1/</url>
+      <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
+
+<p>Django的路由分发，相当于分发室，同http请求路径启动不同的app业务</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="总urls路由管理"><a href="#总urls路由管理" class="headerlink" title="总urls路由管理"></a>总urls路由管理</h3><pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#urls.py</span></div><div class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> views <span class="keyword">as</span> tv     <span class="comment">#blog是一个app</span></div><div class="line"></div><div class="line">url(<span class="string">r'^myblog/'</span>, tv.myblog),`</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># views.py</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">myblog</span><span class="params">(request)</span>:</span></div><div class="line">    print(<span class="string">'---myblog-----'</span>)</div><div class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">'Hello World，myblog'</span>)</div></pre></td></tr></table></figure>
+</code></pre><h3 id="app自己管理"><a href="#app自己管理" class="headerlink" title="app自己管理"></a>app自己管理</h3><pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#urls.py</span></div><div class="line"> <span class="keyword">from</span> teacher <span class="keyword">import</span> teacher_url    <span class="comment">#thacher是一个app</span></div><div class="line"> url(<span class="string">r'^teacher/'</span>, include(teacher_url)),     <span class="comment">#teacher_url.py teacher路由分发</span></div><div class="line"></div><div class="line"> <span class="comment">#teacher_url.py</span></div><div class="line"> <span class="keyword">from</span> teacher <span class="keyword">import</span> views <span class="keyword">as</span> tv</div><div class="line"> url(<span class="string">r'^info/'</span>, tv.teacher_ifno),     <span class="comment">#teacher_url.py teacher路由分发</span></div><div class="line"></div><div class="line"> <span class="comment">#views.py</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">teacher_ifno</span><span class="params">(request)</span>:</span></div><div class="line">  <span class="keyword">return</span> HttpResponse(<span class="string">'teacher info content...'</span>)</div></pre></td></tr></table></figure>
+</code></pre><h3 id="路由反向解析-得到请求全路径"><a href="#路由反向解析-得到请求全路径" class="headerlink" title="路由反向解析[得到请求全路径]"></a>路由反向解析[得到请求全路径]</h3>  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#urls.py</span></div><div class="line"> <span class="keyword">from</span> teacher <span class="keyword">import</span> teacher_url    <span class="comment">#thacher是一个app</span></div><div class="line"> url(<span class="string">r'^teacher/'</span>, include(teacher_url)),     <span class="comment">#teacher_url.py teacher路由分发</span></div><div class="line"></div><div class="line"> <span class="comment">#teacher_url.py</span></div><div class="line"> <span class="keyword">from</span> teacher <span class="keyword">import</span> views <span class="keyword">as</span> tv</div><div class="line"> url(<span class="string">r'^xxxxx随便跟换不影响/'</span>, tv.teacher_urls, name=<span class="string">'urls'</span>),     <span class="comment">#info</span></div><div class="line"></div><div class="line"> <span class="comment">#views.py</span></div><div class="line"> <span class="keyword">from</span> django.core.urlresolvers <span class="keyword">import</span> reverse</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">teacher_urls</span><span class="params">(request)</span>:</span></div><div class="line">  <span class="keyword">return</span> HttpResponse(<span class="string">'teacher url：&#123;0&#125;'</span>.format&#123;reverse(<span class="string">'urls'</span>)&#125;)</div></pre></td></tr></table></figure>
+</the></excerpt>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Django安装]]></title>
+      <url>http://nenglee.com/2018/08/04/Python/Django%E5%AE%89%E8%A3%85/</url>
+      <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
+
+<p>Django自称是“能够很好地应对应用上线的Web框架”，在开发之前，有必须安装必要的组件。这里包括依赖组件和Django本身。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>用python pip 安装Django</p>
+<p><code>pip install django==1.8.2</code></p>
+<p>安装成功如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Collecting django==1.8.2</div><div class="line">  Downloading https://files.pythonhosted.org/packages/4e/9d/2a1835ccbf8e1f0d6755</div><div class="line">d0e938ffd855f23886d055a7a18cc00a5224a99b/Django-1.8.2-py2.py3-none-any.whl (6.2M</div><div class="line">B)</div><div class="line">    100% |████████████████████████████████| 6.2MB 2M/s</div><div class="line">Installing collected packages: django</div><div class="line">Successfully installed django-1.8.2</div></pre></td></tr></table></figure></p>
+<ul>
+<li>检查Django是否安装成功</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#进入python - code</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> django</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>django.VERSION</div><div class="line">(<span class="number">1</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="string">'final'</span>, <span class="number">0</span>)</div></pre></td></tr></table></figure>
+<h3 id="卸载Django"><a href="#卸载Django" class="headerlink" title="卸载Django"></a>卸载Django</h3><p><code>pip uninsstall django</code></p>
+<h3 id="pip命名异常解决"><a href="#pip命名异常解决" class="headerlink" title="pip命名异常解决"></a>pip命名异常解决</h3><p>虽然安装过程中选择了pip，但是在命令行输入pip后仍然不能成功，尝试一下方法，终于解决问题:</p>
+<ul>
+<li>使用下面的语句确保没有报错了</li>
+</ul>
+<p><code>python -m ensurepip</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Requirement already satisfied: setuptools in e:\program files (x86)\anaconda3-5.</div><div class="line">2.0\lib\site-packages</div><div class="line">Requirement already satisfied: pip in e:\program files (x86)\anaconda3-5.2.0\lib</div><div class="line">\site-packages</div></pre></td></tr></table></figure>
+<ul>
+<li><p>使用pip -V命令查</p>
+<p><code>pip -V</code> 或者 <code>pip --version</code></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pip 18.0 from e:\program files (x86)\anaconda3-5.2.0\lib\site-packages\pip (pyth</div><div class="line">on 3.6)</div></pre></td></tr></table></figure>
+<ul>
+<li>可能是环境没配置好，所以更新一下pip</li>
+</ul>
+<p><code>python -m pip install --upgrade pip</code></p>
+<h3 id="创建一个Django"><a href="#创建一个Django" class="headerlink" title="创建一个Django"></a>创建一个Django</h3><p>命令：</p>
+<p><code>django-admin.py startproject XXX(工程名)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(django) F:\Python\Django&gt;django-admin.py startproject new_test</div></pre></td></tr></table></figure>
+<ul>
+<li>如果出现以下问题：</li>
+</ul>
+<blockquote>
+<p>python: can’t open file ‘django-admin.py’: [Errno 2] No such file or directory</p>
+</blockquote>
+<p>如果没猜错你是在 <strong>env虚拟环境</strong> 下创建的工程</p>
+<ul>
+<li><p>确保django是否安装正确</p>
+<p><code>conda list</code></p>
+<p>如果没有？ django</p>
+<p>那么请执行安装虚拟环境下的django</p>
+<p><code>conda install django</code></p>
+</li>
+</ul>
+<h3 id="启动Django"><a href="#启动Django" class="headerlink" title="启动Django"></a>启动Django</h3><p><code>python manage.py runserver</code></p>
+<p>在pyCharm运行配置：</p>
+<ul>
+<li><p>注意 <code>File | Settings | Project: new_project | Project Interpreter</code> 添加env虚拟的python，确保有Django</p>
+</li>
+<li><p>运行 run设置 <code>Parameters : runserver</code></p>
+</li>
+</ul>
+<h3 id="创建App应用"><a href="#创建App应用" class="headerlink" title="创建App应用"></a>创建App应用</h3><p><code>python manage.py startapp Blog(业务名)</code></p>
+</the></excerpt>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[头条街拍爬虫]]></title>
       <url>http://nenglee.com/2018/07/31/Python/%E5%A4%B4%E6%9D%A1%E8%A1%97%E6%8B%8D%E7%88%AC%E8%99%AB/</url>
       <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
@@ -849,7 +929,7 @@ third item
 <h4 id="显示所有环境"><a href="#显示所有环境" class="headerlink" title="显示所有环境"></a>显示所有环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda env list</div></pre></td></tr></table></figure>
 <h4 id="进入环境"><a href="#进入环境" class="headerlink" title="进入环境"></a>进入环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">activate  env_name</div></pre></td></tr></table></figure>
 <h4 id="退出环境"><a href="#退出环境" class="headerlink" title="退出环境"></a>退出环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">deactivate</div></pre></td></tr></table></figure>
-<h4 id="删除env-name环境"><a href="#删除env-name环境" class="headerlink" title="删除env_name环境"></a>删除env_name环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda env remove -n env_name</div></pre></td></tr></table></figure>
+<h4 id="删除env-name环境"><a href="#删除env-name环境" class="headerlink" title="删除env_name环境"></a>删除env_name环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">conda env remove -n env_name</div><div class="line"></div><div class="line">或者</div><div class="line"></div><div class="line">conda remove -n my_env --all</div></pre></td></tr></table></figure>
 <h4 id="设置镜像"><a href="#设置镜像" class="headerlink" title="设置镜像"></a>设置镜像</h4><ul>
 <li><p>添加Anaconda的TUNA镜像</p>
 <p><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</code></p>
