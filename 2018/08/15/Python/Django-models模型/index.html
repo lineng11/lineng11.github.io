@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Django-models模型"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/08/15/Python/Django-models模型/"/>
+
+
+<meta name="description" content="Models模型数据唯一而且准确的信息来源，它包含您正在储存的数据的重要字段和行为。一般来说，每一个模型都映射一个数据库表。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-models模型">
+<meta property="og:url" content="http://nenglee.com/2018/08/15/Python/Django-models模型/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="Models模型数据唯一而且准确的信息来源，它包含您正在储存的数据的重要字段和行为。一般来说，每一个模型都映射一个数据库表。">
+<meta property="og:updated_time" content="2018-08-20T08:12:03.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django-models模型">
+<meta name="twitter:description" content="Models模型数据唯一而且准确的信息来源，它包含您正在储存的数据的重要字段和行为。一般来说，每一个模型都映射一个数据库表。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Django-models模型 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Django-models模型
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年8月15日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Models"><span class="toc-text">Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ORM"><span class="toc-text">ORM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建字段"><span class="toc-text">创建字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库生成"><span class="toc-text">数据库生成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看sql"><span class="toc-text">查看sql</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QuerySet-API"><span class="toc-text">QuerySet API</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>Models模型数据唯一而且准确的信息来源，它包含您正在储存的数据的重要字段和行为。一般来说，每一个模型都映射一个数据库表。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><ul>
+<li><p>通常，一个Models对应数据库的一张数据表</p>
+</li>
+<li><p>Django中Models以类的形式表现</p>
+</li>
+<li><p>它包含了一些基本字段以及数据的一些行为</p>
+</li>
+</ul>
+<h3 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h3><ul>
+<li><p>对象关系映射 （Object Relation Mapping）</p>
+</li>
+<li><p>实现了对象和数据库之间的映射</p>
+</li>
+<li><p>隐藏了数据访问细节，不需要编写SQL语句</p>
+<p>表名  &lt;－－－－－－－&gt; 类名</p>
+<p>字段  &lt;－－－－－－－&gt; 属性</p>
+<p>表记录 &lt;－－－－－－－&gt;类实例对象</p>
+</li>
+</ul>
+<h3 id="创建字段"><a href="#创建字段" class="headerlink" title="创建字段"></a>创建字段</h3><p>  字段即类里的属性（变量）</p>
+<p>  <code>attr = models.CharField(max_length = 32)</code></p>
+<p>  模型定义了一个 Article, 其拥有 title 和 content:</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> modles</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(modles.Modle)</span>:</span></div><div class="line">  <span class="string">'''</span></div><div class="line">  模型商品</div><div class="line">  '''</div><div class="line">  title = models.CharField(max_length=<span class="number">32</span>, default=<span class="string">'Title'</span>)</div><div class="line">  content = models.TextField(null = <span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<p>  关于Model Field的字段类型：<a href="https://docs.djangoproject.com/en/1.10/ref/models/fields/" target="_blank" rel="external">参考官方文档</a></p>
+<h3 id="数据库生成"><a href="#数据库生成" class="headerlink" title="数据库生成"></a>数据库生成</h3><ul>
+<li><p>制作数据迁移(准备)</p>
+<p><code>python manage.py mikemigrations app名 (可选)</code></p>
+<p>Django会在app/migrations目录下生成可移植文件</p>
+</li>
+<li><p>执行数据迁移(执行)</p>
+<p><code>python manage.py migrate</code></p>
+</li>
+</ul>
+<h4 id="查看sql"><a href="#查看sql" class="headerlink" title="查看sql"></a>查看sql</h4><p>  执行：<code>python manage.py sqlmigrate 应用名 文件id</code></p>
+<h3 id="QuerySet-API"><a href="#QuerySet-API" class="headerlink" title="QuerySet API"></a>QuerySet API</h3><p>  导入当前App models模块</p>
+<p>  <code>from . import models</code></p>
+<p>  实现方法<br>  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#通过 models . 类名 .objects.get(pk=1)</span></div><div class="line">article = models.Artcle.objects.get(pk=<span class="number">1</span>)</div></pre></td></tr></table></figure></p>
+<p>  关于QuerySet API ：<a href="https://docs.djangoproject.com/en/1.10/ref/models/querysets/" target="_blank" rel="external">参考官方文档</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/08/18/Python/Django-Templates模版/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Django-Templates模版</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/08/07/Python/Django-views视图/">
+        <span class="next-text nav-default">Django-views视图</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/08/15/Python/Django-models模型/"
+           data-title="Django-models模型" data-url="http://nenglee.com/2018/08/15/Python/Django-models模型/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

@@ -41,7 +41,7 @@
 <meta property="og:site_name" content="Neng Lee">
 <meta property="og:description" content="Django视图(Views)即为视图函数，收集web请求并且返回事物的处理函数。
 响应符合Http协议要求的任何内容，包括有json，string，html等.">
-<meta property="og:updated_time" content="2018-08-08T09:42:43.782Z">
+<meta property="og:updated_time" content="2018-08-08T09:47:26.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django-views视图">
 <meta name="twitter:description" content="Django视图(Views)即为视图函数，收集web请求并且返回事物的处理函数。
@@ -199,7 +199,7 @@
       <div class="post-toc" id="post-toc">
         <h2 class="post-toc-title">文章目录</h2>
         <div class="post-toc-content">
-          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Django-http"><span class="toc-text">Django.http</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http404"><span class="toc-text">Http404</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HttpResponse"><span class="toc-text">HttpResponse</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#QueryDict对象"><span class="toc-text">QueryDict对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GET属性"><span class="toc-text">GET属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST属性"><span class="toc-text">POST属性</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Django-http"><span class="toc-text">Django.http</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http404"><span class="toc-text">Http404</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HttpResponse"><span class="toc-text">HttpResponse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QueryDict对象"><span class="toc-text">QueryDict对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GET属性"><span class="toc-text">GET属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POST属性"><span class="toc-text">POST属性</span></a></li></ol>
         </div>
       </div>
     
@@ -216,7 +216,7 @@
 <hr>
 <h3 id="Django-http"><a href="#Django-http" class="headerlink" title="Django.http"></a>Django.http</h3><p>views视图返回需要HttpResponse的对象</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.http.cookie <span class="keyword">import</span> SimpleCookie, parse_cookie</div><div class="line"><span class="keyword">from</span> django.http.request <span class="keyword">import</span> (</div><div class="line">    HttpRequest, QueryDict, RawPostDataException, UnreadablePostError,</div><div class="line">)</div><div class="line"><span class="keyword">from</span> django.http.response <span class="keyword">import</span> (</div><div class="line">    BadHeaderError, FileResponse, Http404, HttpResponse,</div><div class="line">    HttpResponseBadRequest, HttpResponseForbidden, HttpResponseGone,</div><div class="line">    HttpResponseNotAllowed, HttpResponseNotFound, HttpResponseNotModified,</div><div class="line">    HttpResponsePermanentRedirect, HttpResponseRedirect,</div><div class="line">    HttpResponseServerError, JsonResponse, StreamingHttpResponse,</div><div class="line">)</div><div class="line"></div><div class="line">__all__ = [</div><div class="line">    <span class="string">'SimpleCookie'</span>, <span class="string">'parse_cookie'</span>, <span class="string">'HttpRequest'</span>, <span class="string">'QueryDict'</span>,</div><div class="line">    <span class="string">'RawPostDataException'</span>, <span class="string">'UnreadablePostError'</span>,</div><div class="line">    <span class="string">'HttpResponse'</span>, <span class="string">'StreamingHttpResponse'</span>, <span class="string">'HttpResponseRedirect'</span>,</div><div class="line">    <span class="string">'HttpResponsePermanentRedirect'</span>, <span class="string">'HttpResponseNotModified'</span>,</div><div class="line">    <span class="string">'HttpResponseBadRequest'</span>, <span class="string">'HttpResponseForbidden'</span>, <span class="string">'HttpResponseNotFound'</span>,</div><div class="line">    <span class="string">'HttpResponseNotAllowed'</span>, <span class="string">'HttpResponseGone'</span>, <span class="string">'HttpResponseServerError'</span>,</div><div class="line">    <span class="string">'Http404'</span>, <span class="string">'BadHeaderError'</span>, <span class="string">'JsonResponse'</span>, <span class="string">'FileResponse'</span>,</div><div class="line">]</div></pre></td></tr></table></figure>
-<h3 id="Http404"><a href="#Http404" class="headerlink" title="Http404"></a>Http404</h3><p>  Http404为Exception的子类，所以需要 <code>raise</code> 使用</p>
+<h3 id="Http404"><a href="#Http404" class="headerlink" title="Http404"></a>Http404</h3><p>  Http404为Exception的异常子类，所以需要 <code>raise</code> 使用</p>
 <h3 id="HttpResponse"><a href="#HttpResponse" class="headerlink" title="HttpResponse"></a>HttpResponse</h3><ul>
 <li><p>服务器接收到http协议的请求后，会根据报文创建HttpRequest对象</p>
 </li>
@@ -225,19 +225,15 @@
 <li><p>在django.http模块中定义了HttpRequest对象的API</p>
 </li>
 </ul>
-<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><p>  下面除非特别说明，属性都是只读的</p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>  下面除非特别说明，属性都是只读的</p>
 <ul>
 <li><p>path：一个字符串，表示请求的页面的完整路径，不包含域名</p>
 </li>
 <li><p>method：一个字符串，表示请求使用的HTTP方法，常用值包括：’GET’、’POST’</p>
 </li>
 <li><p>encoding：一个字符串，表示提交的数据的编码方式</p>
-<ul>
-<li><p>如果为None则表示使用浏览器的默认设置，一般为utf-8</p>
-</li>
-<li><p>这个属性是可写的，可以通过修改它来修改访问表单数据使用的编码，接下来对属性的任何访问将使用新的encoding值</p>
-</li>
-</ul>
+<p><code>如果为None则表示使用浏览器的默认设置，一般为utf-8</code></p>
+<p><code>这个属性是可写的，可以通过修改它来修改访问表单数据使用的编码，接下来对属性的任何访问将使用新的encoding值</code></p>
 </li>
 <li><p>GET：一个类似于字典的对象，包含get请求方式的所有参数</p>
 </li>
@@ -249,11 +245,10 @@
 </li>
 <li><p>session：一个既可读又可写的类似于字典的对象，表示当前的会话</p>
 </li>
+<li><p>is_ajax()：如果请求是通过XMLHttpRequest发起的，则返回True</p>
+</li>
 </ul>
-<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
-<li>is_ajax()：如果请求是通过XMLHttpRequest发起的，则返回True</li>
-</ul>
-<h4 id="QueryDict对象"><a href="#QueryDict对象" class="headerlink" title="QueryDict对象"></a>QueryDict对象</h4><ul>
+<h3 id="QueryDict对象"><a href="#QueryDict对象" class="headerlink" title="QueryDict对象"></a>QueryDict对象</h3><ul>
 <li><p>库：django.http.QueryDict</p>
 </li>
 <li><p>request对象的属性GET、POST都是QueryDict类型的对象</p>
@@ -267,7 +262,7 @@
 <p><code>将键的值以列表返回，可以获取一个键的多个值</code></p>
 </li>
 </ul>
-<h4 id="GET属性"><a href="#GET属性" class="headerlink" title="GET属性"></a>GET属性</h4><ul>
+<h3 id="GET属性"><a href="#GET属性" class="headerlink" title="GET属性"></a>GET属性</h3><ul>
 <li><p>与url请求地址中的参数对应，位于?后面</p>
 </li>
 <li><p>参数的格式是键值对，如key1=value1</p>
@@ -275,7 +270,7 @@
 <li><p>多个参数之间，使用&amp;连接，如key1=value1&amp;key2=value2</p>
 </li>
 </ul>
-<h4 id="POST属性"><a href="#POST属性" class="headerlink" title="POST属性"></a>POST属性</h4><ul>
+<h3 id="POST属性"><a href="#POST属性" class="headerlink" title="POST属性"></a>POST属性</h3><ul>
 <li><p>包含post请求方式的所有参数</p>
 </li>
 <li><p>与form表单中的控件对应</p>
@@ -298,6 +293,12 @@
 
         
   <nav class="post-nav">
+    
+      <a class="prev" href="/2018/08/15/Python/Django-models模型/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Django-models模型</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
     
     
       <a class="next" href="/2018/08/07/Python/Django-urls路由/">

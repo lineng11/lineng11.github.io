@@ -4,6 +4,88 @@
   
     
     <entry>
+      <title><![CDATA[Django-Templates模版]]></title>
+      <url>http://nenglee.com/2018/08/18/Python/Django-Templates%E6%A8%A1%E7%89%88/</url>
+      <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
+
+<p>Django Template模块，可以用来制作web页面的HTML页面模版</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="创建Templates"><a href="#创建Templates" class="headerlink" title="创建Templates"></a>创建Templates</h3><ul>
+<li><p>在对应的App目录下面创建一个 <strong>templates</strong> 文件</p>
+<p><code>切记名字不能有误,否则不能映射到对应路径</code></p>
+</li>
+<li><p>创建一个html页面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在App的 views的函数处理</p>
+<p>Django会自己导入 <strong>render</strong></p>
+<p><code>from django.shortcuts import render</code></p>
+<p>在函数返回模版渲染：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">page</span><span class="params">(request)</span>:</span></div><div class="line">  <span class="keyword">return</span> render(request=request, template_name=<span class="string">'index/index.html'</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Templates的DTL"><a href="#Templates的DTL" class="headerlink" title="Templates的DTL"></a>Templates的DTL</h3><p>  render() 支持Dict类型参数，其中key对应html中的，页面被渲染的时候就被填充value</p>
+<p>  例如： index.html</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;key&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>  views：<br>  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">page</span><span class="params">(request)</span>:</span></div><div class="line">    <span class="keyword">return</span> render(request=request, template_name=<span class="string">'index/index.html'</span>,context=&#123;<span class="string">'key'</span>:<span class="string">'Hello World !!!'</span>&#125;)</div></pre></td></tr></table></figure></p>
+</the></excerpt>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Django-models模型]]></title>
+      <url>http://nenglee.com/2018/08/15/Python/Django-models%E6%A8%A1%E5%9E%8B/</url>
+      <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
+
+<p>Models模型数据唯一而且准确的信息来源，它包含您正在储存的数据的重要字段和行为。一般来说，每一个模型都映射一个数据库表。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><ul>
+<li><p>通常，一个Models对应数据库的一张数据表</p>
+</li>
+<li><p>Django中Models以类的形式表现</p>
+</li>
+<li><p>它包含了一些基本字段以及数据的一些行为</p>
+</li>
+</ul>
+<h3 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h3><ul>
+<li><p>对象关系映射 （Object Relation Mapping）</p>
+</li>
+<li><p>实现了对象和数据库之间的映射</p>
+</li>
+<li><p>隐藏了数据访问细节，不需要编写SQL语句</p>
+<p>表名  &lt;－－－－－－－&gt; 类名</p>
+<p>字段  &lt;－－－－－－－&gt; 属性</p>
+<p>表记录 &lt;－－－－－－－&gt;类实例对象</p>
+</li>
+</ul>
+<h3 id="创建字段"><a href="#创建字段" class="headerlink" title="创建字段"></a>创建字段</h3><p>  字段即类里的属性（变量）</p>
+<p>  <code>attr = models.CharField(max_length = 32)</code></p>
+<p>  模型定义了一个 Article, 其拥有 title 和 content:</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> modles</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(modles.Modle)</span>:</span></div><div class="line">  <span class="string">'''</span></div><div class="line">  模型商品</div><div class="line">  '''</div><div class="line">  title = models.CharField(max_length=<span class="number">32</span>, default=<span class="string">'Title'</span>)</div><div class="line">  content = models.TextField(null = <span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<p>  关于Model Field的字段类型：<a href="https://docs.djangoproject.com/en/1.10/ref/models/fields/" target="_blank" rel="external">参考官方文档</a></p>
+<h3 id="数据库生成"><a href="#数据库生成" class="headerlink" title="数据库生成"></a>数据库生成</h3><ul>
+<li><p>制作数据迁移(准备)</p>
+<p><code>python manage.py mikemigrations app名 (可选)</code></p>
+<p>Django会在app/migrations目录下生成可移植文件</p>
+</li>
+<li><p>执行数据迁移(执行)</p>
+<p><code>python manage.py migrate</code></p>
+</li>
+</ul>
+<h4 id="查看sql"><a href="#查看sql" class="headerlink" title="查看sql"></a>查看sql</h4><p>  执行：<code>python manage.py sqlmigrate 应用名 文件id</code></p>
+<h3 id="QuerySet-API"><a href="#QuerySet-API" class="headerlink" title="QuerySet API"></a>QuerySet API</h3><p>  导入当前App models模块</p>
+<p>  <code>from . import models</code></p>
+<p>  实现方法<br>  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#通过 models . 类名 .objects.get(pk=1)</span></div><div class="line">article = models.Artcle.objects.get(pk=<span class="number">1</span>)</div></pre></td></tr></table></figure></p>
+<p>  关于QuerySet API ：<a href="https://docs.djangoproject.com/en/1.10/ref/models/querysets/" target="_blank" rel="external">参考官方文档</a></p>
+</the></excerpt>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Django-views视图]]></title>
       <url>http://nenglee.com/2018/08/07/Python/Django-views%E8%A7%86%E5%9B%BE/</url>
       <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要="">
@@ -16,7 +98,7 @@
 <hr>
 <h3 id="Django-http"><a href="#Django-http" class="headerlink" title="Django.http"></a>Django.http</h3><p>views视图返回需要HttpResponse的对象</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.http.cookie <span class="keyword">import</span> SimpleCookie, parse_cookie</div><div class="line"><span class="keyword">from</span> django.http.request <span class="keyword">import</span> (</div><div class="line">    HttpRequest, QueryDict, RawPostDataException, UnreadablePostError,</div><div class="line">)</div><div class="line"><span class="keyword">from</span> django.http.response <span class="keyword">import</span> (</div><div class="line">    BadHeaderError, FileResponse, Http404, HttpResponse,</div><div class="line">    HttpResponseBadRequest, HttpResponseForbidden, HttpResponseGone,</div><div class="line">    HttpResponseNotAllowed, HttpResponseNotFound, HttpResponseNotModified,</div><div class="line">    HttpResponsePermanentRedirect, HttpResponseRedirect,</div><div class="line">    HttpResponseServerError, JsonResponse, StreamingHttpResponse,</div><div class="line">)</div><div class="line"></div><div class="line">__all__ = [</div><div class="line">    <span class="string">'SimpleCookie'</span>, <span class="string">'parse_cookie'</span>, <span class="string">'HttpRequest'</span>, <span class="string">'QueryDict'</span>,</div><div class="line">    <span class="string">'RawPostDataException'</span>, <span class="string">'UnreadablePostError'</span>,</div><div class="line">    <span class="string">'HttpResponse'</span>, <span class="string">'StreamingHttpResponse'</span>, <span class="string">'HttpResponseRedirect'</span>,</div><div class="line">    <span class="string">'HttpResponsePermanentRedirect'</span>, <span class="string">'HttpResponseNotModified'</span>,</div><div class="line">    <span class="string">'HttpResponseBadRequest'</span>, <span class="string">'HttpResponseForbidden'</span>, <span class="string">'HttpResponseNotFound'</span>,</div><div class="line">    <span class="string">'HttpResponseNotAllowed'</span>, <span class="string">'HttpResponseGone'</span>, <span class="string">'HttpResponseServerError'</span>,</div><div class="line">    <span class="string">'Http404'</span>, <span class="string">'BadHeaderError'</span>, <span class="string">'JsonResponse'</span>, <span class="string">'FileResponse'</span>,</div><div class="line">]</div></pre></td></tr></table></figure>
-<h3 id="Http404"><a href="#Http404" class="headerlink" title="Http404"></a>Http404</h3><p>  Http404为Exception的子类，所以需要 <code>raise</code> 使用</p>
+<h3 id="Http404"><a href="#Http404" class="headerlink" title="Http404"></a>Http404</h3><p>  Http404为Exception的异常子类，所以需要 <code>raise</code> 使用</p>
 <h3 id="HttpResponse"><a href="#HttpResponse" class="headerlink" title="HttpResponse"></a>HttpResponse</h3><ul>
 <li><p>服务器接收到http协议的请求后，会根据报文创建HttpRequest对象</p>
 </li>
@@ -25,19 +107,15 @@
 <li><p>在django.http模块中定义了HttpRequest对象的API</p>
 </li>
 </ul>
-<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><p>  下面除非特别说明，属性都是只读的</p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>  下面除非特别说明，属性都是只读的</p>
 <ul>
 <li><p>path：一个字符串，表示请求的页面的完整路径，不包含域名</p>
 </li>
 <li><p>method：一个字符串，表示请求使用的HTTP方法，常用值包括：’GET’、’POST’</p>
 </li>
 <li><p>encoding：一个字符串，表示提交的数据的编码方式</p>
-<ul>
-<li><p>如果为None则表示使用浏览器的默认设置，一般为utf-8</p>
-</li>
-<li><p>这个属性是可写的，可以通过修改它来修改访问表单数据使用的编码，接下来对属性的任何访问将使用新的encoding值</p>
-</li>
-</ul>
+<p><code>如果为None则表示使用浏览器的默认设置，一般为utf-8</code></p>
+<p><code>这个属性是可写的，可以通过修改它来修改访问表单数据使用的编码，接下来对属性的任何访问将使用新的encoding值</code></p>
 </li>
 <li><p>GET：一个类似于字典的对象，包含get请求方式的所有参数</p>
 </li>
@@ -49,11 +127,10 @@
 </li>
 <li><p>session：一个既可读又可写的类似于字典的对象，表示当前的会话</p>
 </li>
+<li><p>is_ajax()：如果请求是通过XMLHttpRequest发起的，则返回True</p>
+</li>
 </ul>
-<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
-<li>is_ajax()：如果请求是通过XMLHttpRequest发起的，则返回True</li>
-</ul>
-<h4 id="QueryDict对象"><a href="#QueryDict对象" class="headerlink" title="QueryDict对象"></a>QueryDict对象</h4><ul>
+<h3 id="QueryDict对象"><a href="#QueryDict对象" class="headerlink" title="QueryDict对象"></a>QueryDict对象</h3><ul>
 <li><p>库：django.http.QueryDict</p>
 </li>
 <li><p>request对象的属性GET、POST都是QueryDict类型的对象</p>
@@ -67,7 +144,7 @@
 <p><code>将键的值以列表返回，可以获取一个键的多个值</code></p>
 </li>
 </ul>
-<h4 id="GET属性"><a href="#GET属性" class="headerlink" title="GET属性"></a>GET属性</h4><ul>
+<h3 id="GET属性"><a href="#GET属性" class="headerlink" title="GET属性"></a>GET属性</h3><ul>
 <li><p>与url请求地址中的参数对应，位于?后面</p>
 </li>
 <li><p>参数的格式是键值对，如key1=value1</p>
@@ -75,7 +152,7 @@
 <li><p>多个参数之间，使用&amp;连接，如key1=value1&amp;key2=value2</p>
 </li>
 </ul>
-<h4 id="POST属性"><a href="#POST属性" class="headerlink" title="POST属性"></a>POST属性</h4><ul>
+<h3 id="POST属性"><a href="#POST属性" class="headerlink" title="POST属性"></a>POST属性</h3><ul>
 <li><p>包含post请求方式的所有参数</p>
 </li>
 <li><p>与form表单中的控件对应</p>
@@ -98,8 +175,11 @@
 
 <hr>
 <h3 id="总urls路由管理"><a href="#总urls路由管理" class="headerlink" title="总urls路由管理"></a>总urls路由管理</h3><pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#urls.py</span></div><div class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> views <span class="keyword">as</span> tv     <span class="comment">#blog是一个app</span></div><div class="line"></div><div class="line">url(<span class="string">r'^myblog/'</span>, tv.myblog),`</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># views.py</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">myblog</span><span class="params">(request)</span>:</span></div><div class="line">    print(<span class="string">'---myblog-----'</span>)</div><div class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">'Hello World，myblog'</span>)</div></pre></td></tr></table></figure>
-</code></pre><h3 id="app自己管理"><a href="#app自己管理" class="headerlink" title="app自己管理"></a>app自己管理</h3><pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#urls.py</span></div><div class="line"> <span class="keyword">from</span> teacher <span class="keyword">import</span> teacher_url    <span class="comment">#thacher是一个app</span></div><div class="line"> url(<span class="string">r'^teacher/'</span>, include(teacher_url)),     <span class="comment">#teacher_url.py teacher路由分发</span></div><div class="line"></div><div class="line"> <span class="comment">#teacher_url.py</span></div><div class="line"> <span class="keyword">from</span> teacher <span class="keyword">import</span> views <span class="keyword">as</span> tv</div><div class="line"> url(<span class="string">r'^info/'</span>, tv.teacher_ifno),     <span class="comment">#teacher_url.py teacher路由分发</span></div><div class="line"></div><div class="line"> <span class="comment">#views.py</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">teacher_ifno</span><span class="params">(request)</span>:</span></div><div class="line">  <span class="keyword">return</span> HttpResponse(<span class="string">'teacher info content...'</span>)</div></pre></td></tr></table></figure>
-</code></pre><h3 id="路由反向解析"><a href="#路由反向解析" class="headerlink" title="路由反向解析"></a>路由反向解析</h3>  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#urls.py</span></div><div class="line"> <span class="keyword">from</span> teacher <span class="keyword">import</span> teacher_url    <span class="comment">#thacher是一个app</span></div><div class="line"> url(<span class="string">r'^teacher/'</span>, include(teacher_url)),     <span class="comment">#teacher_url.py teacher路由分发</span></div><div class="line"></div><div class="line"> <span class="comment">#teacher_url.py</span></div><div class="line"> <span class="keyword">from</span> teacher <span class="keyword">import</span> views <span class="keyword">as</span> tv</div><div class="line"> url(<span class="string">r'^xxxxx随便跟换不影响/'</span>, tv.teacher_urls, name=<span class="string">'urls'</span>),     <span class="comment">#info</span></div><div class="line"></div><div class="line"> <span class="comment">#views.py</span></div><div class="line"> <span class="keyword">from</span> django.core.urlresolvers <span class="keyword">import</span> reverse</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">teacher_urls</span><span class="params">(request)</span>:</span></div><div class="line">  <span class="keyword">return</span> HttpResponse(<span class="string">'teacher url：&#123;0&#125;'</span>.format&#123;reverse(<span class="string">'urls'</span>)&#125;)</div></pre></td></tr></table></figure>
+</code></pre><h3 id="app自己管理"><a href="#app自己管理" class="headerlink" title="app自己管理"></a>app自己管理</h3><pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#urls.py   总URL</span></div><div class="line"> <span class="keyword">from</span> teacher <span class="keyword">import</span> teacher_url    </div><div class="line"> url(<span class="string">r'^teacher/'</span>, include(teacher_url)),    </div><div class="line"></div><div class="line"> <span class="comment">#teacher_url.py  APP</span></div><div class="line"> <span class="keyword">from</span> teacher <span class="keyword">import</span> views <span class="keyword">as</span> tv</div><div class="line"> url(<span class="string">r'^info/'</span>, tv.teacher_ifno),     </div><div class="line"></div><div class="line"> <span class="comment">#views.py</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">teacher_ifno</span><span class="params">(request)</span>:</span></div><div class="line">  <span class="keyword">return</span> HttpResponse(<span class="string">'teacher info content...'</span>)</div></pre></td></tr></table></figure>
+</code></pre><h3 id="路由反向解析"><a href="#路由反向解析" class="headerlink" title="路由反向解析"></a>路由反向解析</h3><p>通常会在Views模块需要获取当前的url路径，可以通过：</p>
+<p>包：<code>from django.core.urlresolvers import reverse</code></p>
+<p>函数: <code>reverse(viewname, urlconf=None, args=None, kwargs=None, current_app=None)</code></p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#urls.py</span></div><div class="line"><span class="keyword">from</span> teacher <span class="keyword">import</span> teacher_url    <span class="comment">#thacher是一个app</span></div><div class="line">url(<span class="string">r'^teacher/'</span>, include(teacher_url)),     <span class="comment">#teacher_url.py teacher路由分发</span></div><div class="line"></div><div class="line"><span class="comment">#teacher_url.py</span></div><div class="line"><span class="keyword">from</span> teacher <span class="keyword">import</span> views <span class="keyword">as</span> tv</div><div class="line">url(<span class="string">r'^xxxxx随便跟换不影响/'</span>, tv.teacher_urls, name=<span class="string">'urls'</span>),    </div><div class="line"></div><div class="line"><span class="comment">#views.py</span></div><div class="line"><span class="keyword">from</span> django.core.urlresolvers <span class="keyword">import</span> reverse</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">teacher_urls</span><span class="params">(request)</span>:</span></div><div class="line"> <span class="keyword">return</span> HttpResponse(<span class="string">'teacher url：&#123;0&#125;'</span>.format&#123;reverse(<span class="string">'urls'</span>)&#125;)</div><div class="line"></div><div class="line"><span class="comment"># teacher/xxxxx随便跟换不影响/</span></div></pre></td></tr></table></figure>
 </the></excerpt>]]></content>
     </entry>
     
@@ -139,16 +219,15 @@
 <p><code>python -m pip install --upgrade pip</code></p>
 <h3 id="创建一个Django"><a href="#创建一个Django" class="headerlink" title="创建一个Django"></a>创建一个Django</h3><p>命令：</p>
 <p><code>django-admin.py startproject XXX(工程名)</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(django) F:\Python\Django&gt;django-admin.py startproject new_test</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(django) F:\Python\Django&gt;django-admin.py startproject myBlog</div></pre></td></tr></table></figure>
 <ul>
 <li>如果出现以下问题：</li>
 </ul>
 <blockquote>
 <p>python: can’t open file ‘django-admin.py’: [Errno 2] No such file or directory</p>
 </blockquote>
-<p>如果没猜错你是在 <strong>env虚拟环境</strong> 下创建的工程</p>
 <ul>
-<li><p>确保django是否安装正确</p>
+<li><p>确保 <strong>env虚拟环境</strong> django是否安装正确</p>
 <p><code>conda list</code></p>
 <p>如果没有？ django</p>
 <p>那么请执行安装虚拟环境下的django</p>
