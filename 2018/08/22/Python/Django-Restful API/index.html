@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Django-Restful API"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/08/22/Python/Django-Restful API/"/>
+
+
+<meta name="description" content="Restful架构目前比较流行的一种互联网API构架，
+结构清晰、符合标准、易于理解、扩展方便、所以越来越多的网站采用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-Restful API">
+<meta property="og:url" content="http://nenglee.com/2018/08/22/Python/Django-Restful API/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="Restful架构目前比较流行的一种互联网API构架，
+结构清晰、符合标准、易于理解、扩展方便、所以越来越多的网站采用。">
+<meta property="og:updated_time" content="2018-08-27T14:53:52.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django-Restful API">
+<meta name="twitter:description" content="Restful架构目前比较流行的一种互联网API构架，
+结构清晰、符合标准、易于理解、扩展方便、所以越来越多的网站采用。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Django-Restful API · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Django-Restful API
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年8月22日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URI"><span class="toc-text">URI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#URI规范"><span class="toc-text">URI规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#资源集合-vs-单个资源"><span class="toc-text">资源集合 vs 单个资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#避免层级过深的URI"><span class="toc-text">避免层级过深的URI</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Request方法"><span class="toc-text">Request方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安全性和幂等性"><span class="toc-text">安全性和幂等性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂查询"><span class="toc-text">复杂查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Response返回"><span class="toc-text">Response返回</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误处理"><span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#版本"><span class="toc-text">版本</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>Restful架构目前比较流行的一种互联网API构架，</p>
+<p>结构清晰、符合标准、易于理解、扩展方便、所以越来越多的网站采用。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>  REST这个词，是 <a href="https://en.wikipedia.org/wiki/Roy_Fielding" target="_blank" rel="external">Roy Thomas Fielding</a> 在他2000年的 <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm" target="_blank" rel="external">博士论文</a> 中提出的。</p>
+<p>  Fielding是一个非常重要的人，他是HTTP协议（1.0版和1.1版）的主要设计者、Apache服务器软件的作者之一</p>
+<p>  Fielding将他对互联网软件的架构原则，定名为 <strong>REST</strong>，即 <strong>Representational State Transfer</strong> 的缩写。我对这个词组的翻译是” <strong>表现层状态转化</strong> “。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li><p>资源：一个对象的单独实例，如一只动物</p>
+</li>
+<li><p>集合：一群同种对象，如动物</p>
+</li>
+<li><p>HTTP：跨网络的通信协议</p>
+</li>
+<li><p>客户端：可以创建HTTP请求的客户端应用程序</p>
+</li>
+<li><p>第三方开发者：这个开发者不属于你的项目但是有想使用你的数据</p>
+</li>
+<li><p>服务器：一个HTTP服务器或者应用程序，客户端可以跨网络访问它</p>
+</li>
+<li><p>端点：这个API在服务器上的URL用于表达一个资源或者一个集合</p>
+</li>
+<li><p>幂等：无边际效应，多次操作得到相同的结果</p>
+</li>
+<li><p>URL段：在URL里面已斜杠分隔的内容</p>
+</li>
+</ul>
+<h3 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h3><p>  URI 表示资源，资源一般对应服务器端领域模型中的实体类。</p>
+<h4 id="URI规范"><a href="#URI规范" class="headerlink" title="URI规范"></a>URI规范</h4><ol>
+<li><p>不用大写</p>
+</li>
+<li><p>用中杠- 不用下杠_</p>
+</li>
+<li><p>参数列表要encode</p>
+</li>
+<li><p>URI中的名词表示资源集合，使用复数形式</p>
+</li>
+</ol>
+<h4 id="资源集合-vs-单个资源"><a href="#资源集合-vs-单个资源" class="headerlink" title="资源集合 vs 单个资源"></a>资源集合 vs 单个资源</h4><p>  URI表示资源的两种方式：资源集合、单个资源</p>
+<ul>
+<li><p>资源集合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/zoos <span class="comment">#所有动物园</span></div><div class="line">/zoos/<span class="number">1</span>/animals <span class="comment">#id为1的动物园中的所有动物</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>单个资源</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/zoos/<span class="number">1</span> <span class="comment">#id为1的动物园</span></div><div class="line">/zoos/<span class="number">1</span>;<span class="number">2</span>;<span class="number">3</span> <span class="comment">#id为1，2，3的动物园</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="避免层级过深的URI"><a href="#避免层级过深的URI" class="headerlink" title="避免层级过深的URI"></a>避免层级过深的URI</h4><p>  在url中表达层级，用于按实体关联关系进行对象导航，一般根据id导航。</p>
+<ul>
+<li><p>过深的导航容易导致url膨胀，不易维护，</p>
+<p> <code>GET /zoos/1/areas/3/animals/4</code></p>
+</li>
+<li><p>尽量使用查询参数代替路径中的实体导航，</p>
+<p> <code>GET /animals?zoo=1&amp;area=3</code></p>
+</li>
+</ul>
+<h3 id="Request方法"><a href="#Request方法" class="headerlink" title="Request方法"></a>Request方法</h3><p>  这里至少有四个半非常重要的HTTP动词需要你知道；之所以说“半个”的意思是PATCH这个动词非常类似于PUT，并且它们俩也常常被开发者绑定到同一个API上</p>
+<ul>
+<li><p>GET (选择) : 从服务器上获取一个具体的资源或者一个资源列表。</p>
+</li>
+<li><p>POST （创建）： 在服务器上创建一个新的资源。</p>
+</li>
+<li><p>PUT （更新）：以整体的方式更新服务器上的一个资源。</p>
+</li>
+<li><p>PATCH （更新）：只更新服务器上一个资源的一个属性。</p>
+</li>
+<li><p>DELETE （删除）：删除服务器上的一个资源。</p>
+<p>还有两个不常用的HTTP动词：</p>
+</li>
+<li><p>HEAD ：获取一个资源的元数据，如数据的哈希值或最后的更新时间。</p>
+</li>
+<li><p>OPTIONS ：获取客户端能对资源做什么操作的信息。</p>
+</li>
+</ul>
+<h4 id="安全性和幂等性"><a href="#安全性和幂等性" class="headerlink" title="安全性和幂等性"></a>安全性和幂等性</h4><ol>
+<li><p>安全性：不会改变资源状态，可以理解为只读的</p>
+</li>
+<li><p>幂等性：执行1次和执行N次，对资源状态改变的效果是等价的</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th style="text-align:center">安全性</th>
+<th style="text-align:center">幂等性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td>POST</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+</tr>
+</tbody>
+</table>
+<p>  安全性和幂等性均不保证反复请求能拿到相同的response。</p>
+<p>  以 DELETE 为例，第一次DELETE返回200表示删除成功，第二次返回404提示资源不存在，这是允许的。</p>
+<h4 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询</h4><ul>
+<li><p>过滤条件    <code>?type=1&amp;age=16</code>       #允许一定的uri冗余，如/zoos/1与/zoos?id=1</p>
+</li>
+<li><p>排序    <code>?sort=age,desc</code></p>
+</li>
+<li><p>投影    <code>?whitelist=id,name,email</code></p>
+</li>
+<li><p>分页    <code>?limit=10&amp;offset=3</code></p>
+</li>
+</ul>
+<h3 id="Response返回"><a href="#Response返回" class="headerlink" title="Response返回"></a>Response返回</h3><ol>
+<li><p>不要包装</p>
+<p> response 的 body 直接就是数据，不要做多余的包装。错误示例：</p>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"success"</span>:<span class="literal">true</span>,</div><div class="line">  <span class="attr">"data"</span>:&#123;<span class="attr">"id"</span>:<span class="number">1</span>,<span class="attr">"name"</span>:<span class="string">"xiaotuan"</span>&#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>各HTTP方法成功处理后的数据格式：</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>response 格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  GET</td>
+<td>单个对象、集合</td>
+</tr>
+<tr>
+<td>  POST</td>
+<td>新增成功的对象</td>
+</tr>
+<tr>
+<td>  PUT/PATCH</td>
+<td>更新成功的对象</td>
+</tr>
+<tr>
+<td>  DELETE</td>
+<td>空</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>分页</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"paging"</span>:&#123;<span class="attr">"limit"</span>:<span class="number">10</span>,<span class="attr">"offset"</span>:<span class="number">0</span>,<span class="attr">"total"</span>:<span class="number">729</span>&#125;,</div><div class="line">    <span class="attr">"data"</span>:[&#123;&#125;,&#123;&#125;,&#123;&#125;...]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><ul>
+<li><p>不要发生了错误但给2xx响应，客户端可能会缓存成功的http请求</p>
+</li>
+<li><p>正确设置http状态码，不要自定义</p>
+</li>
+<li><p>Response body 提供  错误的代码（日志/问题追查）|| 错误的描述文本（展示给用户）</p>
+</li>
+</ul>
+<p>API 可能抛出两类异常：业务异常和非业务异常。</p>
+<p>业务异常由自己的业务代码抛出，表示一个用例的前置条件不满足、业务规则冲突等，比如参数校验不通过、权限校验失败。</p>
+<p>非业务类异常表示不在预期内的问题，通常由类库、框架抛出，或由于自己的代码逻辑错误导致，比如数据库连接失败、空指针异常、除0错误等等。</p>
+<p>业务类异常必须提供2种信息：</p>
+<ol>
+<li><p>如果抛出该类异常，HTTP 响应状态码应该设成什么；</p>
+</li>
+<li><p>异常的文本描述；</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400 bad request</td>
+<td>常用在参数校验</td>
+</tr>
+<tr>
+<td>401 unauthorized</td>
+<td>未经验证的用户，常见于未登录。如果经过验证后依然没权限，应该 403（即 authentication 和 authorization 的区别）。</td>
+</tr>
+<tr>
+<td>403 forbidden</td>
+<td>无权限</td>
+</tr>
+<tr>
+<td>404 not found</td>
+<td>资源不存在</td>
+</tr>
+<tr>
+<td>500 internal server error</td>
+<td>非业务类异常</td>
+</tr>
+<tr>
+<td>503 service unavaliable</td>
+<td>由容器抛出，自己的代码不要抛这个异常</td>
+</tr>
+</tbody>
+</table>
+<h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><p>常见的三种方式：</p>
+<ol>
+<li><p>在uri中放版本信息：<code>GET /v1/users/1</code></p>
+</li>
+<li><p>Accept Header：<code>Accept: application/json+v1</code></p>
+</li>
+<li><p>自定义 Header：<code>X-Api-Version: 1</code></p>
+</li>
+</ol>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/08/21/Python/Django-gshop项目/">
+        <span class="next-text nav-default">Django-gshop项目</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/08/22/Python/Django-Restful API/"
+           data-title="Django-Restful API" data-url="http://nenglee.com/2018/08/22/Python/Django-Restful API/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>
