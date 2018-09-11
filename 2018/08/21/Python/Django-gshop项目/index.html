@@ -39,7 +39,7 @@
 <meta property="og:url" content="http://nenglee.com/2018/08/21/Python/Django-gshop项目/index.html">
 <meta property="og:site_name" content="Neng Lee">
 <meta property="og:description" content="Django搭建前后端分离购物商城项目">
-<meta property="og:updated_time" content="2018-08-27T10:57:46.045Z">
+<meta property="og:updated_time" content="2018-08-30T11:24:45.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django-gshop项目">
 <meta name="twitter:description" content="Django搭建前后端分离购物商城项目">
@@ -196,7 +196,7 @@
       <div class="post-toc" id="post-toc">
         <h2 class="post-toc-title">文章目录</h2>
         <div class="post-toc-content">
-          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境"><span class="toc-text">环境</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Routers-URL绑定关系"><span class="toc-text">Routers-URL绑定关系</span></a></li></ol>
         </div>
       </div>
     
@@ -213,9 +213,9 @@
 <h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ul>
 <li><p>python3.6</p>
 </li>
-<li><p>pip install django==1.8.2</p>
+<li><p>pip install django==2.0.2</p>
 </li>
-<li><p><a href="https://github.com/encode/django-rest-framework" target="_blank" rel="external">django_rest_framework</a></p>
+<li><p>pip install <a href="https://github.com/encode/django-rest-framework" target="_blank" rel="external">djangorestframework</a></p>
 </li>
 <li><p>pip install markdown django-filter</p>
 </li>
@@ -223,6 +223,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">django&gt;=<span class="number">1.9</span><span class="number">.0</span></div><div class="line">django-crispy-forms&gt;=<span class="number">1.6</span><span class="number">.0</span></div><div class="line">django-<span class="keyword">import</span>-export&gt;=<span class="number">0.5</span><span class="number">.1</span></div><div class="line">django-reversion&gt;=<span class="number">2.0</span><span class="number">.0</span></div><div class="line">django-formtools==<span class="number">1.0</span></div><div class="line">future==<span class="number">0.15</span><span class="number">.2</span></div><div class="line">httplib2==<span class="number">0.9</span><span class="number">.2</span></div><div class="line">six==<span class="number">1.10</span><span class="number">.0</span></div><div class="line">xlwt</div><div class="line">xlsxwriter</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h3 id="Routers-URL绑定关系"><a href="#Routers-URL绑定关系" class="headerlink" title="Routers-URL绑定关系"></a>Routers-URL绑定关系</h3><p>-GenericViewSet(viewset)<br>  -GenericvAPIView<br>    -APIViev<br>      -View</p>
+<p>-mixin<br>  -CreateModelMixin(object)<br>  -ListModelMixin(object)<br>  -RetrieveModelMixin(object)<br>  -UpdateModelMixin(object)<br>  -DestroyModeMixin(object)</p>
 </the></excerpt>
       
     </div>
