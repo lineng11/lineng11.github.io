@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Django-生鲜超市--商品列表页"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/08/25/Python/Django-生鲜超市--商品列表页/"/>
+
+
+<meta name="description" content="商品列表的 + 分页">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-生鲜超市--商品列表页">
+<meta property="og:url" content="http://nenglee.com/2018/08/25/Python/Django-生鲜超市--商品列表页/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="商品列表的 + 分页">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/drf%E5%95%86%E5%93%81%E5%88%97%E8%A1%A8apivies.png">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/drf-view.png">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/mixinss.png">
+<meta property="og:updated_time" content="2018-09-19T13:36:41.026Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django-生鲜超市--商品列表页">
+<meta name="twitter:description" content="商品列表的 + 分页">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/drf%E5%95%86%E5%93%81%E5%88%97%E8%A1%A8apivies.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Django-生鲜超市--商品列表页 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Django-生鲜超市--商品列表页
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年8月25日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#商品的列表"><span class="toc-text">商品的列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Django方式"><span class="toc-text">Django方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#django-rest-framework【drf】方式"><span class="toc-text">django-rest-framework【drf】方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GenericView实现商品列表页"><span class="toc-text">GenericView实现商品列表页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#viewsets中的GenericViewSet-核心"><span class="toc-text">viewsets中的GenericViewSet(核心)</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>商品列表的 + 分页</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="商品的列表"><a href="#商品的列表" class="headerlink" title="商品的列表"></a>商品的列表</h3><p>商品的列表查询有很多种方式，依次列举</p>
+<h4 id="Django方式"><a href="#Django方式" class="headerlink" title="Django方式"></a>Django方式</h4><p>goods/views.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoodsListView</span><span class="params">(View)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request)</span>:</span></div><div class="line">        json_list = []</div><div class="line">        goods = Goods.objects.all()</div><div class="line"></div><div class="line">        <span class="keyword">for</span> good <span class="keyword">in</span> goods:</div><div class="line">            <span class="comment"># 方法一  繁琐 1对1 取出   </span></div><div class="line">            <span class="comment"># json_dict = &#123;&#125;</span></div><div class="line">            <span class="comment"># json_dict['name'] = good.name</span></div><div class="line">            <span class="comment"># GoodsCategory = good.category</span></div><div class="line">            <span class="comment"># json_dict['code'] = GoodsCategory.code</span></div><div class="line">            <span class="comment"># json_dict['desc'] = GoodsCategory.desc</span></div><div class="line">            <span class="comment"># json_dict['category_type'] = GoodsCategory.category_type</span></div><div class="line">            <span class="comment"># json_dict['market_price'] = good.market_price</span></div><div class="line">            <span class="comment"># json_list.append(json_dict)</span></div><div class="line"></div><div class="line">            <span class="comment"># 方法二 model_to_dict  有些字段需要序列化 Serializers</span></div><div class="line">            <span class="comment"># json_dict = model_to_dict(good)</span></div><div class="line">            <span class="comment"># json_list.append(json_dict)</span></div><div class="line">            <span class="comment"># 返回json，一定要指定类型content_type='application/json'</span></div><div class="line">            <span class="comment"># return HttpResponse(json.dumps(json_list), content_type='application/json')</span></div><div class="line"></div><div class="line"></div><div class="line">            <span class="comment">#方法三 不够灵活 Model扩展</span></div><div class="line">            <span class="keyword">from</span> django.core <span class="keyword">import</span> serializers</div><div class="line">            <span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</div><div class="line">            json_data = serializers.serialize(<span class="string">'json'</span>, goods)</div><div class="line">            json_data = json.loads(json_data)</div><div class="line">        <span class="keyword">return</span> JsonResponse(json_data, safe=<span class="keyword">False</span>)</div></pre></td></tr></table></figure></p>
+<p> 以上三种Django方式获取GoodsListView</p>
+<ul>
+<li><p>方法一太过繁琐，Modles需要 one to one  取出，并且字段不能出错</p>
+</li>
+<li><p>方法二 可以用 model_to_dict 函数转换成元组形式，缺点是某些特殊的字段(ImageFieldFile 和add_time)不能自动Serializers序列化</p>
+</li>
+<li><p>方法三 通过Serializers.序列化转换成’json’相对而言已经是不错的方式，但是Model的扩展性不够强，image地址不是全路径</p>
+</li>
+</ul>
+<h4 id="django-rest-framework【drf】方式"><a href="#django-rest-framework【drf】方式" class="headerlink" title="django-rest-framework【drf】方式"></a>django-rest-framework【drf】方式</h4><p>  准备：</p>
+<ul>
+<li><p><a href="http://nenglee.com/2018/08/23/Python/Django-REST-Framework/">install drf配置介绍</a></p>
+</li>
+<li><p>urls路由配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> rest_framework.routers <span class="keyword">import</span> DefaultRouter</div><div class="line"><span class="keyword">from</span> goods.views <span class="keyword">import</span> GoodsListViewSet</div><div class="line"><span class="keyword">from</span> rest_framework.documentation <span class="keyword">import</span> include_docs_urls</div><div class="line"></div><div class="line">router = DefaultRouter()</div><div class="line">router.register(<span class="string">r'goods'</span>, GoodsListViewSet, base_name=<span class="string">'goods'</span>)</div><div class="line"></div><div class="line"><span class="comment"># drf文档，title自定义</span></div><div class="line">path(<span class="string">r'docs'</span>, include_docs_urls(title=<span class="string">'文档'</span>)),</div><div class="line">path(<span class="string">r'api-auth/'</span>, include(<span class="string">'rest_framework.urls'</span>)),</div></pre></td></tr></table></figure>
+</li>
+<li><p>APIview方式实现商品列表页</p>
+<p>goods/serializers.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoodsSerializer</span><span class="params">(serializers.Serializer)</span>:</span></div><div class="line">    name = serializers.CharField(required=<span class="keyword">True</span>,max_length=<span class="number">100</span>)</div><div class="line">    click_num = serializers.IntegerField(default=<span class="number">0</span>)</div><div class="line">    goods_front_image = serializers.ImageField()</div></pre></td></tr></table></figure>
+<p>googd/views.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</div><div class="line"><span class="keyword">from</span> goods.serializers <span class="keyword">import</span> GoodsSerializer</div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Goods</div><div class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoodsListView</span><span class="params">(APIView)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    商品列表</div><div class="line">    '''</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self,request,format=None)</span>:</span></div><div class="line">        goods = Goods.objects.all()</div><div class="line">        goods_serialzer = GoodsSerializer(goods,many=<span class="keyword">True</span>)</div><div class="line">        <span class="keyword">return</span> Response(goods_serialzer.data)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://of6bvxslc.bkt.clouddn.com/drf%E5%95%86%E5%93%81%E5%88%97%E8%A1%A8apivies.png" alt="商品列表APIView"></p>
+<p>上面是用Serializer实现的，需要自己手动添加字段，如果用Modelserializer，会更加的方便，直接用<strong>all</strong>就可以全部序列化</p>
+<ul>
+<li><p>继承serializers.ModelSerializer</p>
+<p>  goods/serializers.py</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Goods,GoodsCategory</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CategorySerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = GoodsCategory</div><div class="line">        fields = <span class="string">"__all__"</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoodsSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    <span class="comment">#覆盖外键字段 就可以返回对应Model实体</span></div><div class="line">    category = CategorySerializer()  </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = Goods</div><div class="line">        fields = <span class="string">'__all__'</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="GenericView实现商品列表页"><a href="#GenericView实现商品列表页" class="headerlink" title="GenericView实现商品列表页"></a>GenericView实现商品列表页</h3><p>  GenericAPIView继承APIView，封装了很多方法，比APIView功能更强大</p>
+<ul>
+<li><p>mixins和Generic一起用用</p>
+<p>用的时候需要定义<code>queryset</code> 和  <code>serializer_class</code></p>
+<p>GenericAPIView里面默认为空</p>
+<p><code>queryset = None</code></p>
+<p><code>serializer_class = None</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> goods.serializers <span class="keyword">import</span> GoodsSerializer</div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Goods</div><div class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> mixins</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> generics</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># class GoodsListView(mixins.ListModelMixin,generics.GenericAPIView):</span></div><div class="line"><span class="comment">#     '商品列表页'</span></div><div class="line"><span class="comment">#     queryset = Goods.objects.all()</span></div><div class="line"><span class="comment">#     serializer_class = GoodsSerializer</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#     def get(self,request,*args,**kwargs):</span></div><div class="line"><span class="comment">#         return self.list(request,*args,**kwargs)</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoodsListView</span><span class="params">(generics.ListAPIView)</span>:</span></div><div class="line">    <span class="string">'商品列表页'</span></div><div class="line">    queryset = Goods.objects.all()</div><div class="line">    serializer_class = GoodsSerializer</div></pre></td></tr></table></figure>
+</li>
+<li><p>自定也分页功能</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">from</span> rest_framework.pagination <span class="keyword">import</span> PageNumberPagination</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoodsPagination</span><span class="params">(PageNumberPagination)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    商品列表自定义分页</div><div class="line">    '''</div><div class="line">    <span class="comment">#默认每页显示的个数</span></div><div class="line">    page_size = <span class="number">10</span></div><div class="line">    <span class="comment">#可以动态改变每页显示的个数</span></div><div class="line">    page_size_query_param = <span class="string">'page_size'</span></div><div class="line">    <span class="comment">#页码参数</span></div><div class="line">    page_query_param = <span class="string">'page'</span></div><div class="line">    <span class="comment">#最多能显示多少页</span></div><div class="line">    max_page_size = <span class="number">100</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoodsListView</span><span class="params">(generics.ListAPIView)</span>:</span></div><div class="line">    <span class="string">'商品列表页'</span></div><div class="line"></div><div class="line">    pagination_class = GoodsPagination    <span class="comment">#分页</span></div><div class="line">    queryset = Goods.objects.all()</div><div class="line">    serializer_class = GoodsSerializer</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="viewsets中的GenericViewSet-核心"><a href="#viewsets中的GenericViewSet-核心" class="headerlink" title="viewsets中的GenericViewSet(核心)"></a>viewsets中的GenericViewSet(核心)</h3>  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoodsListViewSet</span><span class="params">(mixins.ListModelMixin,viewsets.GenericViewSet)</span>:</span></div><div class="line">  <span class="string">'商品列表页'</span></div><div class="line"></div><div class="line">  <span class="comment"># 分页</span></div><div class="line">  pagination_class = GoodsPagination</div><div class="line">  <span class="comment">#这里必须要定义一个默认的排序,否则会报错</span></div><div class="line">  queryset = Goods.objects.all().order_by(<span class="string">'id'</span>)</div><div class="line">  serializer_class = GoodsSerializer</div></pre></td></tr></table></figure>
+<p>View层次关系:</p>
+<p><img src="http://of6bvxslc.bkt.clouddn.com/drf-view.png" alt="View层次关系"></p>
+<p>mixins：<br><img src="http://of6bvxslc.bkt.clouddn.com/mixinss.png" alt="mixins函数"></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/08/25/Python/Django-生鲜超市--商品过滤器/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Django-生鲜超市--商品过滤器</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/08/23/Python/Django-REST-Framework/">
+        <span class="next-text nav-default">Django-REST-Framework</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/08/25/Python/Django-生鲜超市--商品列表页/"
+           data-title="Django-生鲜超市--商品列表页" data-url="http://nenglee.com/2018/08/25/Python/Django-生鲜超市--商品列表页/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>
