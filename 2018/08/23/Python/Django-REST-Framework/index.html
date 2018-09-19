@@ -43,7 +43,7 @@ django-rest-framework – Web API">
 <meta property="og:description" content="Django REST框架是构建Web API的强大而灵活的模块。
 django-rest-framework – github
 django-rest-framework – Web API">
-<meta property="og:updated_time" content="2018-09-19T13:27:45.698Z">
+<meta property="og:updated_time" content="2018-09-19T15:12:35.793Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django-REST-Framework">
 <meta name="twitter:description" content="Django REST框架是构建Web API的强大而灵活的模块。
@@ -202,7 +202,7 @@ django-rest-framework – Web API">
       <div class="post-toc" id="post-toc">
         <h2 class="post-toc-title">文章目录</h2>
         <div class="post-toc-content">
-          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么用REST-Framework"><span class="toc-text">为什么用REST-Framework</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Request-解析"><span class="toc-text">Request 解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#data"><span class="toc-text">.data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#query-params"><span class="toc-text">.query_params</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#parsers"><span class="toc-text">.parsers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Responses-解析"><span class="toc-text">Responses 解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-response"><span class="toc-text">创建 response</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-text">属性</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么用REST-Framework"><span class="toc-text">为什么用REST-Framework</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Request-解析"><span class="toc-text">Request 解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#data"><span class="toc-text">.data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#query-params"><span class="toc-text">.query_params</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#parsers"><span class="toc-text">.parsers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Responses-解析"><span class="toc-text">Responses 解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-response"><span class="toc-text">创建 response</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drf跨域问题"><span class="toc-text">drf跨域问题</span></a></li></ol>
         </div>
       </div>
     
@@ -305,6 +305,21 @@ django-rest-framework – Web API">
 <li><p><code>.renderer_context</code>    将传递给渲染器的 .render() 方法的附加的上下文信息字典。</p>
 </li>
 <li><p><code>.render()</code>   与其他任何 TemplateResponse 一样，调用此方法将响应的序列化数据呈现为最终响应内容。响应内容将设置为在 <code>accepted_renderer</code> 实例上调用 <code>.render(data，accepted_media_type，renderer_context)</code> 方法的结果</p>
+</li>
+</ul>
+<h3 id="drf跨域问题"><a href="#drf跨域问题" class="headerlink" title="drf跨域问题"></a>drf跨域问题</h3><ul>
+<li>安装模块 <code>pip install django-cors-headers</code></li>
+</ul>
+<p><code>django-cors-headers</code> 使用说明：<a href="https://github.com/ottoyiu/django-cors-headers" target="_blank" rel="external">https://github.com/ottoyiu/django-cors-headers</a></p>
+<ul>
+<li><p>添加App</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> INSTALLED_APPS = (</div><div class="line">   ...</div><div class="line">   <span class="string">'coreschema'</span>,</div><div class="line"><span class="meta">... </span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加中间件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">MIDDLEWARE = [</div><div class="line">    <span class="string">'corsheaders.middleware.CorsMiddleware'</span>,  <span class="comment">#当前 CorsMiddleware 放在第一个</span></div><div class="line">    <span class="string">'django.middleware.security.SecurityMiddleware'</span>,</div><div class="line">    <span class="string">'django.contrib.sessions.middleware.SessionMiddleware'</span>,</div><div class="line">    <span class="string">'django.middleware.common.CommonMiddleware'</span>,</div><div class="line">    <span class="string">'django.middleware.csrf.CsrfViewMiddleware'</span>,</div><div class="line">    <span class="string">'django.contrib.auth.middleware.AuthenticationMiddleware'</span>,</div><div class="line">    <span class="string">'django.contrib.messages.middleware.MessageMiddleware'</span>,</div><div class="line">    <span class="string">'django.middleware.clickjacking.XFrameOptionsMiddleware'</span>,</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+<li><p>settings设置</p>
+<p><code>CORS_ORIGIN_ALLOW_ALL = True</code></p>
 </li>
 </ul>
 </the></excerpt>
