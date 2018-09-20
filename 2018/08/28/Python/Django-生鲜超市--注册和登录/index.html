@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Django-生鲜超市--注册和登录"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/08/28/Python/Django-生鲜超市--注册和登录/"/>
+
+
+<meta name="description" content="用户的Token认证登录 和 注册 以及 JWT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-生鲜超市--注册和登录">
+<meta property="og:url" content="http://nenglee.com/2018/08/28/Python/Django-生鲜超市--注册和登录/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="用户的Token认证登录 和 注册 以及 JWT">
+<meta property="og:updated_time" content="2018-09-20T10:01:45.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django-生鲜超市--注册和登录">
+<meta name="twitter:description" content="用户的Token认证登录 和 注册 以及 JWT">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Django-生鲜超市--注册和登录 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Django-生鲜超市--注册和登录
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年8月28日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#drf的token"><span class="toc-text">drf的token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#json-web-token用户认证JWT"><span class="toc-text">json web token用户认证JWT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义用户认证"><span class="toc-text">自定义用户认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#云片网发送短信验证码"><span class="toc-text">云片网发送短信验证码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drf实现发送短信验证码接口"><span class="toc-text">drf实现发送短信验证码接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户注册"><span class="toc-text">用户注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#django信号量实现用户密码修改"><span class="toc-text">django信号量实现用户密码修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>用户的Token认证登录 和 注册 以及 JWT</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="drf的token"><a href="#drf的token" class="headerlink" title="drf的token"></a>drf的token</h3><p>用户认证流程：</p>
+<ol>
+<li><p>用户向服务器发送用户名和密码。</p>
+</li>
+<li><p>服务器验证通过后，在当前对话（session）里面保存相关数据，比如用户角色、登录时间等等。</p>
+</li>
+<li><p>服务器向用户返回一个 session_id，写入用户的 Cookie。</p>
+</li>
+<li><p>用户随后的每一次请求，都会通过 Cookie，将 session_id 传回服务器。</p>
+</li>
+<li><p>服务器收到 session_id，找到前期保存的数据，由此得知用户的身份</p>
+</li>
+</ol>
+<ul>
+<li><p>install_app中添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">INSTALLED_APPS = (</div><div class="line">    ...</div><div class="line">    <span class="string">'rest_framework.authtoken'</span></div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
+<li><p>token会生成一张表<code>authtoken_token</code>，所以要运行<code>migrations</code>和<code>migrate</code>数据库迁移</p>
+</li>
+<li><p>url配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> rest_framework.authtoken <span class="keyword">import</span> views</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    <span class="comment"># token</span></div><div class="line">    path(<span class="string">'api-token-auth/'</span>, views.obtain_auth_token)</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+<li><p>接着就可以 <a href="http://127.0.0.1:8000/api-token-auth" target="_blank" rel="external">http://127.0.0.1:8000/api-token-auth</a></p>
+<p>Post提交用户信息，后台产生token值会保存到数据中，跟这个用户相关联</p>
+</li>
+<li><p>客户端提交认证，密钥应包含在 Authorization HTTP header 中。关键字应以字符串文字 “Token” 为前缀，用空格分隔两个字符串：</p>
+<p><code>Authorization: Token 454545sdfbcf9418ad846dsgrg5g6wge4545</code></p>
+<p>如果成功通过身份验证，<code>TokenAuthentication</code> 将提供以下凭据。</p>
+<p><code>request.user</code> 是一个 Django User 实例.</p>
+<p><code>request.auth</code> 是一个 rest_framework.authtoken.models.Token 实例.</p>
+<p>要想通过Request获取实例，需要配置：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">REST_FRAMEWORK = &#123;</div><div class="line">    <span class="string">'DEFAULT_AUTHENTICATION_CLASSES'</span>: (</div><div class="line">        <span class="string">'rest_framework.authentication.BasicAuthentication'</span>,</div><div class="line">        <span class="string">'rest_framework.authentication.SessionAuthentication'</span>,</div><div class="line">        <span class="string">'rest_framework.authentication.TokenAuthentication'</span></div><div class="line">    )</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>DRF Token 存在的弊端：</strong></p>
+<ol>
+<li><p>保存在数据库中，如果是一个分布式的系统，就非常麻烦</p>
+</li>
+<li><p>token永久有效，没有过期时间。</p>
+</li>
+</ol>
+<h3 id="json-web-token用户认证JWT"><a href="#json-web-token用户认证JWT" class="headerlink" title="json web token用户认证JWT"></a>json web token用户认证JWT</h3><p>官网文档链接: <a href="http://getblimp.github.io/django-rest-framework-jwt/" target="_blank" rel="external">JSON WEB Token – github</a></p>
+<ul>
+<li><p>安装</p>
+<p><code>pip install djangorestframework-jwt</code></p>
+</li>
+<li><p>配置中间层</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">REST_FRAMEWORK = &#123;</div><div class="line">  <span class="string">'DEFAULT_AUTHENTICATION_CLASSES'</span>: (</div><div class="line">      <span class="string">'rest_framework.authentication.BasicAuthentication'</span>,</div><div class="line">      <span class="string">'rest_framework.authentication.SessionAuthentication'</span>,</div><div class="line">      <span class="string">'rest_framework_jwt.authentication.JSONWebTokenAuthentication'</span>,</div><div class="line">      )</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>url路由配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> rest_framework_jwt.views <span class="keyword">import</span> obtain_jwt_token</div><div class="line">  <span class="comment"># jwt的token认证接口</span></div><div class="line">  url(<span class="string">r'^login$'</span>, obtain_jwt_token),</div></pre></td></tr></table></figure>
+<p>JWT接口它默认采用的是用户名和密码登录验证，如果用手机登录的话，就会验证失败，所以我们需要自定义一个用户验证</p>
+</li>
+</ul>
+<h3 id="自定义用户认证"><a href="#自定义用户认证" class="headerlink" title="自定义用户认证"></a>自定义用户认证</h3><ol>
+<li><p>设置setting配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">AUTHENTICATION_BACKENDS = (</div><div class="line">  <span class="string">'users.views.CustomBackend'</span>,</div><div class="line">  )</div></pre></td></tr></table></figure>
+</li>
+<li><p>自定义用户验证(user/view.py)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.contrib.auth.backends <span class="keyword">import</span> ModelBackend</div><div class="line"><span class="keyword">from</span> django.contrib.auth <span class="keyword">import</span> get_user_model</div><div class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> Q</div><div class="line"></div><div class="line">User = get_user_model()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomBackend</span><span class="params">(ModelBackend)</span>:</span></div><div class="line">  <span class="string">"""</span></div><div class="line">  自定义用户验证</div><div class="line">  """</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">authenticate</span><span class="params">(self, username=None, password=None, **kwargs)</span>:</span></div><div class="line">      <span class="keyword">try</span>:</div><div class="line">          <span class="comment">#用户名和手机都能登录</span></div><div class="line">          user = User.objects.get(</div><div class="line">              Q(username=username) | Q(mobile=username))</div><div class="line">          <span class="keyword">if</span> user.check_password(password):</div><div class="line">              <span class="keyword">return</span> user</div><div class="line">      <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">          <span class="keyword">return</span> <span class="keyword">None</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>JWT有效时间设置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="comment">#有效期限</span></div><div class="line">JWT_AUTH = &#123;</div><div class="line">    <span class="string">'JWT_EXPIRATION_DELTA'</span>: datetime.timedelta(days=<span class="number">7</span>),    <span class="comment">#也可以设置seconds=20</span></div><div class="line">    <span class="string">'JWT_AUTH_HEADER_PREFIX'</span>: <span class="string">'JWT'</span>,                       <span class="comment">#JWT跟前端保持一致，比如“token”这里设置成JWT</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="云片网发送短信验证码"><a href="#云片网发送短信验证码" class="headerlink" title="云片网发送短信验证码"></a>云片网发送短信验证码</h3><ol>
+<li><p>配置流程：<code>开发认证--&gt;&gt; 签名管理--&gt;&gt; 模板管理</code></p>
+<p>还要添加iP白名单，测试就用本地ip，部署的时候一定要换成服务器的ip</p>
+</li>
+</ol>
+<ol>
+<li><p>第三方逻辑Utils</p>
+<p>apps/utils/yunpian.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">YunPian</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, api_key)</span>:</span></div><div class="line">        self.api_key = api_key</div><div class="line">        self.single_send_url = <span class="string">"https://sms.yunpian.com/v2/sms/single_send.json"</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">send_sms</span><span class="params">(self, code, mobile)</span>:</span></div><div class="line">        <span class="comment">#需要传递的参数</span></div><div class="line">        parmas = &#123;</div><div class="line">            <span class="string">"apikey"</span>: self.api_key,</div><div class="line">            <span class="string">"mobile"</span>: mobile,</div><div class="line">            <span class="string">"text"</span>: <span class="string">"【慕雪生鲜超市】您的验证码是&#123;code&#125;。如非本人操作，请忽略本短信"</span>.format(code=code)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        response = requests.post(self.single_send_url, data=parmas)</div><div class="line">        re_dict = json.loads(response.text)</div><div class="line">        <span class="keyword">return</span> re_dict</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    <span class="comment">#例如：9b11127a9701975c734b8aee81ee3526</span></div><div class="line">    yun_pian = YunPian(<span class="string">"2e87d1xxxxxx7d4bxxxx1608f7c6da23exxxxx2"</span>)</div><div class="line">    yun_pian.send_sms(<span class="string">"2018"</span>, <span class="string">"手机号码"</span>)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="drf实现发送短信验证码接口"><a href="#drf实现发送短信验证码接口" class="headerlink" title="drf实现发送短信验证码接口"></a>drf实现发送短信验证码接口</h3><ul>
+<li><p>手机是否合法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 手机号码正则表达式</span></div><div class="line">REGEX_MOBILE = <span class="string">"^1[358]\d&#123;9&#125;$|^147\d&#123;8&#125;$|^176\d&#123;8&#125;$"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>用户serializers</p>
+</li>
+</ul>
+<p>users/serializers.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, timedelta</div><div class="line"><span class="keyword">from</span> MxShop.settings <span class="keyword">import</span> REGEX_MOBILE</div><div class="line"><span class="keyword">from</span> users.models <span class="keyword">import</span> VerifyCode</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</div><div class="line"><span class="keyword">from</span> django.contrib.auth <span class="keyword">import</span> get_user_model</div><div class="line">User = get_user_model()</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmsSerializer</span><span class="params">(serializers.Serializer)</span>:</span></div><div class="line">    mobile = serializers.CharField(max_length=<span class="number">11</span>)</div><div class="line"></div><div class="line">    <span class="comment">#函数名必须：validate + 验证字段名</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate_mobile</span><span class="params">(self, mobile)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        手机号码验证</div><div class="line">        """</div><div class="line">        <span class="comment"># 是否已经注册</span></div><div class="line">        <span class="keyword">if</span> User.objects.filter(mobile=mobile).count():</div><div class="line">            <span class="keyword">raise</span> serializers.ValidationError(<span class="string">"用户已经存在"</span>)</div><div class="line"></div><div class="line">        <span class="comment"># 是否合法</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> re.match(REGEX_MOBILE, mobile):</div><div class="line">            <span class="keyword">raise</span> serializers.ValidationError(<span class="string">"手机号码非法"</span>)</div><div class="line"></div><div class="line">        <span class="comment"># 验证码发送频率</span></div><div class="line">        <span class="comment">#60s内只能发送一次</span></div><div class="line">        one_mintes_ago = datetime.now() - timedelta(hours=<span class="number">0</span>, minutes=<span class="number">1</span>, seconds=<span class="number">0</span>)</div><div class="line">        <span class="keyword">if</span> VerifyCode.objects.filter(add_time__gt=one_mintes_ago, mobile=mobile).count():</div><div class="line">            <span class="keyword">raise</span> serializers.ValidationError(<span class="string">"距离上一次发送未超过60s"</span>)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> mobile</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>云片网APIKEY</p>
+<p><code>APIKEY = &quot;xxxxx327d4be01608xxxxxxxxxx&quot;</code></p>
+</li>
+<li><p>views后台逻辑(重写)</p>
+</li>
+</ul>
+<p>users/views.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> rest_framework.mixins <span class="keyword">import</span> CreateModelMixin</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> viewsets</div><div class="line"><span class="keyword">from</span> .serializers <span class="keyword">import</span> SmsSerializer</div><div class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> status</div><div class="line"><span class="keyword">from</span> utils.yunpian <span class="keyword">import</span> YunPian</div><div class="line"><span class="keyword">from</span> MxShop.settings <span class="keyword">import</span> APIKEY</div><div class="line"><span class="keyword">from</span> random <span class="keyword">import</span> choice</div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> VerifyCode</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmsCodeViewset</span><span class="params">(CreateModelMixin,viewsets.GenericViewSet)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    手机验证码</div><div class="line">    '''</div><div class="line">    serializer_class = SmsSerializer</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_code</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        生成四位数字的验证码</div><div class="line">        """</div><div class="line">        seeds = <span class="string">"1234567890"</span></div><div class="line">        random_str = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</div><div class="line">            random_str.append(choice(seeds))</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>.join(random_str)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, request, *args, **kwargs)</span>:</span></div><div class="line">        serializer = self.get_serializer(data=request.data)</div><div class="line">        <span class="comment">#验证合法</span></div><div class="line">        serializer.is_valid(raise_exception=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">        mobile = serializer.validated_data[<span class="string">"mobile"</span>]</div><div class="line"></div><div class="line">        yun_pian = YunPian(APIKEY)</div><div class="line">        <span class="comment">#生成验证码</span></div><div class="line">        code = self.generate_code()</div><div class="line"></div><div class="line">        sms_status = yun_pian.send_sms(code=code, mobile=mobile)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> sms_status[<span class="string">"code"</span>] != <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> Response(&#123;</div><div class="line">                <span class="string">"mobile"</span>: sms_status[<span class="string">"msg"</span>]</div><div class="line">            &#125;, status=status.HTTP_400_BAD_REQUEST)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            code_record = VerifyCode(code=code, mobile=mobile)</div><div class="line">            code_record.save()</div><div class="line">            <span class="keyword">return</span> Response(&#123;</div><div class="line">                <span class="string">"mobile"</span>: mobile</div><div class="line">            &#125;, status=status.HTTP_201_CREATED)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>配置URLs</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> users.views <span class="keyword">import</span> SmsCodeViewset</div><div class="line"></div><div class="line"><span class="comment"># 配置codes的url</span></div><div class="line">router.register(<span class="string">r'code'</span>, SmsCodeViewset, base_name=<span class="string">"code"</span>)</div></pre></td></tr></table></figure>
+<h3 id="用户注册"><a href="#用户注册" class="headerlink" title="用户注册"></a>用户注册</h3><ul>
+<li>serializer</li>
+</ul>
+<p>users/serializers.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserRegSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    code = serializers.CharField(max_length=<span class="number">4</span>, min_length=<span class="number">4</span>, write_only=<span class="keyword">True</span>, label=<span class="string">"验证码"</span>,</div><div class="line">                                 error_messages=&#123;</div><div class="line">                                     <span class="string">"blank"</span>: <span class="string">"请输入验证码"</span>,</div><div class="line">                                     <span class="string">"required"</span>: <span class="string">"请输入验证码"</span>,</div><div class="line">                                     <span class="string">"max_length"</span>: <span class="string">"验证码格式错误"</span>,</div><div class="line">                                     <span class="string">"min_length"</span>: <span class="string">"验证码格式错误"</span>,</div><div class="line">                                 &#125;)</div><div class="line"></div><div class="line">    username = serializers.CharField(label=<span class="string">"用户名"</span>, required=<span class="keyword">True</span>, allow_blank=<span class="keyword">False</span>,</div><div class="line">                                     validators=[UniqueValidator(queryset=User.objects.all(), message=<span class="string">"用户已经存在"</span>)], )</div><div class="line"></div><div class="line">    <span class="comment"># 输入密码的时候不显示明文</span></div><div class="line">    password = serializers.CharField(</div><div class="line">        style=&#123;<span class="string">'input_type'</span>: <span class="string">'password'</span>&#125;, label=<span class="string">'密码'</span>, write_only=<span class="keyword">True</span></div><div class="line">    )</div><div class="line"></div><div class="line">    <span class="comment"># 密码加密保存</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, validated_data)</span>:</span></div><div class="line">        user = super(UserRegSerializer, self).create(validated_data=validated_data)</div><div class="line">        user.set_password(validated_data[<span class="string">"password"</span>])</div><div class="line">        user.save()</div><div class="line">        <span class="keyword">return</span> user</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate_code</span><span class="params">(self, code)</span>:</span></div><div class="line">        verify_records = VerifyCode.objects.filter(mobile=self.initial_data[<span class="string">"mobile"</span>]).order_by(<span class="string">"-add_time"</span>)</div><div class="line">        <span class="keyword">if</span> verify_records <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            last_record = verify_records[<span class="number">0</span>]</div><div class="line"></div><div class="line">            five_mintes_ago = datetime.now() - timedelta(hours=<span class="number">0</span>, minutes=<span class="number">5</span>, seconds=<span class="number">0</span>)</div><div class="line">            <span class="keyword">if</span> five_mintes_ago &gt; last_record.add_time:</div><div class="line">                <span class="keyword">raise</span> serializers.ValidationError(<span class="string">"验证码过期"</span>)</div><div class="line"></div><div class="line">            <span class="keyword">if</span> last_record.code != code:</div><div class="line">                <span class="keyword">raise</span> serializers.ValidationError(<span class="string">"验证码错误"</span>)</div><div class="line"></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">raise</span> serializers.ValidationError(<span class="string">"验证码错误"</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate</span><span class="params">(self, attrs)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        操作Model 字段</div><div class="line">        :param attrs:</div><div class="line">        :return:</div><div class="line">        """</div><div class="line">        <span class="comment"># attrs["mobile"] = attrs["username"]</span></div><div class="line">        <span class="keyword">del</span> attrs[<span class="string">"code"</span>]</div><div class="line">        <span class="keyword">return</span> attrs</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = User</div><div class="line">        fields = (<span class="string">"username"</span>, <span class="string">'code'</span>, <span class="string">'mobile'</span>, <span class="string">'password'</span>,)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>views</li>
+</ul>
+<p>users/views.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserViewset</span><span class="params">(CreateModelMixin,viewsets.GenericViewSet)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    用户</div><div class="line">    '''</div><div class="line">    serializer_class = UserRegSerializer</div></pre></td></tr></table></figure></p>
+<ul>
+<li>配置urls</li>
+</ul>
+<p><code>router.register(r&#39;users&#39;, UserViewset, base_name=&quot;users&quot;)</code></p>
+<h3 id="django信号量实现用户密码修改"><a href="#django信号量实现用户密码修改" class="headerlink" title="django信号量实现用户密码修改"></a>django信号量实现用户密码修改</h3><ul>
+<li>完善用户注册</li>
+</ul>
+<p>添加一条用户短信验证码数据之后进行验证</p>
+<p>user/views.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserViewset</span><span class="params">(CreateModelMixin,viewsets.GenericViewSet)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    用户</div><div class="line">    '''</div><div class="line">    serializer_class = UserRegSerializer</div><div class="line">    queryset = User.objects.all()</div></pre></td></tr></table></figure></p>
+<p>AppConfig自定义的函数，会在django启动时被运行</p>
+<p>现在添加用户的时候，密码就会自动加密存储了</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.jianshu.com/p/576dbf44b2ae" target="_blank" rel="external">JSON WEB Token 文献</a></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/08/29/Python/Django-生鲜超市--商品详情&收藏(认证)/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Django-生鲜超市--商品详情&收藏(认证)</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/08/26/Python/Django-生鲜超市--商品分类数据/">
+        <span class="next-text nav-default">Django-生鲜超市--商品分类数据</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/08/28/Python/Django-生鲜超市--注册和登录/"
+           data-title="Django-生鲜超市--注册和登录" data-url="http://nenglee.com/2018/08/28/Python/Django-生鲜超市--注册和登录/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

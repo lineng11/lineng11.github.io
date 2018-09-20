@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Django-生鲜超市--商品详情&收藏(认证)"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/08/29/Python/Django-生鲜超市--商品详情&收藏(认证)/"/>
+
+
+<meta name="description" content="商品的详情内容，已经单个商品收藏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-生鲜超市--商品详情&收藏(认证)">
+<meta property="og:url" content="http://nenglee.com/2018/08/29/Python/Django-生鲜超市--商品详情&收藏(认证)/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="商品的详情内容，已经单个商品收藏">
+<meta property="og:image" content="http://of6bvxslc.bkt.clouddn.com/IsOwnerOrReadOnly.png">
+<meta property="og:updated_time" content="2018-09-20T10:31:44.473Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django-生鲜超市--商品详情&收藏(认证)">
+<meta name="twitter:description" content="商品的详情内容，已经单个商品收藏">
+<meta name="twitter:image" content="http://of6bvxslc.bkt.clouddn.com/IsOwnerOrReadOnly.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Django-生鲜超市--商品详情&收藏(认证) · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Django-生鲜超市--商品详情&收藏(认证)
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年8月29日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#viewsets实现商品详情页接口"><span class="toc-text">viewsets实现商品详情页接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户收藏接口实现"><span class="toc-text">用户收藏接口实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drf的权限认证"><span class="toc-text">drf的权限认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义权限DRF"><span class="toc-text">自定义权限DRF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改user-operation的权限"><span class="toc-text">修改user_operation的权限</span></a></li></ol></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>商品的详情内容，已经单个商品收藏</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="viewsets实现商品详情页接口"><a href="#viewsets实现商品详情页接口" class="headerlink" title="viewsets实现商品详情页接口"></a>viewsets实现商品详情页接口</h3><ul>
+<li><p>商品详情页只需要多继承一个类（mixins.RetrieveModelMixin）就可以了</p>
+<p><code>class GoodsListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin,viewsets.GenericViewSet):</code></p>
+</li>
+<li><p>商品轮播图</p>
+<p>商品轮播图是一个外键，序列化外键用嵌套的方法来实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#轮播图</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoodsImageSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = GoodsImage</div><div class="line">        fields = (<span class="string">"image"</span>,)</div><div class="line"></div><div class="line"><span class="comment">#商品列表页</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoodsSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    <span class="comment">#覆盖外键字段</span></div><div class="line">    category = CategorySerializer()</div><div class="line">    <span class="comment">#images是数据库中设置的related_name="images"，把轮播图嵌套进来</span></div><div class="line">    images = GoodsImageSerializer(many=<span class="keyword">True</span>)</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = Goods</div><div class="line">        fields = <span class="string">'__all__'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>热卖商品接口实现</p>
+<p>只需要在过滤器中增加“is_hot”就可以了</p>
+<p>goods/filters.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">     model = Goods</div><div class="line">     fields = [<span class="string">'pricemin'</span>, <span class="string">'pricemax'</span>,<span class="string">'is_hot'</span>]  <span class="comment"># 添加“is_hot”</span></div></pre></td></tr></table></figure>
+<p><code>在后台设置商品的“is_hot”为True,然后前端就可以显示出来了</code></p>
+</li>
+</ul>
+<h3 id="用户收藏接口实现"><a href="#用户收藏接口实现" class="headerlink" title="用户收藏接口实现"></a>用户收藏接口实现</h3><ul>
+<li>序列化Serializers</li>
+</ul>
+<p>user_operation/serializers.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># user_operation/serializers.py</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</div><div class="line"><span class="keyword">from</span> user_operation.models <span class="keyword">import</span> UserFav</div><div class="line"><span class="keyword">from</span> rest_framework.validators <span class="keyword">import</span> UniqueTogetherValidator</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserFavSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    <span class="comment">#获取当前登录的用户</span></div><div class="line">    user = serializers.HiddenField(</div><div class="line">        default=serializers.CurrentUserDefault()</div><div class="line">    )</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        <span class="comment">#validate实现唯一联合，一个商品只能收藏一次</span></div><div class="line">        validators = [</div><div class="line">            UniqueTogetherValidator(</div><div class="line">                queryset=UserFav.objects.all(),</div><div class="line">                fields=(<span class="string">'user'</span>, <span class="string">'goods'</span>),</div><div class="line">                <span class="comment">#message的信息可以自定义</span></div><div class="line">                message=<span class="string">"已经收藏"</span></div><div class="line">            )</div><div class="line">        ]</div><div class="line">        model = UserFav</div><div class="line">        <span class="comment">#收藏的时候需要返回商品的id，因为取消收藏的时候必须知道商品的id是多少</span></div><div class="line">        fields = (<span class="string">"user"</span>, <span class="string">"goods"</span>,<span class="string">'id'</span>)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>用户操作Views</li>
+</ul>
+<p>user_operation/views.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> viewsets</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> mixins</div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> UserFav</div><div class="line"><span class="keyword">from</span> .serializers <span class="keyword">import</span> UserFavSerializer</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserFavViewset</span><span class="params">(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    用户收藏</div><div class="line">    '''</div><div class="line">    queryset = UserFav.objects.all()</div><div class="line">    serializer_class = UserFavSerializer</div></pre></td></tr></table></figure></p>
+<p>mixins在 DRF 有介绍 , <a href="http://nenglee.com/2018/08/25/Python/Django-%E7%94%9F%E9%B2%9C%E8%B6%85%E5%B8%82--%E5%95%86%E5%93%81%E5%88%97%E8%A1%A8%E9%A1%B5/#viewsets%E4%B8%AD%E7%9A%84GenericViewSet-%E6%A0%B8%E5%BF%83">连接</a></p>
+<p><code>mixins.CreateModelMixin</code>        添加收藏（相当于创建数据库）</p>
+<p><code>mixins.DestroyModelMixin</code>       取消删除（相当于数据库删除）</p>
+<p><code>mixins.ListModelMixin</code>          获取已收藏的商品列表</p>
+<ul>
+<li>urls路由配置</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 配置用户收藏的url</span></div><div class="line">router.register(<span class="string">r'userfavs'</span>, UserFavViewset, base_name=<span class="string">"userfavs"</span>)</div></pre></td></tr></table></figure>
+<p>商品收藏只允许对自己ID下操作，取消收藏也是同理，并且查询收藏也是自己的。</p>
+<p>对此需要权限认证</p>
+<h3 id="drf的权限认证"><a href="#drf的权限认证" class="headerlink" title="drf的权限认证"></a>drf的权限认证</h3><ol>
+<li><p>只有登录用户才可以收藏</p>
+</li>
+<li><p>用户只能获取自己的收藏，不能获取所有用户的收藏</p>
+</li>
+<li><p>JSONWebTokenAuthentication认证不应该全局配置，因为用户获取商品信息或者其它页面的时候并不需要此认证，所以这个认证只要局部中添加就可以</p>
+</li>
+<li><p>删除settings中的’rest_framework_jwt.authentication.JSONWebTokenAuthentication’,</p>
+</li>
+</ol>
+<h4 id="自定义权限DRF"><a href="#自定义权限DRF" class="headerlink" title="自定义权限DRF"></a>自定义权限DRF</h4><p><a href="http://www.django-rest-framework.org/api-guide/permissions/#isauthenticated" target="_blank" rel="external">DRF自定义权限实例文献连接</a></p>
+<p><img src="http://of6bvxslc.bkt.clouddn.com/IsOwnerOrReadOnly.png" alt="DRF IsOwnerOrReadOnly 权限"></p>
+<p>utils文件夹下新建<code>permissions.py</code>,代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> permissions</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">IsOwnerOrReadOnly</span><span class="params">(permissions.BasePermission)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    对象级权限仅允许对象的所有者对其进行编辑</div><div class="line">    假设模型实例具有`owner`属性。</div><div class="line">    """</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">has_object_permission</span><span class="params">(self, request, view, obj)</span>:</span></div><div class="line">        <span class="comment"># 任何请求都允许读取权限，</span></div><div class="line">        <span class="comment"># 所以我们总是允许GET，HEAD或OPTIONS 请求.</span></div><div class="line">        <span class="keyword">if</span> request.method <span class="keyword">in</span> permissions.SAFE_METHODS:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line"></div><div class="line">        <span class="comment"># 示例必须要有一个名为`owner`的属性</span></div><div class="line">        <span class="comment">#obj相当于数据库中的model，这里要把owner改为我们数据库中的user</span></div><div class="line">        <span class="keyword">return</span> obj.user == request.user</div></pre></td></tr></table></figure></p>
+<h4 id="修改user-operation的权限"><a href="#修改user-operation的权限" class="headerlink" title="修改user_operation的权限"></a>修改user_operation的权限</h4><p>user_operation/views<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> viewsets</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> mixins</div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> UserFav</div><div class="line"><span class="keyword">from</span> .serializers <span class="keyword">import</span> UserFavSerializer</div><div class="line"><span class="keyword">from</span> rest_framework.permissions <span class="keyword">import</span> IsAuthenticated</div><div class="line"><span class="keyword">from</span> utils.permissions <span class="keyword">import</span> IsOwnerOrReadOnly</div><div class="line"><span class="keyword">from</span> rest_framework_jwt.authentication <span class="keyword">import</span> JSONWebTokenAuthentication</div><div class="line"><span class="keyword">from</span> rest_framework.authentication <span class="keyword">import</span> SessionAuthentication</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserFavViewset</span><span class="params">(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    用户收藏</div><div class="line">    '''</div><div class="line">    serializer_class = UserFavSerializer</div><div class="line">    <span class="comment">#permission是用来做权限判断的</span></div><div class="line">    <span class="comment"># IsAuthenticated：必须登录用户；IsOwnerOrReadOnly：必须是当前登录的用户</span></div><div class="line">    permission_classes = (IsAuthenticated,IsOwnerOrReadOnly)</div><div class="line">    <span class="comment">#auth使用来做用户认证的</span></div><div class="line">    authentication_classes = (JSONWebTokenAuthentication,SessionAuthentication)</div><div class="line">    <span class="comment">#搜索的字段</span></div><div class="line">    lookup_field = <span class="string">'goods_id'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_queryset</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment">#只能查看当前登录用户的收藏，不会获取所有用户的收藏</span></div><div class="line">        <span class="keyword">return</span> UserFav.objects.filter(user=self.request.user)</div></pre></td></tr></table></figure></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/08/28/Python/Django-生鲜超市--注册和登录/">
+        <span class="next-text nav-default">Django-生鲜超市--注册和登录</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/08/29/Python/Django-生鲜超市--商品详情&收藏(认证)/"
+           data-title="Django-生鲜超市--商品详情&收藏(认证)" data-url="http://nenglee.com/2018/08/29/Python/Django-生鲜超市--商品详情&收藏(认证)/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>
