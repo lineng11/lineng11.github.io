@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="CentOS6 安装python3"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/09/04/Python/CentOS 6安装python3/"/>
+
+
+<meta name="description" content="之前自己搭建的VPN，其系统为Centos6，刚好想把python项目部署上去，记录方便你我。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS6 安装python3">
+<meta property="og:url" content="http://nenglee.com/2018/09/04/Python/CentOS 6安装python3/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="之前自己搭建的VPN，其系统为Centos6，刚好想把python项目部署上去，记录方便你我。">
+<meta property="og:updated_time" content="2018-09-22T15:18:57.528Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS6 安装python3">
+<meta name="twitter:description" content="之前自己搭建的VPN，其系统为Centos6，刚好想把python项目部署上去，记录方便你我。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> CentOS6 安装python3 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          CentOS6 安装python3
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年9月4日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#python位置"><span class="toc-text">python位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖包"><span class="toc-text">安装依赖包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装静态库"><span class="toc-text">安装静态库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装gcc"><span class="toc-text">安装gcc</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载和安装Python3"><span class="toc-text">下载和安装Python3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通过官网下载Python3安装包"><span class="toc-text">通过官网下载Python3安装包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解压安装包"><span class="toc-text">解压安装包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#手动编译"><span class="toc-text">手动编译</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加软链接"><span class="toc-text">添加软链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更改yum配"><span class="toc-text">更改yum配</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>之前自己搭建的VPN，其系统为Centos6，刚好想把python项目部署上去，记录方便你我。</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<p>centos6 自带有python，只不过是 python2 版本的，如果你想安装个python3怎么办呢？</p>
+<p>因为 yum 源中并没有现成的 python3 程序，所以必须要自己手动编译安装。</p>
+<p>那么就安装以下步骤来吧！</p>
+<h3 id="python位置"><a href="#python位置" class="headerlink" title="python位置"></a>python位置</h3><p>首先了解python2的存放的目录在哪里？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# whereis python</div><div class="line"></div><div class="line">python:</div><div class="line">        /usr/bin/python.bak</div><div class="line">        /usr/bin/python2.6</div><div class="line">        /usr/bin/python</div><div class="line">        /usr/lib/python2.6</div><div class="line">        /usr/lib64/python2.6</div><div class="line">        /usr/include/python2.6</div><div class="line">        /usr/share/man/man1/python.1.gz</div><div class="line">[root@localhost ~]#</div></pre></td></tr></table></figure>
+<p>由此可以知晓python在 <code>/usr/bin</code> 目录中</p>
+<h3 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h3><h4 id="安装静态库"><a href="#安装静态库" class="headerlink" title="安装静态库"></a>安装静态库</h4><p><code># yum install -y openssl-static</code></p>
+<p>注：如果不安装该静态库，会导致python的pip安装失败</p>
+<h4 id="安装gcc"><a href="#安装gcc" class="headerlink" title="安装gcc"></a>安装gcc</h4><p><code># yum install -y gcc wget</code></p>
+<p><code># yum groupinstall &quot;Development tools&quot;</code></p>
+<p><code># yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel</code></p>
+<h3 id="下载和安装Python3"><a href="#下载和安装Python3" class="headerlink" title="下载和安装Python3"></a>下载和安装Python3</h3><h4 id="通过官网下载Python3安装包"><a href="#通过官网下载Python3安装包" class="headerlink" title="通过官网下载Python3安装包"></a>通过官网下载Python3安装包</h4><p><code># wget http://python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz</code></p>
+<h4 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h4><p><code># tar xf Python-3.6.1.tar.xz</code></p>
+<h4 id="手动编译"><a href="#手动编译" class="headerlink" title="手动编译"></a>手动编译</h4><p>进入解压后的目录 <code>[root@localhost Python-3.6.6]</code>，依次执行下面命令进行手动编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost Python-3.6.6]# ./configure prefix=/usr/local/python3</div><div class="line">....</div><div class="line">....</div><div class="line">...</div><div class="line">[root@localhost Python-3.6.6]# make &amp;&amp; make install</div></pre></td></tr></table></figure>
+<p>没提示出错，就代表正确安装了，在/usr/local/目录下就会有python3目录</p>
+<h3 id="添加软链接"><a href="#添加软链接" class="headerlink" title="添加软链接"></a>添加软链接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#将原来的链接备份</div><div class="line"># mv /usr/bin/python /usr/bin/python.bak</div><div class="line"></div><div class="line">#添加python3的软链接</div><div class="line"># ln -s /usr/local/python3/bin/python3.6 /usr/bin/python</div><div class="line"></div><div class="line">#测试是否安装成功了</div><div class="line"># python -V</div></pre></td></tr></table></figure>
+<h3 id="更改yum配"><a href="#更改yum配" class="headerlink" title="更改yum配"></a>更改yum配</h3><p>要用到python2才能执行，否则会导致yum不能正常使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vi /usr/bin/yum</div><div class="line">把#! /usr/bin/python修改为#! /usr/bin/python2</div><div class="line"></div><div class="line">vi /usr/libexec/urlgrabber-ext-down</div><div class="line">把#! /usr/bin/python 修改为#! /usr/bin/python2</div></pre></td></tr></table></figure></p>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/09/02/Python/Django-生鲜超市--购物车&订单/">
+        <span class="next-text nav-default">Django-生鲜超市--购物车&订单</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/09/04/Python/CentOS 6安装python3/"
+           data-title="CentOS6 安装python3" data-url="http://nenglee.com/2018/09/04/Python/CentOS 6安装python3/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

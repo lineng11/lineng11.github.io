@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Django-生鲜超市--购物车&订单"/>
+
+
+
+
+  <meta name="keywords" content="Python工具," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Neng Lee">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://nenglee.com/2018/09/02/Python/Django-生鲜超市--购物车&订单/"/>
+
+
+<meta name="description" content="用户购物车和订单管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-生鲜超市--购物车&订单">
+<meta property="og:url" content="http://nenglee.com/2018/09/02/Python/Django-生鲜超市--购物车&订单/index.html">
+<meta property="og:site_name" content="Neng Lee">
+<meta property="og:description" content="用户购物车和订单管理">
+<meta property="og:updated_time" content="2018-09-21T09:28:21.242Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django-生鲜超市--购物车&订单">
+<meta name="twitter:description" content="用户购物车和订单管理">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?68f20218dfa1d6e19d0130b4bf5575fd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+    <title> Django-生鲜超市--购物车&订单 · Neng Lee </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Neng Lee</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/随笔/">
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
+      
+        <li class="menu-search">
+          <form>
+            <i class="iconfont icon-search" id="open-search"></i>
+            <input type="text" class="search-input" id="search-input" />
+            <i class="iconfont icon-close" id="close-search"></i>
+          </form>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">Neng Lee</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories/随笔/">
+        随笔
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Django-生鲜超市--购物车&订单
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018年9月2日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#购物车管理"><span class="toc-text">购物车管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#订单管理"><span class="toc-text">订单管理</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<p>用户购物车和订单管理</p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<hr>
+<h3 id="购物车管理"><a href="#购物车管理" class="headerlink" title="购物车管理"></a>购物车管理</h3><ul>
+<li>serializer</li>
+</ul>
+<p>trade/serializer.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> ShoppingCart</div><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</div><div class="line"><span class="keyword">from</span> goods.models <span class="keyword">import</span> Goods</div><div class="line"><span class="keyword">from</span> goods.serializers <span class="keyword">import</span> GoodsSerializer</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShopCartDetailSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    goods = GoodsSerializer(many=<span class="keyword">False</span>, read_only=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = ShoppingCart</div><div class="line">        fields = (<span class="string">"goods"</span>, <span class="string">"nums"</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShopCartSerializer</span><span class="params">(serializers.Serializer)</span>:</span></div><div class="line">    user = serializers.HiddenField(</div><div class="line">        default=serializers.CurrentUserDefault()</div><div class="line">    )</div><div class="line">    nums = serializers.IntegerField(required=<span class="keyword">True</span>, label=<span class="string">"数量"</span>, min_value=<span class="number">1</span>,</div><div class="line">                                    error_messages=&#123;</div><div class="line">                                        <span class="string">"min_value"</span>: <span class="string">"商品数量不能小于一"</span>,</div><div class="line">                                        <span class="string">"required"</span>: <span class="string">"请选择购买数量"</span></div><div class="line">                                    &#125;)</div><div class="line">    goods = serializers.PrimaryKeyRelatedField(required=<span class="keyword">True</span>, queryset=Goods.objects.all())</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, validated_data)</span>:</span></div><div class="line">        user = self.context[<span class="string">"request"</span>].user</div><div class="line">        nums = validated_data[<span class="string">"nums"</span>]</div><div class="line">        goods = validated_data[<span class="string">"goods"</span>]</div><div class="line"></div><div class="line">        existed = ShoppingCart.objects.filter(user=user, goods=goods)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> existed:</div><div class="line">            existed = existed[<span class="number">0</span>]</div><div class="line">            existed.nums += nums</div><div class="line">            existed.save()</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            existed = ShoppingCart.objects.create(**validated_data)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> existed</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, instance, validated_data)</span>:</span></div><div class="line">        <span class="comment"># 修改商品数量</span></div><div class="line">        instance.nums = validated_data[<span class="string">"nums"</span>]</div><div class="line">        instance.save()</div><div class="line">        <span class="keyword">return</span> instance</div></pre></td></tr></table></figure></p>
+<ul>
+<li>views</li>
+</ul>
+<p>trade/views.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> viewsets</div><div class="line"><span class="keyword">from</span> rest_framework.permissions <span class="keyword">import</span> IsAuthenticated</div><div class="line"><span class="keyword">from</span> utils.peermission <span class="keyword">import</span> IsOwnerOrReadOnly</div><div class="line"><span class="keyword">from</span> rest_framework_jwt.authentication <span class="keyword">import</span> JSONWebTokenAuthentication</div><div class="line"><span class="keyword">from</span> rest_framework.authentication <span class="keyword">import</span> SessionAuthentication</div><div class="line"><span class="keyword">from</span> .serializers <span class="keyword">import</span> ShopCartSerializer, ShopCartDetailSerializer</div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> ShoppingCart</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShoppingCartViewset</span><span class="params">(viewsets.ModelViewSet)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    购物车功能</div><div class="line">    list:</div><div class="line">        获取购物车详情</div><div class="line">    create：</div><div class="line">        加入购物车</div><div class="line">    delete：</div><div class="line">        删除购物记录</div><div class="line">    """</div><div class="line">    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)</div><div class="line">    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)</div><div class="line">    serializer_class = ShopCartSerializer</div><div class="line">    lookup_field = <span class="string">"goods_id"</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform_create</span><span class="params">(self, serializer)</span>:</span></div><div class="line">        shop_cart = serializer.save()</div><div class="line">        goods = shop_cart.goods</div><div class="line">        goods.goods_num -= shop_cart.nums</div><div class="line">        goods.save()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform_destroy</span><span class="params">(self, instance)</span>:</span></div><div class="line">        goods = instance.goods</div><div class="line">        goods.goods_num += instance.nums</div><div class="line">        goods.save()</div><div class="line">        instance.delete()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform_update</span><span class="params">(self, serializer)</span>:</span></div><div class="line">        existed_record = ShoppingCart.objects.get(id=serializer.instance.id)</div><div class="line">        existed_nums = existed_record.nums</div><div class="line">        saved_record = serializer.save()</div><div class="line">        nums = saved_record.nums - existed_nums</div><div class="line">        goods = saved_record.goods</div><div class="line">        goods.goods_num -= nums</div><div class="line">        goods.save()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_serializer_class</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.action == <span class="string">'list'</span>:</div><div class="line">            <span class="keyword">return</span> ShopCartDetailSerializer</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> ShopCartSerializer</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_queryset</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> ShoppingCart.objects.filter(user=self.request.user)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>配置urls</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 配置购物车的url</span></div><div class="line">router.register(<span class="string">r'shopcarts'</span>, ShoppingCartViewset, base_name=<span class="string">"shopcarts"</span>)</div></pre></td></tr></table></figure>
+<h3 id="订单管理"><a href="#订单管理" class="headerlink" title="订单管理"></a>订单管理</h3><p>用户添加商品到购物车，点去购物车结算，填上地址留言，结算生成订单，在会员中心我的订单里面，可以看到订单列表，点订单可以看到订单的详细信息。</p>
+<ul>
+<li>serializer</li>
+</ul>
+<p>trade/serializer.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#订单中的商品</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrderGoodsSerialzier</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    goods = GoodsSerializer(many=<span class="keyword">False</span>)</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = OrderGoods</div><div class="line">        fields = <span class="string">"__all__"</span></div><div class="line"></div><div class="line"><span class="comment">#订单商品信息</span></div><div class="line"><span class="comment"># goods字段需要嵌套一个OrderGoodsSerializer</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrderDetailSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    goods = OrderGoodsSerialzier(many=<span class="keyword">True</span>)</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = OrderInfo</div><div class="line">        fields = <span class="string">"__all__"</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrderSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></div><div class="line">    user = serializers.HiddenField(</div><div class="line">        default=serializers.CurrentUserDefault()</div><div class="line">    )</div><div class="line">    <span class="comment">#生成订单的时候这些不用post</span></div><div class="line">    pay_status = serializers.CharField(read_only=<span class="keyword">True</span>)</div><div class="line">    trade_no = serializers.CharField(read_only=<span class="keyword">True</span>)</div><div class="line">    order_sn = serializers.CharField(read_only=<span class="keyword">True</span>)</div><div class="line">    pay_time = serializers.DateTimeField(read_only=<span class="keyword">True</span>)</div><div class="line">    nonce_str = serializers.CharField(read_only=<span class="keyword">True</span>)</div><div class="line">    pay_type = serializers.CharField(read_only=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate_order_sn</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment">#生成订单号</span></div><div class="line">        <span class="comment"># 当前时间+userid+随机数</span></div><div class="line">        <span class="keyword">from</span> random <span class="keyword">import</span> Random</div><div class="line">        random_ins = Random()</div><div class="line">        order_sn = <span class="string">"&#123;time_str&#125;&#123;userid&#125;&#123;ranstr&#125;"</span>.format(time_str=time.strftime(<span class="string">"%Y%m%d%H%M%S"</span>),</div><div class="line">                                                       userid=self.context[<span class="string">"request"</span>].user.id,</div><div class="line">                                                       ranstr=random_ins.randint(<span class="number">10</span>, <span class="number">99</span>))</div><div class="line">        <span class="keyword">return</span> order_sn</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validate</span><span class="params">(self, attrs)</span>:</span></div><div class="line">        <span class="comment">#validate中添加order_sn，然后在view中就可以save</span></div><div class="line">        attrs[<span class="string">"order_sn"</span>] = self.generate_order_sn()</div><div class="line">        <span class="keyword">return</span> attrs</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        model = OrderInfo</div><div class="line">        fields = <span class="string">"__all__"</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li>views</li>
+</ul>
+<p>trade/views.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrderViewset</span><span class="params">(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin,</span></span></div><div class="line">                   viewsets.GenericViewSet):</div><div class="line">    <span class="string">"""</span></div><div class="line">    订单管理</div><div class="line">    list:</div><div class="line">        获取个人订单</div><div class="line">    delete:</div><div class="line">        删除订单</div><div class="line">    create：</div><div class="line">        新增订单</div><div class="line">    """</div><div class="line">    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)</div><div class="line">    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)</div><div class="line">    serializer_class = OrderSerializer</div><div class="line">    <span class="comment">#动态配置serializer</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_serializer_class</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.action == <span class="string">"retrieve"</span>:</div><div class="line">            <span class="keyword">return</span> OrderDetailSerializer</div><div class="line">        <span class="keyword">return</span> OrderSerializer</div><div class="line">    <span class="comment">#获取订单列表</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_queryset</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> OrderInfo.objects.filter(user=self.request.user)</div><div class="line"></div><div class="line">    <span class="comment">#在订单提交保存之前还需要多两步步骤，所以这里自定义perform_create方法</span></div><div class="line">    <span class="comment">#1.将购物车中的商品保存到OrderGoods中</span></div><div class="line">    <span class="comment">#2.清空购物车</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform_create</span><span class="params">(self, serializer)</span>:</span></div><div class="line">        order = serializer.save()</div><div class="line">        <span class="comment"># 获取购物车所有商品</span></div><div class="line">        shop_carts = ShoppingCart.objects.filter(user=self.request.user)</div><div class="line">        <span class="keyword">for</span> shop_cart <span class="keyword">in</span> shop_carts:</div><div class="line">            order_goods = OrderGoods()</div><div class="line">            order_goods.goods = shop_cart.goods</div><div class="line">            order_goods.goods_num = shop_cart.nums</div><div class="line">            order_goods.order = order</div><div class="line">            order_goods.save()</div><div class="line">            <span class="comment">#清空购物车</span></div><div class="line">            shop_cart.delete()</div><div class="line">        <span class="keyword">return</span> order</div></pre></td></tr></table></figure></p>
+<ul>
+<li>配置urls</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 配置订单的url</span></div><div class="line">router.register(<span class="string">r'orders'</span>, OrderViewset, base_name=<span class="string">"orders"</span>)</div></pre></td></tr></table></figure>
+</the></excerpt>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/Python工具/">Python工具</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/09/04/Python/CentOS 6安装python3/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CentOS6 安装python3</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/08/31/Python/Django-生鲜超市--个人中心/">
+        <span class="next-text nav-default">Django-生鲜超市--个人中心</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/09/02/Python/Django-生鲜超市--购物车&订单/"
+           data-title="Django-生鲜超市--购物车&订单" data-url="http://nenglee.com/2018/09/02/Python/Django-生鲜超市--购物车&订单/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:383356258@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/lineng11" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/u/1810748133" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Neng Lee</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nenglee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>
